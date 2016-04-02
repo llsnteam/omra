@@ -23,6 +23,7 @@ namespace Omra
         public MainWindow()
         {
             InitializeComponent();
+            MessageBox.Show("Start");
         }
     }
 }

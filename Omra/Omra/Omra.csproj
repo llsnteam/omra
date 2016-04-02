@@ -53,6 +53,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Rang.cs" />
+    <Compile Include="Személy.cs" />
+    <Compile Include="Személykezelő.cs" />
+    <Compile Include="Üzenet.cs" />
+    <Compile Include="Üzenetkezelő.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -61,6 +66,29 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Bizonyíték.cs" />
+    <Compile Include="BÁllapot.cs" />
+    <Compile Include="Bűneset.cs" />
+    <Compile Include="BűnesetiKimutatás.cs" />
+    <Compile Include="Bűnesetkezelő.cs" />
+    <Compile Include="Dolgozó.cs" />
+    <Compile Include="Feladat.cs" />
+    <Compile Include="Feladatkezelő.cs" />
+    <Compile Include="FÁllapot.cs" />
+    <Compile Include="Gyanúsított.cs" />
+    <Compile Include="GyanúsítottStátusz.cs" />
+    <Compile Include="GYÁllapot.cs" />
+    <Compile Include="IBizonyítékkezelő.cs" />
+    <Compile Include="IBűnesetkezelő.cs" />
+    <Compile Include="IDolgozókezelő.cs" />
+    <Compile Include="IFeladatkezelő.cs" />
+    <Compile Include="IGyanúsítottkezelő.cs" />
+    <Compile Include="IKereséskezelő.cs" />
+    <Compile Include="IKimutatáskezelő.cs" />
+    <Compile Include="IÜzenetkezelő.cs" />
+    <Compile Include="Kereséskezelő.cs" />
+    <Compile Include="Kimutatás.cs" />
+    <Compile Include="Kimutatáskészítő.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
