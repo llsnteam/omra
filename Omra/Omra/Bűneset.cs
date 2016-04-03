@@ -21,7 +21,7 @@ namespace Adatkezelõ {
 		private BÁllapot állapot;
 
 		public Bûneset(){
-            //Ha ezt látod, sikerült
+            this.azonosító = "Ha ezt látod, sikerült";
 		}
 
 		~Bûneset(){
