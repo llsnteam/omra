@@ -21,7 +21,7 @@ namespace Adatkezelõ {
 		private BÁllapot állapot;
 
 		public Bûneset(){
-            this.azonosító = this.bizonyítékok.ToString();
+            this.azonosító = "Ha ezt látod, sikerült";
 		}
 
 		~Bûneset(){
