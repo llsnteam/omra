@@ -32,8 +32,9 @@ namespace Adatkezelõ {
 		/// 
 		/// <param name="vege"></param>
 		/// <param name="kezdet"></param>
-		public Kimutatás(DateTime vege, DateTIme kezdet){
-
+		public Kimutatás(DateTime vege, DateTime kezdet){
+            this.vege = vege;
+            this.kezdet = kezdet;
 		}
 
 	}//end Kimutatás
