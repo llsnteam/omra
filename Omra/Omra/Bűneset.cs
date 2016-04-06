@@ -31,6 +31,7 @@ namespace Adatkezelõ {
             string blabla = "bla";
             int valami = 0;
             bool megintvalami = false;
+            bool vs12thasznalok = true;
 		}
 
 		~Bûneset(){
