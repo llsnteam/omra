@@ -33,12 +33,15 @@ namespace Adatkezelõ {
 		/// <param name="lakcím"></param>
 		/// <param name="személyiazonosító"></param>
 		public Gyanúsított(GyanúsítottStátusz státusz, string név, string lakcím, string személyiazonosító){
-
+            this.státusz = státusz;
+            this.név = név;
+            this.bejelentettLakcím = lakcím;
+            this.azonosító = személyiazonosító;
 		}
 
 		public GyanúsítottStátusz GetStátusz(){
 
-			return null;
+			return this.státusz;
 		}
 
 	}//end Gyanúsított

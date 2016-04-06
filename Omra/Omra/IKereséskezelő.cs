@@ -10,7 +10,10 @@
 
 
 using Adatkezelõ;
+using System.Collections.Generic;
 namespace Adatkezelõ {
+
+    public enum KeresésTípus { Bûneset, Gyanúsított, Bizonyíték, Dolgozó }
 	public interface IKereséskezelõ {
 
 		/// 

@@ -12,7 +12,7 @@
 using Adatkezelõ;
 using System.Collections.Generic;
 namespace Adatkezelõ {
-	public class Személykezelõ : IÜzenetkezelõ, IDolgozókezelõ, IGyanúsítottkezelõ, IGyanúsítottkezelõ {
+	public class Személykezelõ : IÜzenetkezelõ, IDolgozókezelõ, IGyanúsítottkezelõ {
 
 		private List<Dolgozó> dolgozók;  
 		private List<Gyanúsított> gyanúsítottak; 
