@@ -25,7 +25,7 @@ namespace Adatkezelõ {
             this.azonosító = "Ha ezt látod, sikerült";
 
             this.azonosító += "04.03. 22:12";
-
+            //fgfgdbnfgd
             this.azonosító += "04.05. 08:10";
 
             string blabla = "bla";
