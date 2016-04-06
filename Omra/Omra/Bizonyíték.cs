@@ -34,7 +34,8 @@ namespace Adatkezelõ {
 		/// <param name="megnevezés"></param>
 		/// <param name="azonosító"></param>
 		public Bizonyíték(string megnevezés, string azonosító){
-
+            this.megnevezés = megnevezés;
+            this.azonosító = azonosító;
 		}
 
 		public string GetAzonosító{
@@ -48,7 +49,7 @@ namespace Adatkezelõ {
 
 		public string GetMegnevezés(){
 
-			return "";
+			return this.megnevezés;
 		}
 
 	}//end Bizonyíték
