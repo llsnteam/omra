@@ -10,6 +10,8 @@
 
 
 using Adatkezelõ;
+using System;
+using System.Collections.Generic;
 namespace Adatkezelõ {
 	public class BûnesetiKimutatás : Kimutatás {
 
@@ -31,24 +33,25 @@ namespace Adatkezelõ {
 
 		public List<Bizonyíték> GetBizonyítékok(){
 
-			return null;
+            return this.bizonyítékok;
 		}
 
 		public List<Bûneset> GetBûnesetek(){
 
-			return null;
+			return this.bûnesetek;
 		}
 
 		public List<Gyanúsított> GetGyanúsítottak(){
 
-			return null;
+			return this.gyanúsítottak;
 		}
 
 		/// 
 		/// <param name="kezdet"></param>
 		/// <param name="vege"></param>
 		public void ÚjBûnesetiKimutatás(DateTime kezdet, DateTime vege){
-
+            this.kezdet = kezdet;
+            this.vege = vege;
 		}
 
 	}//end BûnesetiKimutatás
