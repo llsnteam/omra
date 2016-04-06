@@ -12,7 +12,8 @@
 using Adatkezelõ;
 using System.Collections.Generic;
 namespace Adatkezelõ {
-	public class Bûnesetkezelõ : IBûnesetkezelõ, IGyanúsítottkezelõ, IBizonyítékkezelõ {
+	public class Bûnesetkezelõ : IBûnesetkezelõ, IGyanúsítottkezelõ, IBizonyítékkezelõ 
+    {
 
 		private List<Bûneset> bûnesetek;
         
