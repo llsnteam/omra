@@ -30,17 +30,17 @@ namespace Adatkezelõ {
 
 		public string GetAzonosító(){
 
-			return "";
+			return this.azonosító;
 		}
 
 		public string GetBejelentettLakcím(){
 
-			return "";
+			return this.bejelentettLakcím;
 		}
 
 		public string GetNév(){
 
-			return "";
+			return this.név;
 		}
 
 	}//end Személy
