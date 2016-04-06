@@ -41,15 +41,7 @@ namespace Adatkezelõ {
 		public void BizonyítékHozzáadása(Bizonyíték bizonyíték, Bûneset bûneset){
             bûneset.BizonyítékHozzáadása(bûneset, bizonyíték);
 		}
-
-		/// 
-		/// <param name="azonosító"></param>
-		public Bizonyíték BizonyítékKeresés(string azonosító){
-
-            //nem is kellene ide ? -> kereséskezelõ valósítja meg
-			return null;
-		}
-
+        
 		/// 
 		/// <param name="megnevezés"></param>
 		public List<Bizonyíték> BizonyítékKeresés(string megnevezés){

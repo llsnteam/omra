@@ -8,7 +8,7 @@
 
 
 
-
+using System;
 namespace Adatkezelõ {
 	public interface IKimutatáskezelõ {
 
