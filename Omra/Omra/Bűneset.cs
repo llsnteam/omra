@@ -30,6 +30,7 @@ namespace Adatkezelõ {
 
             string blabla = "bla";
             int valami = 0;
+            bool megintvalami = false;
 		}
 
 		~Bûneset(){
