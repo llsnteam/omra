@@ -17,7 +17,7 @@ namespace Adatkezelõ {
 		private string azonosító;
 		private List<Dolgozó> dolgozók;
 		private List<Gyanúsított> gyanúsítottak;
-		private Bizonyíték bizonyítékok;
+		private List<Bizonyíték> bizonyítékok;
 		private BÁllapot állapot;
 
 		public Bûneset(){
@@ -58,7 +58,7 @@ namespace Adatkezelõ {
 
 		public BÁllapot GetÁllapot(){
 
-			return null;
+            return this.állapot;
 		}
 
 		public string GetAzonosító{
@@ -72,18 +72,18 @@ namespace Adatkezelõ {
 
 		public List<Bizonyíték> GetBizonyítékok(){
 
-			return null;
+            return this.bizonyítékok;
 		}
 
 		public List<Gyanúsított> GetGyanúsítottak(){
 
-			return null;
+            return this.gyanúsítottak;
 		}
 
 		/// 
 		/// <param name="Gyanúsított"></param>
 		public void GyanúsítottHozzáadása(Gyanúsított Gyanúsított){
-
+            this.gyanúsítottak.Add(Gyanúsított);
 		}
 
 	}//end Bûneset
