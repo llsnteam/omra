@@ -10,6 +10,7 @@
 
 
 using Adatkezelõ;
+using System.Collections.Generic;
 namespace Adatkezelõ {
 	public class Kereséskezelõ : IKereséskezelõ, IKereséskezelõ {
 

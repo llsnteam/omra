@@ -12,7 +12,8 @@
 using Adatkezelõ;
 using System.Collections.Generic;
 namespace Adatkezelõ {
-	public class Bûneset {
+	public class Bûneset 
+    {
 
 		private string azonosító;
 		private List<Dolgozó> dolgozók;
