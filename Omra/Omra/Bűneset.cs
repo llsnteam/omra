@@ -32,6 +32,7 @@ namespace Adatkezelõ {
             int valami = 0;
             bool megintvalami = false;
             bool vs12thasznalok = true;
+            bool ezmostmegintvalami = true;
 		}
 
 		~Bûneset(){
