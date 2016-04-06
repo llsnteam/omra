@@ -24,6 +24,8 @@ namespace Adatkezelõ {
             this.azonosító = "Ha ezt látod, sikerült";
 
             this.azonosító += "04.03. 22:12";
+
+            this.azonosító += "04.05. 08:10";
 		}
 
 		~Bûneset(){
