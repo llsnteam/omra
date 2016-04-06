@@ -59,6 +59,12 @@
     <Compile Include="Rang.cs" />
     <Compile Include="Személy.cs" />
     <Compile Include="Személykezelő.cs" />
+    <Compile Include="UjFeladat.xaml.cs">
+      <DependentUpon>UjFeladat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UjUzenet.xaml.cs">
+      <DependentUpon>UjUzenet.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Üzenet.cs" />
     <Compile Include="Üzenetkezelő.cs" />
     <Page Include="FoAblak.xaml">
@@ -100,6 +106,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UjFeladat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UjUzenet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

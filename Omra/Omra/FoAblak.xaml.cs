@@ -27,7 +27,7 @@ namespace Omra
             //Induláskor: (ezeket lehet akár külön szálon is)
             //Feltölti a listboxgombokat a felhasználónak megengedett funkciók gombjaival (pl. a listbox.childrenbe beleteszel egy újüzenet gombot, aminek a click eseménye kap egy lambda kifejezést, ami megnyitja az üzenet írása ablakot
             //Lekérdezi a felhasználóhoz kapcsolódó feladatokat és üzeneteket, ezeket megjeleníti a listboxaikban
-            int torolni = 0;
+            //A listbox alatt kijelzi a kiválasztott üzenet/feladat adatait
         }
     }
 }
