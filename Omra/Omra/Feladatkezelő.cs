@@ -14,7 +14,7 @@ using System.Collections.Generic;
 namespace Adatkezelõ {
 	public class Feladatkezelõ : IFeladatkezelõ {
 
-		private Feladat feladatok;
+		private List<Feladat> feladatok;
 
 		public Feladatkezelõ(){
 
@@ -38,7 +38,7 @@ namespace Adatkezelõ {
 		/// <param name="Dolgozó"></param>
 		public List<Feladat> FeladatokLekérdezése(Dolgozó Dolgozó){
 
-			return null;
+			return this.feladatok;
 		}
 
 		/// 
@@ -46,7 +46,8 @@ namespace Adatkezelõ {
 		/// <param name="létrehozta"></param>
 		/// <param name="leírás"></param>
 		public void ÚjFeladat(Dolgozó célszemély, Dolgozó létrehozta, string leírás){
-
+            Feladat f = new Feladat(leírás, célszemély , létrehozta);
+            this.feladatok.Add(f);
 		}
 
 	}//end Feladatkezelõ
