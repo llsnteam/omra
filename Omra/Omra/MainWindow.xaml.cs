@@ -23,7 +23,7 @@ namespace Omra
         public MainWindow()
         {
             InitializeComponent();
-            MessageBox.Show("Start");
+            //A megadott felhasználónévvel és jelszóval az adatbázisból lekérdezi, hogy van-e ilyen dolgozó, ha van megnyitja a főablakot, ha nincs messagebox, majd a kód legvégén bezárja ezt az ablakot 
         }
     }
 }

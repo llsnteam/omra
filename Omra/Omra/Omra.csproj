@@ -53,11 +53,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="FoAblak.xaml.cs">
+      <DependentUpon>FoAblak.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Rang.cs" />
     <Compile Include="Személy.cs" />
     <Compile Include="Személykezelő.cs" />
     <Compile Include="Üzenet.cs" />
     <Compile Include="Üzenetkezelő.cs" />
+    <Page Include="FoAblak.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
