@@ -28,6 +28,7 @@ namespace Adatkezelõ {
             this.azonosító += "04.05. 08:10";
 
             string blabla = "bla";
+            int valami = 0;
 		}
 
 		~Bûneset(){
