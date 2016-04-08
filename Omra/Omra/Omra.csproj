@@ -91,7 +91,6 @@
     <Compile Include="FÁllapot.cs" />
     <Compile Include="Gyanúsított.cs" />
     <Compile Include="GyanúsítottStátusz.cs" />
-    <Compile Include="GYÁllapot.cs" />
     <Compile Include="IBizonyítékkezelő.cs" />
     <Compile Include="IBűnesetkezelő.cs" />
     <Compile Include="IDolgozókezelő.cs" />
