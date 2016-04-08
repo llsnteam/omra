@@ -142,6 +142,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bg.png" />
+    <Resource Include="gomb4_click.png" />
+    <Resource Include="gomb4_over.png" />
+    <Resource Include="gomb4_sima.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

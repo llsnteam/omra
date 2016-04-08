@@ -3,7 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="FoAblak.xaml">
     <Application.Resources>
-        
+        <ImageBrush x:Key="hatter" ImageSource="bg.png"/>
+        <Style TargetType="Button" x:Key="BigButton">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Image Name="Normal" Source="gomb4_sima.png"/>
+                            <Image Name="On" Source="gomb4_over.png" Visibility="Hidden"/>
+                            <Image Name="Press" Source="gomb4_click.png" Visibility="Hidden"/>
+                            <ContentPresenter x:Name="ContentArea"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       Content="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Control.IsMouseOver" Value="True">
+                                <Setter TargetName="Normal" Property="Visibility" Value="Hidden"/>
+                                <Setter TargetName="On" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Normal" Property="Visibility" Value="Hidden"/>
+                                <Setter TargetName="Press" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
          
     </Application.Resources>
 </Application>
