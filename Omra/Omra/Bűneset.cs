@@ -22,17 +22,7 @@ namespace Adatkezelõ {
 		private BÁllapot állapot;
 
 		public Bûneset(){
-            this.azonosító = "Ha ezt látod, sikerült";
 
-            this.azonosító += "04.03. 22:12";
-            //fgfgdbnfgd
-            this.azonosító += "04.05. 08:10";
-
-            string blabla = "bla";
-            int valami = 0;
-            bool megintvalami = false;
-            bool vs12thasznalok = true;
-            bool ezmostmegintvalami = true;
 		}
 
 		~Bûneset(){
@@ -46,18 +36,22 @@ namespace Adatkezelõ {
 		/// 
 		/// <param name="azonosító"></param>
 		public Bûneset(string azonosító){
-
+            this.azonosító = azonosító;
+            this.dolgozók = new List<Dolgozó>();
+            this.gyanúsítottak = new List<Gyanúsított>();
+            this.bizonyítékok = new List<Bizonyíték>();
 		}
 
 		public void Állapotmódosítás(){
-
+            if (állapot == BÁllapot.Folyamatban)
+                állapot = BÁllapot.Lezárt;
 		}
 
 		/// 
 		/// <param name="Bûneset"></param>
 		/// <param name="Bizonyíték"></param>
 		public void BizonyítékHozzáadása(Bûneset Bûneset, Bizonyíték Bizonyíték){
-
+            this.bizonyítékok.Add(Bizonyíték);
 		}
 
 		public BÁllapot GetÁllapot(){
