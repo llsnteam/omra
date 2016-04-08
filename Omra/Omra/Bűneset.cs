@@ -40,6 +40,7 @@ namespace Adatkezelõ {
             this.dolgozók = new List<Dolgozó>();
             this.gyanúsítottak = new List<Gyanúsított>();
             this.bizonyítékok = new List<Bizonyíték>();
+            this.állapot = BÁllapot.Folamatban;
 		}
 
 		public void Állapotmódosítás(){

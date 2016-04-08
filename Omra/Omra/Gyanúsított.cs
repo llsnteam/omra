@@ -13,6 +13,9 @@ using Adatkezelõ;
 namespace Adatkezelõ {
 	public class Gyanúsított : Személy {
 
+        private string név;
+        private string bejelentettLakcím;
+        private string azonosító;
 		private GyanúsítottStátusz státusz;
 
 		public Gyanúsított(){
