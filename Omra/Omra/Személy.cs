@@ -24,6 +24,13 @@ namespace Adatkezelõ {
 
 		}
 
+        public Személy(string azonosító, string lakcím, string név)
+        {
+            this.azonosító = azonosító;
+            this.bejelentettLakcím = lakcím;
+            this.név = név;
+        }
+
 		public virtual void Dispose(){
 
 		}

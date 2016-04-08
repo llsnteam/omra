@@ -34,12 +34,11 @@ namespace Adatkezelõ {
 		/// <param name="név"></param>
 		/// <param name="lakcím"></param>
 		/// <param name="személyiazonosító"></param>
-		public Dolgozó(Rang Rang, string jelszó, string név, string lakcím, string személyiazonosító){
+		public Dolgozó(Rang Rang, string jelszó, string név, string lakcím, string személyiazonosító)
+            :base(személyiazonosító,lakcím,név)
+        {
             this.beosztás = Rang;
             this.jelszó = jelszó;
-            this.név = név;
-            this.bejelentettLakcím = lakcím;
-            this.azonosító = személyiazonosító;
 		}
 
 		public Rang GetBeosztás(){
