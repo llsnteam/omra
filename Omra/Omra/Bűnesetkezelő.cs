@@ -27,7 +27,7 @@ namespace Adatkezelõ {
 		}
 
 		public virtual void Dispose(){
-
+            // valami!
 		}
 
 		public string AzonosítóGenerálás(){
