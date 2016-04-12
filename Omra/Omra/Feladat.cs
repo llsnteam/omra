@@ -28,9 +28,6 @@ namespace Adatkezelõ {
 
 		}
 
-		~Feladat(){
-
-		}
 
 		public virtual void Dispose(){
 
