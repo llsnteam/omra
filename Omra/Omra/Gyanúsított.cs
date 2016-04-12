@@ -13,6 +13,9 @@ using Adatkezelõ;
 namespace Adatkezelõ {
 	public class Gyanúsított : Személy {
 
+        private string név;
+        private string bejelentettLakcím;
+        private string azonosító;
 		private GyanúsítottStátusz státusz;
 
 		public Gyanúsított(){
@@ -32,11 +35,10 @@ namespace Adatkezelõ {
 		/// <param name="név"></param>
 		/// <param name="lakcím"></param>
 		/// <param name="személyiazonosító"></param>
-		public Gyanúsított(GyanúsítottStátusz státusz, string név, string lakcím, string személyiazonosító){
+		public Gyanúsított(GyanúsítottStátusz státusz, string név, string lakcím, string személyiazonosító)
+            :base(személyiazonosító,lakcím,név)
+        {
             this.státusz = státusz;
-            this.név = név;
-            this.bejelentettLakcím = lakcím;
-            this.azonosító = személyiazonosító;
 		}
 
 		public GyanúsítottStátusz GetStátusz(){

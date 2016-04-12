@@ -50,6 +50,12 @@ namespace Adatkezelõ {
             this.feladatok.Add(f);
 		}
 
-	}//end Feladatkezelõ
+
+
+        void IFeladatkezelõ.FeladatokLekérdezése(Dolgozó Dolgozó)
+        {
+            throw new System.NotImplementedException();
+        }
+    }//end Feladatkezelõ
 
 }//end namespace Adatkezelõ

@@ -38,7 +38,10 @@ namespace Adatkezelõ {
 		/// <param name="célszemély"></param>
 		/// <param name="létrehozó"></param>
 		public Feladat(string leírás, Dolgozó célszemély, Dolgozó létrehozó){
-
+            this.leírás = leírás;
+            this.célszemély = célszemély;
+            this.létrehozta = létrehozó;
+            this.FÁllapot = FÁllapot.Folyamatban;
 		}
 
 		/// <summary>

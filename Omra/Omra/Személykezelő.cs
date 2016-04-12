@@ -121,6 +121,16 @@ namespace Adatkezelõ {
 
 		}
 
-	}//end Személykezelõ
+
+        public void ÜzenetKüldése(string törzs, string tárgy, Dolgozó küldõ, Dolgozó címzett)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public List<Üzenet> ÜzenetMegtekintése(Dolgozó Dolgozó)
+        {
+            throw new System.NotImplementedException();
+        }
+    }//end Személykezelõ
 
 }//end namespace Adatkezelõ

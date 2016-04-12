@@ -36,7 +36,10 @@ namespace Adatkezelõ {
 		/// <param name="küldõ"></param>
 		/// <param name="címzett"></param>
 		public Üzenet(string törzs, string tárgy, Dolgozó küldõ, Dolgozó címzett){
-
+            this.törzs = törzs;
+            this.tárgy = tárgy;
+            this.küldõ = küldõ;
+            this.címzett = címzett;
 		}
 
 		public Dolgozó GetCímzett{

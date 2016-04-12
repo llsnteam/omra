@@ -9,10 +9,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Omra</RootNamespace>
     <AssemblyName>Omra</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -53,8 +54,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BizonyitekWindow.xaml.cs">
+      <DependentUpon>BizonyitekWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="BunesetAblak.xaml.cs">
+      <DependentUpon>BunesetAblak.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DolgozoAblak.xaml.cs">
+      <DependentUpon>DolgozoAblak.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FoAblak.xaml.cs">
       <DependentUpon>FoAblak.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GyanusitottAblak.xaml.cs">
+      <DependentUpon>GyanusitottAblak.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="KeresesAblak.xaml.cs">
+      <DependentUpon>KeresesAblak.xaml</DependentUpon>
     </Compile>
     <Compile Include="Rang.cs" />
     <Compile Include="Személy.cs" />
@@ -67,7 +83,27 @@
     </Compile>
     <Compile Include="Üzenet.cs" />
     <Compile Include="Üzenetkezelő.cs" />
+    <Page Include="BizonyitekWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="BunesetAblak.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DolgozoAblak.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FoAblak.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GyanusitottAblak.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="KeresesAblak.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -90,7 +126,6 @@
     <Compile Include="FÁllapot.cs" />
     <Compile Include="Gyanúsított.cs" />
     <Compile Include="GyanúsítottStátusz.cs" />
-    <Compile Include="GYÁllapot.cs" />
     <Compile Include="IBizonyítékkezelő.cs" />
     <Compile Include="IBűnesetkezelő.cs" />
     <Compile Include="IDolgozókezelő.cs" />
@@ -147,6 +182,9 @@
     <Resource Include="gomb4_click.png" />
     <Resource Include="gomb4_over.png" />
     <Resource Include="gomb4_sima.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="valami\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
