@@ -13,19 +13,12 @@ using Adatkezelõ;
 using System;
 using System.Collections.Generic;
 namespace Adatkezelõ {
-	public class Kimutatáskészítõ : IKimutatáskezelõ {
+	public class Kimutatáskészítõ : IKimutatáskezelõ 
+    {
 
 		private Kimutatás kimutatások;
 
 		public Kimutatáskészítõ(){
-
-		}
-
-		~Kimutatáskészítõ(){
-
-		}
-
-		public virtual void Dispose(){
 
 		}
 
@@ -37,7 +30,8 @@ namespace Adatkezelõ {
 		/// 
 		/// <param name="kezdet"></param>
 		/// <param name="vege"></param>
-		public void ÚjKimutatás(DateTime kezdet, DateTime vege){
+		public void ÚjKimutatás(DateTime kezdet, DateTime vege)
+        {
 
 		}
 

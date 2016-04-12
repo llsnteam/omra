@@ -16,26 +16,20 @@ namespace Adatkezelõ {
 
 		protected DateTime kezdet;
 		protected DateTime vege;
+        private List<int> statAdatok;
+        enum KimutatásTípus { Bûneset, Gyanúsított };   // ide majd még leeht valami
 
-		public Kimutatás(){
-
-		}
-
-		~Kimutatás(){
-
-		}
-
-		public virtual void Dispose(){
-
-		}
 
 		/// 
 		/// <param name="vege"></param>
 		/// <param name="kezdet"></param>
-		public Kimutatás(DateTime vege, DateTime kezdet){
+		public Kimutatás(DateTime vege, DateTime kezdet)
+        {
             this.vege = vege;
             this.kezdet = kezdet;
+            statAdatok = new List<int>();
 		}
+
 
 	}//end Kimutatás
 

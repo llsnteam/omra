@@ -9,8 +9,11 @@
 
 
 using System;
-namespace Adatkezelõ {
-	public interface IKimutatáskezelõ {
+
+namespace Adatkezelõ 
+{
+	public interface IKimutatáskezelõ 
+    {
 
 		/// 
 		/// <param name="kezdet"></param>
