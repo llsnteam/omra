@@ -19,25 +19,30 @@ namespace Omra
     /// Interaction logic for KimutatásWindow.xaml
     /// </summary>
     /// 
-    enum KimutatasTipus { Bűneset, Gyanusított };   // lehet még további 
 
     public partial class KimutatásWindow : Window
     {
-        KimutatasTipus kt;
         IKimutatáskezelő kezelo;
 
         public KimutatásWindow()
         {
             InitializeComponent();
-            cmb_kimutatasTipus.ItemsSource = Enum.GetValues(typeof(KimutatasTipus));
+            cmb_kimutatasTipus.ItemsSource = Enum.GetValues(typeof(IKimutatáskezelő.KimutatásTípus));
             cmb_kimutatasTipus.SelectedIndex = 0;
+            date_tol.SelectedDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
+            date_ig.SelectedDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
+            kezelo = new Kimutatás(date_tol,date_ig);
+
         }
 
         private void click_kimutatas_keszites(object sender, RoutedEventArgs e)
         {
             switch (cmb_kimutatasTipus.SelectedIndex)
             {
-                case 0: kezelo.ÚjKimutatás(date_tol, date_ig);
+                case 0: kezelo.ÚjKimutatás(0); break;
+                case 1: kezelo.ÚjKimutatás(1); break;
+                case 2: kezelo.ÚjKimutatás(2); break;
+                case 3: kezelo.ÚjKimutatás(3); break;
             }
         }
     }

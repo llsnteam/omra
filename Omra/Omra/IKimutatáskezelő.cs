@@ -18,7 +18,8 @@ namespace Adatkezelõ
 		/// 
 		/// <param name="kezdet"></param>
 		/// <param name="vege"></param>
-		void ÚjKimutatás(DateTime kezdet, DateTime vege);
+		void ÚjKimutatás(int selIndex);
+        public enum KimutatásTípus { Bûneset, Gyanúsított };
 
 	}//end IKimutatáskezelõ
 
