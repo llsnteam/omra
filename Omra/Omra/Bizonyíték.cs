@@ -17,19 +17,7 @@ namespace Adatkezelõ {
 		/// pl. kés, pisztoly stb.
 		/// </summary>
 		private string megnevezés;
-
-		public Bizonyíték(){
-
-		}
-
-		~Bizonyíték(){
-
-		}
-
-		public virtual void Dispose(){
-
-		}
-
+        
 		/// 
 		/// <param name="megnevezés"></param>
 		/// <param name="azonosító"></param>

@@ -17,11 +17,7 @@ namespace Adatkezelõ {
     {
 
 		private Kimutatás kimutatások;
-
-		public Kimutatáskészítõ(){
-
-		}
-
+        
 		public List<Kimutatás> GetKimutatások(){
 
 			return null;

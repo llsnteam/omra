@@ -14,18 +14,6 @@ using System.Collections.Generic;
 namespace Adatkezelõ {
 	public class Kereséskezelõ : IKereséskezelõ {
 
-		public Kereséskezelõ(){
-
-		}
-
-		~Kereséskezelõ(){
-
-		}
-
-		public virtual void Dispose(){
-
-		}
-
 		/// 
 		/// <param name="azonosító"></param>
 		public Bizonyíték Bizonyítékkeresés(string azonosító){

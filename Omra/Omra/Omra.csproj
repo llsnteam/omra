@@ -69,9 +69,6 @@
     <Compile Include="GyanusitottAblak.xaml.cs">
       <DependentUpon>GyanusitottAblak.xaml</DependentUpon>
     </Compile>
-    <Compile Include="KeresesAblak.xaml.cs">
-      <DependentUpon>KeresesAblak.xaml</DependentUpon>
-    </Compile>
     <Compile Include="KimutatásWindow.xaml.cs">
       <DependentUpon>KimutatásWindow.xaml</DependentUpon>
     </Compile>
@@ -103,10 +100,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GyanusitottAblak.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="KeresesAblak.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

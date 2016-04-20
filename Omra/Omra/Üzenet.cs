@@ -17,19 +17,7 @@ namespace Adatkezelõ {
 		private Dolgozó küldõ;
 		private string tárgy;
 		private string törzs;
-
-		public Üzenet(){
-
-		}
-
-		~Üzenet(){
-
-		}
-
-		public virtual void Dispose(){
-
-		}
-
+        
 		/// 
 		/// <param name="törzs"></param>
 		/// <param name="tárgy"></param>

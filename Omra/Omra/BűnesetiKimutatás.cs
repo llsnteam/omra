@@ -18,19 +18,7 @@ namespace Adatkezelõ {
 		private List<Bizonyíték> bizonyítékok;
 		private List<Bûneset> bûnesetek;
 		private List<Gyanúsított> gyanúsítottak;
-
-		public BûnesetiKimutatás(){
-
-		}
-
-		~BûnesetiKimutatás(){
-
-		}
-
-		public override void Dispose(){
-
-		}
-
+        
 		public List<Bizonyíték> GetBizonyítékok(){
 
             return this.bizonyítékok;

@@ -23,16 +23,7 @@ namespace Adatkezelõ {
 		/// </summary>
 		private Dolgozó létrehozta;
 		private FÁllapot állapot;
-
-		public Feladat(){
-
-		}
-
-
-		public virtual void Dispose(){
-
-		}
-
+        
 		/// 
 		/// <param name="leírás"></param>
 		/// <param name="célszemély"></param>
@@ -41,7 +32,7 @@ namespace Adatkezelõ {
             this.leírás = leírás;
             this.célszemély = célszemély;
             this.létrehozta = létrehozó;
-            this.FÁllapot = FÁllapot.Folyamatban;
+            this.állapot = FÁllapot.Folyamatban;
 		}
 
 		/// <summary>
