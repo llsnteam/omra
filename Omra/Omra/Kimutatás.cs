@@ -12,13 +12,11 @@
 using System;
 using System.Collections.Generic;
 namespace Adatkezelõ {
-	public class Kimutatás {
-
+	public class Kimutatás:IKimutatáskezelõ 
+    {
 		protected DateTime kezdet;
 		protected DateTime vege;
         private List<int> statAdatok;
-        enum KimutatásTípus { Bûneset, Gyanúsított };   // ide majd még leeht valami
-
 
 		/// 
 		/// <param name="vege"></param>
@@ -29,8 +27,14 @@ namespace Adatkezelõ {
             this.kezdet = kezdet;
             statAdatok = new List<int>();
 		}
+    
+        public void ÚjKimutatás(int selIndex)
+        {
+ 	        throw new NotImplementedException();
+            // linq val összegyûjti az adatokat a listába
+            // 
+        }
 
-
-	}//end Kimutatás
+    }//end Kimutatás
 
 }//end namespace Adatkezelõ

@@ -16,25 +16,13 @@ namespace Adatkezelõ {
 
 		private Üzenet üzenetek;
 
-		public Üzenetkezelõ(){
-
-		}
-
-		~Üzenetkezelõ(){
-
-		}
-
-		public virtual void Dispose(){
-
-		}
-
 		/// 
 		/// <param name="törzs"></param>
 		/// <param name="tárgy"></param>
 		/// <param name="küldõ"></param>
 		/// <param name="címzett"></param>
 		public void ÜzenetKüldése(string törzs, string tárgy, Dolgozó küldõ, Dolgozó címzett){
-
+            
 		}
 
 		/// 

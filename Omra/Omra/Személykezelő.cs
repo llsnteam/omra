@@ -21,14 +21,6 @@ namespace Adatkezelõ {
             //---------------------------- dolgozókat és gyanúsítottakat lekérdezi az adatbázisból
 		}
 
-		~Személykezelõ(){
-
-		}
-
-		public virtual void Dispose(){
-
-		}
-
 		/// 
 		/// <param name="azonosító"></param>
 		/// <param name="jelszó"></param>

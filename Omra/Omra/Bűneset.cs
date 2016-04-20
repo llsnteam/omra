@@ -20,19 +20,7 @@ namespace Adatkezelõ {
 		private List<Gyanúsított> gyanúsítottak;
 		private List<Bizonyíték> bizonyítékok;
 		private BÁllapot állapot;
-
-		public Bûneset(){
-
-		}
-
-		~Bûneset(){
-
-		}
-
-		public virtual void Dispose(){
-
-		}
-
+        
 		/// 
 		/// <param name="azonosító"></param>
 		public Bûneset(string azonosító){
@@ -40,7 +28,7 @@ namespace Adatkezelõ {
             this.dolgozók = new List<Dolgozó>();
             this.gyanúsítottak = new List<Gyanúsított>();
             this.bizonyítékok = new List<Bizonyíték>();
-            this.állapot = BÁllapot.Folamatban;
+            this.állapot = BÁllapot.Folyamatban;
 		}
 
 		public void Állapotmódosítás(){

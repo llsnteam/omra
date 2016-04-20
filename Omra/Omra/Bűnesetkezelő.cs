@@ -10,26 +10,16 @@
 
 
 using Adatkezelõ;
+using Omra;
 using System.Collections.Generic;
 namespace Adatkezelõ {
 	public class Bûnesetkezelõ : IBûnesetkezelõ, IGyanúsítottkezelõ, IBizonyítékkezelõ 
     {
+        
+
 
 		private List<Bûneset> bûnesetek;
         
-
-		public Bûnesetkezelõ(){
-
-		}
-
-		~Bûnesetkezelõ(){
-
-		}
-
-		public virtual void Dispose(){
-            // valami!
-		}
-
 		public string AzonosítóGenerálás(){
 
 			return "";
