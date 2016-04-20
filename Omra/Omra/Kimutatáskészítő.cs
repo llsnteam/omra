@@ -30,7 +30,6 @@ namespace Adatkezelõ {
         {
 
 		}
-
-	}//end Kimutatáskészítõ
+    }//end Kimutatáskészítõ
 
 }//end namespace Adatkezelõ
