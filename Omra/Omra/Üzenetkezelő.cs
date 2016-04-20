@@ -22,7 +22,7 @@ namespace Adatkezelõ {
 		/// <param name="küldõ"></param>
 		/// <param name="címzett"></param>
 		public void ÜzenetKüldése(string törzs, string tárgy, Dolgozó küldõ, Dolgozó címzett){
-
+            
 		}
 
 		/// 
