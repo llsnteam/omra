@@ -13,7 +13,7 @@ namespace Adatkezelõ {
 	public enum GyanúsítottStátusz : int {
 
 		Szabad,
-		Elõzetesben,
+		Elozetesben,
 		Letartóztatott
 
 	}//end GyanúsítottStátusz
