@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityType Name="Bizonyitekok">
           <Key>
             <PropertyRef Name="bizonyitekID" />
@@ -192,24 +192,24 @@ warning 6002: The table/view 'D73DC6D659A9F7877AB52B4F48A5A5FF_!!!!\2015 - 2016 
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DatabaseModelStoreContainer">
-          <EntitySet Name="Bizonyitekok" EntityType="Self.Bizonyitekok" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Bunesetek" EntityType="Self.Bunesetek" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Dolgozok" EntityType="Self.Dolgozok" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Gyanusitottak" EntityType="Self.Gyanusitottak" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Uzenetek" EntityType="Self.Uzenetek" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="FelvettBizonyitekok" EntityType="Self.FelvettBizonyitekok" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="Bizonyitekok" EntityType="Self.Bizonyitekok" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Bunesetek" EntityType="Self.Bunesetek" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Dolgozok" EntityType="Self.Dolgozok" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Gyanusitottak" EntityType="Self.Gyanusitottak" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Uzenetek" EntityType="Self.Uzenetek" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="FelvettBizonyitekok" EntityType="Self.FelvettBizonyitekok" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
     [FelvettBizonyitekok].[bunesetID] AS [bunesetID], 
     [FelvettBizonyitekok].[bizonyitekID] AS [bizonyitekID]
     FROM [dbo].[FelvettBizonyitekok] AS [FelvettBizonyitekok]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="FelvettDolgozok" EntityType="Self.FelvettDolgozok" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="FelvettDolgozok" EntityType="Self.FelvettDolgozok" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
     [FelvettDolgozok].[bunesetID] AS [bunesetID], 
     [FelvettDolgozok].[dolgozoID] AS [dolgozoID]
     FROM [dbo].[FelvettDolgozok] AS [FelvettDolgozok]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="FelvettGyanusitottak" EntityType="Self.FelvettGyanusitottak" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="FelvettGyanusitottak" EntityType="Self.FelvettGyanusitottak" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
             <DefiningQuery>SELECT 
     [FelvettGyanusitottak].[bunesetID] AS [bunesetID], 
     [FelvettGyanusitottak].[gyanusitottID] AS [gyanusitottID]
@@ -256,7 +256,7 @@ warning 6002: The table/view 'D73DC6D659A9F7877AB52B4F48A5A5FF_!!!!\2015 - 2016 
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
         <EntityType Name="Bizonyitekok">
           <Key>
             <PropertyRef Name="bizonyitekID" />
@@ -400,7 +400,7 @@ warning 6002: The table/view 'D73DC6D659A9F7877AB52B4F48A5A5FF_!!!!\2015 - 2016 
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseEntities">
           <EntitySetMapping Name="Bizonyitekok">
             <EntityTypeMapping TypeName="DatabaseModel.Bizonyitekok">
@@ -484,22 +484,22 @@ warning 6002: The table/view 'D73DC6D659A9F7877AB52B4F48A5A5FF_!!!!\2015 - 2016 
     </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
-    <Connection>
-      <DesignerInfoPropertySet>
-        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
-      </DesignerInfoPropertySet>
-    </Connection>
-    <Options>
-      <DesignerInfoPropertySet>
-        <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
-      </DesignerInfoPropertySet>
-    </Options>
+  <edmx:Designer>
+    <edmx:Connection>
+      <edmx:DesignerInfoPropertySet>
+        <edmx:DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </edmx:DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <edmx:DesignerInfoPropertySet>
+        <edmx:DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <edmx:DesignerProperty Name="EnablePluralization" Value="false" />
+        <edmx:DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <edmx:DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <edmx:DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </edmx:DesignerInfoPropertySet>
+    </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
-    <Diagrams></Diagrams>
-  </Designer>
+    <edmx:Diagrams />
+  </edmx:Designer>
 </edmx:Edmx>
