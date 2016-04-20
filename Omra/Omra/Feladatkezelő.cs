@@ -15,19 +15,7 @@ namespace Adatkezelõ {
 	public class Feladatkezelõ : IFeladatkezelõ {
 
 		private List<Feladat> feladatok;
-
-		public Feladatkezelõ(){
-
-		}
-
-		~Feladatkezelõ(){
-
-		}
-
-		public virtual void Dispose(){
-
-		}
-
+        
 		/// 
 		/// <param name="feladat"></param>
 		public void FeladatÁllapotMódosítás(Feladat feladat){

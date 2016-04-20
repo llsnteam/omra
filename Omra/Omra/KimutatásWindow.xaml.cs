@@ -32,7 +32,6 @@ namespace Omra
             date_tol.SelectedDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
             date_ig.SelectedDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
             kezelo = new Kimutatás((DateTime)date_tol.SelectedDate,(DateTime)date_ig.SelectedDate);
-
         }
 
         private void click_kimutatas_keszites(object sender, RoutedEventArgs e)

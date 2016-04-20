@@ -16,18 +16,6 @@ namespace Adatkezelõ {
 
 		private Üzenet üzenetek;
 
-		public Üzenetkezelõ(){
-
-		}
-
-		~Üzenetkezelõ(){
-
-		}
-
-		public virtual void Dispose(){
-
-		}
-
 		/// 
 		/// <param name="törzs"></param>
 		/// <param name="tárgy"></param>

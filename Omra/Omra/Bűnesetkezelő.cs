@@ -17,19 +17,6 @@ namespace Adatkezelõ {
 
 		private List<Bûneset> bûnesetek;
         
-
-		public Bûnesetkezelõ(){
-
-		}
-
-		~Bûnesetkezelõ(){
-
-		}
-
-		public virtual void Dispose(){
-            // valami!
-		}
-
 		public string AzonosítóGenerálás(){
 
 			return "";

@@ -17,19 +17,7 @@ namespace Adatkezelõ {
         private string bejelentettLakcím;
         private string azonosító;
 		private GyanúsítottStátusz státusz;
-
-		public Gyanúsított(){
-
-		}
-
-		~Gyanúsított(){
-
-		}
-
-		public override void Dispose(){
-
-		}
-
+        
 		/// 
 		/// <param name="státusz"></param>
 		/// <param name="név"></param>

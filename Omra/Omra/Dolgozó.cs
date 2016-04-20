@@ -15,19 +15,7 @@ namespace Adatkezelõ {
 
 		private string jelszó;
 		private Rang beosztás;
-
-		public Dolgozó(){
-
-		}
-
-		~Dolgozó(){
-
-		}
-
-		public override void Dispose(){
-
-		}
-
+        
 		/// 
 		/// <param name="Rang"></param>
 		/// <param name="jelszó"></param>
