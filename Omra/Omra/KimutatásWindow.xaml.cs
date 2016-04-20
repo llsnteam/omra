@@ -31,7 +31,7 @@ namespace Omra
             cmb_kimutatasTipus.SelectedIndex = 0;
             date_tol.SelectedDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
             date_ig.SelectedDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.Today.Day);
-            kezelo = new Kimutatás(date_tol,date_ig);
+            kezelo = new Kimutatás((DateTime)date_tol.SelectedDate,(DateTime)date_ig.SelectedDate);
 
         }
 
