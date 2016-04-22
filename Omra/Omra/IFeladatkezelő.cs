@@ -20,7 +20,7 @@ namespace Adatkezelõ {
 
 		/// 
 		/// <param name="Dolgozó"></param>
-		List<Feladat> FeladatokLekérdezése(Dolgozó Dolgozó);
+		List<Feladat> FeladatokLekérdezése(Dolgozó dolgozo);
 
 		/// 
 		/// <param name="célszemély"></param>
