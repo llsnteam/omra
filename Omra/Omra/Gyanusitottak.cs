@@ -17,7 +17,7 @@ namespace Omra
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Gyanusitottak()
         {
-            this.Bunesetek = new HashSet<Bunesetek>();
+            this.FelvettGyanusitottak = new HashSet<FelvettGyanusitottak>();
         }
     
         public decimal gyanusitottID { get; set; }
@@ -26,6 +26,6 @@ namespace Omra
         public string statusz { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Bunesetek> Bunesetek { get; set; }
+        public virtual ICollection<FelvettGyanusitottak> FelvettGyanusitottak { get; set; }
     }
 }

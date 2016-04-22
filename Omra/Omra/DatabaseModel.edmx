@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+      <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Bizonyitekok">
           <Key>
             <PropertyRef Name="bizonyitekID" />
@@ -31,7 +31,7 @@
           <Property Name="dolgozoID" Type="numeric" Precision="6" Scale="0" Nullable="false" />
           <Property Name="nev" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="lakcim" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="jelszo" Type="varchar" MaxLength="10" />
+          <Property Name="jelszo" Type="varchar" MaxLength="20" />
           <Property Name="rang" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -40,9 +40,11 @@ warning 6002: The table/view 'D73DC6D659A9F7877AB52B4F48A5A5FF_!!!!\2015 - 2016 
           <Key>
             <PropertyRef Name="bunesetID" />
             <PropertyRef Name="bizonyitekID" />
+            <PropertyRef Name="felvetel_idopontja" />
           </Key>
           <Property Name="bunesetID" Type="numeric" Precision="12" Scale="0" Nullable="false" />
           <Property Name="bizonyitekID" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="felvetel_idopontja" Type="datetime" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'D73DC6D659A9F7877AB52B4F48A5A5FF_!!!!\2015 - 2016 II\SZOFTVERTECHNOLÓGIA II\PROJEKT\OMRA-MASTER\OMRA\OMRA\OMRA\OMRA\DATABASE.MDF.dbo.FelvettDolgozok' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -50,9 +52,11 @@ warning 6002: The table/view 'D73DC6D659A9F7877AB52B4F48A5A5FF_!!!!\2015 - 2016 
           <Key>
             <PropertyRef Name="bunesetID" />
             <PropertyRef Name="dolgozoID" />
+            <PropertyRef Name="felvetel_idopontja" />
           </Key>
           <Property Name="bunesetID" Type="numeric" Precision="12" Scale="0" Nullable="false" />
           <Property Name="dolgozoID" Type="numeric" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="felvetel_idopontja" Type="datetime" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'D73DC6D659A9F7877AB52B4F48A5A5FF_!!!!\2015 - 2016 II\SZOFTVERTECHNOLÓGIA II\PROJEKT\OMRA-MASTER\OMRA\OMRA\OMRA\OMRA\DATABASE.MDF.dbo.FelvettGyanusitottak' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -60,9 +64,11 @@ warning 6002: The table/view 'D73DC6D659A9F7877AB52B4F48A5A5FF_!!!!\2015 - 2016 
           <Key>
             <PropertyRef Name="bunesetID" />
             <PropertyRef Name="gyanusitottID" />
+            <PropertyRef Name="felvetel_idopontja" />
           </Key>
           <Property Name="bunesetID" Type="numeric" Precision="12" Scale="0" Nullable="false" />
           <Property Name="gyanusitottID" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="felvetel_idopontja" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Gyanusitottak">
           <Key>
@@ -192,27 +198,30 @@ warning 6002: The table/view 'D73DC6D659A9F7877AB52B4F48A5A5FF_!!!!\2015 - 2016 
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DatabaseModelStoreContainer">
-          <EntitySet Name="Bizonyitekok" EntityType="Self.Bizonyitekok" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Bunesetek" EntityType="Self.Bunesetek" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Dolgozok" EntityType="Self.Dolgozok" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Gyanusitottak" EntityType="Self.Gyanusitottak" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Uzenetek" EntityType="Self.Uzenetek" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="FelvettBizonyitekok" EntityType="Self.FelvettBizonyitekok" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="Bizonyitekok" EntityType="Self.Bizonyitekok" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bunesetek" EntityType="Self.Bunesetek" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dolgozok" EntityType="Self.Dolgozok" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gyanusitottak" EntityType="Self.Gyanusitottak" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Uzenetek" EntityType="Self.Uzenetek" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FelvettBizonyitekok" EntityType="Self.FelvettBizonyitekok" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [FelvettBizonyitekok].[bunesetID] AS [bunesetID], 
-    [FelvettBizonyitekok].[bizonyitekID] AS [bizonyitekID]
+    [FelvettBizonyitekok].[bizonyitekID] AS [bizonyitekID], 
+    [FelvettBizonyitekok].[felvetel_idopontja] AS [felvetel_idopontja]
     FROM [dbo].[FelvettBizonyitekok] AS [FelvettBizonyitekok]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="FelvettDolgozok" EntityType="Self.FelvettDolgozok" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="FelvettDolgozok" EntityType="Self.FelvettDolgozok" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [FelvettDolgozok].[bunesetID] AS [bunesetID], 
-    [FelvettDolgozok].[dolgozoID] AS [dolgozoID]
+    [FelvettDolgozok].[dolgozoID] AS [dolgozoID], 
+    [FelvettDolgozok].[felvetel_idopontja] AS [felvetel_idopontja]
     FROM [dbo].[FelvettDolgozok] AS [FelvettDolgozok]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="FelvettGyanusitottak" EntityType="Self.FelvettGyanusitottak" store:Type="Tables" store:Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="FelvettGyanusitottak" EntityType="Self.FelvettGyanusitottak" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [FelvettGyanusitottak].[bunesetID] AS [bunesetID], 
-    [FelvettGyanusitottak].[gyanusitottID] AS [gyanusitottID]
+    [FelvettGyanusitottak].[gyanusitottID] AS [gyanusitottID], 
+    [FelvettGyanusitottak].[felvetel_idopontja] AS [felvetel_idopontja]
     FROM [dbo].[FelvettGyanusitottak] AS [FelvettGyanusitottak]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="Buneset_FK" Association="Self.Buneset_FK">
@@ -256,7 +265,7 @@ warning 6002: The table/view 'D73DC6D659A9F7877AB52B4F48A5A5FF_!!!!\2015 - 2016 
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+      <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Bizonyitekok">
           <Key>
             <PropertyRef Name="bizonyitekID" />
@@ -264,7 +273,7 @@ warning 6002: The table/view 'D73DC6D659A9F7877AB52B4F48A5A5FF_!!!!\2015 - 2016 
           <Property Name="bizonyitekID" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="megnevezes" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="felvetel" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Bunesetek" Relationship="Self.FelvettBizonyitekok" FromRole="Bizonyitekok" ToRole="Bunesetek" />
+          <NavigationProperty Name="FelvettBizonyitekok" Relationship="Self.FelvettBizonyitekok_FK_bizonyitek" FromRole="Bizonyitekok" ToRole="FelvettBizonyitekok" />
         </EntityType>
         <EntityType Name="Bunesetek">
           <Key>
@@ -277,9 +286,9 @@ warning 6002: The table/view 'D73DC6D659A9F7877AB52B4F48A5A5FF_!!!!\2015 - 2016 
           <Property Name="leiras" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="allapot" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Dolgozok" Relationship="Self.Buneset_FK" FromRole="Bunesetek" ToRole="Dolgozok" />
-          <NavigationProperty Name="Bizonyitekok" Relationship="Self.FelvettBizonyitekok" FromRole="Bunesetek" ToRole="Bizonyitekok" />
-          <NavigationProperty Name="Dolgozok1" Relationship="Self.FelvettDolgozok" FromRole="Bunesetek" ToRole="Dolgozok" />
-          <NavigationProperty Name="Gyanusitottak" Relationship="Self.FelvettGyanusitottak" FromRole="Bunesetek" ToRole="Gyanusitottak" />
+          <NavigationProperty Name="FelvettBizonyitekok" Relationship="Self.FelvettBizonyitekok_FK_buneset" FromRole="Bunesetek" ToRole="FelvettBizonyitekok" />
+          <NavigationProperty Name="FelvettGyanusitottak" Relationship="Self.FelvettBizonyitekok_FK_buneset2" FromRole="Bunesetek" ToRole="FelvettGyanusitottak" />
+          <NavigationProperty Name="FelvettDolgozok" Relationship="Self.FelvettBizonyitekok_FK_buneset3" FromRole="Bunesetek" ToRole="FelvettDolgozok" />
         </EntityType>
         <EntityType Name="Dolgozok">
           <Key>
@@ -288,12 +297,12 @@ warning 6002: The table/view 'D73DC6D659A9F7877AB52B4F48A5A5FF_!!!!\2015 - 2016 
           <Property Name="dolgozoID" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
           <Property Name="nev" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="lakcim" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="jelszo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="jelszo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="rang" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Bunesetek" Relationship="Self.Buneset_FK" FromRole="Dolgozok" ToRole="Bunesetek" />
+          <NavigationProperty Name="FelvettDolgozok" Relationship="Self.FelvettBizonyitekok_FK_dolgozo" FromRole="Dolgozok" ToRole="FelvettDolgozok" />
           <NavigationProperty Name="Uzenetek" Relationship="Self.Uzenetek_FK_cimzett" FromRole="Dolgozok" ToRole="Uzenetek" />
           <NavigationProperty Name="Uzenetek1" Relationship="Self.Uzenetek_FK_felado" FromRole="Dolgozok" ToRole="Uzenetek" />
-          <NavigationProperty Name="Bunesetek1" Relationship="Self.FelvettDolgozok" FromRole="Dolgozok" ToRole="Bunesetek" />
         </EntityType>
         <EntityType Name="Gyanusitottak">
           <Key>
@@ -303,7 +312,7 @@ warning 6002: The table/view 'D73DC6D659A9F7877AB52B4F48A5A5FF_!!!!\2015 - 2016 
           <Property Name="nev" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="lakcim" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="statusz" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Bunesetek" Relationship="Self.FelvettGyanusitottak" FromRole="Gyanusitottak" ToRole="Bunesetek" />
+          <NavigationProperty Name="FelvettGyanusitottak" Relationship="Self.FelvettBizonyitekok_FK_gyanusitott" FromRole="Gyanusitottak" ToRole="FelvettGyanusitottak" />
         </EntityType>
         <EntityType Name="Uzenetek">
           <Key>
@@ -317,6 +326,54 @@ warning 6002: The table/view 'D73DC6D659A9F7877AB52B4F48A5A5FF_!!!!\2015 - 2016 
           <NavigationProperty Name="Dolgozok" Relationship="Self.Uzenetek_FK_cimzett" FromRole="Uzenetek" ToRole="Dolgozok" />
           <NavigationProperty Name="Dolgozok1" Relationship="Self.Uzenetek_FK_felado" FromRole="Uzenetek" ToRole="Dolgozok" />
         </EntityType>
+        <EntityType Name="FelvettBizonyitekok">
+          <Key>
+            <PropertyRef Name="bunesetID" />
+            <PropertyRef Name="bizonyitekID" />
+            <PropertyRef Name="felvetel_idopontja" />
+          </Key>
+          <Property Name="bunesetID" Type="Decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="bizonyitekID" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="felvetel_idopontja" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Bizonyitekok" Relationship="Self.FelvettBizonyitekok_FK_bizonyitek" FromRole="FelvettBizonyitekok" ToRole="Bizonyitekok" />
+          <NavigationProperty Name="Bunesetek" Relationship="Self.FelvettBizonyitekok_FK_buneset" FromRole="FelvettBizonyitekok" ToRole="Bunesetek" />
+        </EntityType>
+        <EntityType Name="FelvettDolgozok">
+          <Key>
+            <PropertyRef Name="bunesetID" />
+            <PropertyRef Name="dolgozoID" />
+            <PropertyRef Name="felvetel_idopontja" />
+          </Key>
+          <Property Name="bunesetID" Type="Decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="dolgozoID" Type="Decimal" Precision="6" Scale="0" Nullable="false" />
+          <Property Name="felvetel_idopontja" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Bunesetek" Relationship="Self.FelvettBizonyitekok_FK_buneset3" FromRole="FelvettDolgozok" ToRole="Bunesetek" />
+          <NavigationProperty Name="Dolgozok" Relationship="Self.FelvettBizonyitekok_FK_dolgozo" FromRole="FelvettDolgozok" ToRole="Dolgozok" />
+        </EntityType>
+        <EntityType Name="FelvettGyanusitottak">
+          <Key>
+            <PropertyRef Name="bunesetID" />
+            <PropertyRef Name="gyanusitottID" />
+            <PropertyRef Name="felvetel_idopontja" />
+          </Key>
+          <Property Name="bunesetID" Type="Decimal" Precision="12" Scale="0" Nullable="false" />
+          <Property Name="gyanusitottID" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="felvetel_idopontja" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Bunesetek" Relationship="Self.FelvettBizonyitekok_FK_buneset2" FromRole="FelvettGyanusitottak" ToRole="Bunesetek" />
+          <NavigationProperty Name="Gyanusitottak" Relationship="Self.FelvettBizonyitekok_FK_gyanusitott" FromRole="FelvettGyanusitottak" ToRole="Gyanusitottak" />
+        </EntityType>
+        <Association Name="FelvettBizonyitekok_FK_bizonyitek">
+          <End Role="Bizonyitekok" Type="Self.Bizonyitekok" Multiplicity="1" />
+          <End Role="FelvettBizonyitekok" Type="Self.FelvettBizonyitekok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bizonyitekok">
+              <PropertyRef Name="bizonyitekID" />
+            </Principal>
+            <Dependent Role="FelvettBizonyitekok">
+              <PropertyRef Name="bizonyitekID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="Buneset_FK">
           <End Role="Dolgozok" Type="Self.Dolgozok" Multiplicity="1" />
           <End Role="Bunesetek" Type="Self.Bunesetek" Multiplicity="*" />
@@ -326,6 +383,54 @@ warning 6002: The table/view 'D73DC6D659A9F7877AB52B4F48A5A5FF_!!!!\2015 - 2016 
             </Principal>
             <Dependent Role="Bunesetek">
               <PropertyRef Name="felelos_ornagy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FelvettBizonyitekok_FK_buneset">
+          <End Role="Bunesetek" Type="Self.Bunesetek" Multiplicity="1" />
+          <End Role="FelvettBizonyitekok" Type="Self.FelvettBizonyitekok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bunesetek">
+              <PropertyRef Name="bunesetID" />
+            </Principal>
+            <Dependent Role="FelvettBizonyitekok">
+              <PropertyRef Name="bunesetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FelvettBizonyitekok_FK_buneset2">
+          <End Role="Bunesetek" Type="Self.Bunesetek" Multiplicity="1" />
+          <End Role="FelvettGyanusitottak" Type="Self.FelvettGyanusitottak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bunesetek">
+              <PropertyRef Name="bunesetID" />
+            </Principal>
+            <Dependent Role="FelvettGyanusitottak">
+              <PropertyRef Name="bunesetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FelvettBizonyitekok_FK_buneset3">
+          <End Role="Bunesetek" Type="Self.Bunesetek" Multiplicity="1" />
+          <End Role="FelvettDolgozok" Type="Self.FelvettDolgozok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bunesetek">
+              <PropertyRef Name="bunesetID" />
+            </Principal>
+            <Dependent Role="FelvettDolgozok">
+              <PropertyRef Name="bunesetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FelvettBizonyitekok_FK_dolgozo">
+          <End Role="Dolgozok" Type="Self.Dolgozok" Multiplicity="1" />
+          <End Role="FelvettDolgozok" Type="Self.FelvettDolgozok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dolgozok">
+              <PropertyRef Name="dolgozoID" />
+            </Principal>
+            <Dependent Role="FelvettDolgozok">
+              <PropertyRef Name="dolgozoID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -353,27 +458,50 @@ warning 6002: The table/view 'D73DC6D659A9F7877AB52B4F48A5A5FF_!!!!\2015 - 2016 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FelvettBizonyitekok">
-          <End Role="Bizonyitekok" Type="Self.Bizonyitekok" Multiplicity="*" />
-          <End Role="Bunesetek" Type="Self.Bunesetek" Multiplicity="*" />
+        <Association Name="FelvettBizonyitekok_FK_gyanusitott">
+          <End Role="Gyanusitottak" Type="Self.Gyanusitottak" Multiplicity="1" />
+          <End Role="FelvettGyanusitottak" Type="Self.FelvettGyanusitottak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gyanusitottak">
+              <PropertyRef Name="gyanusitottID" />
+            </Principal>
+            <Dependent Role="FelvettGyanusitottak">
+              <PropertyRef Name="gyanusitottID" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
-        <Association Name="FelvettDolgozok">
-          <End Role="Bunesetek" Type="Self.Bunesetek" Multiplicity="*" />
-          <End Role="Dolgozok" Type="Self.Dolgozok" Multiplicity="*" />
-        </Association>
-        <Association Name="FelvettGyanusitottak">
-          <End Role="Bunesetek" Type="Self.Bunesetek" Multiplicity="*" />
-          <End Role="Gyanusitottak" Type="Self.Gyanusitottak" Multiplicity="*" />
-        </Association>
-        <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DatabaseElements" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Bizonyitekok" EntityType="Self.Bizonyitekok" />
           <EntitySet Name="Bunesetek" EntityType="Self.Bunesetek" />
           <EntitySet Name="Dolgozok" EntityType="Self.Dolgozok" />
           <EntitySet Name="Gyanusitottak" EntityType="Self.Gyanusitottak" />
           <EntitySet Name="Uzenetek" EntityType="Self.Uzenetek" />
+          <EntitySet Name="FelvettBizonyitekok" EntityType="Self.FelvettBizonyitekok" />
+          <EntitySet Name="FelvettDolgozok" EntityType="Self.FelvettDolgozok" />
+          <EntitySet Name="FelvettGyanusitottak" EntityType="Self.FelvettGyanusitottak" />
+          <AssociationSet Name="FelvettBizonyitekok_FK_bizonyitek" Association="Self.FelvettBizonyitekok_FK_bizonyitek">
+            <End Role="Bizonyitekok" EntitySet="Bizonyitekok" />
+            <End Role="FelvettBizonyitekok" EntitySet="FelvettBizonyitekok" />
+          </AssociationSet>
           <AssociationSet Name="Buneset_FK" Association="Self.Buneset_FK">
             <End Role="Dolgozok" EntitySet="Dolgozok" />
             <End Role="Bunesetek" EntitySet="Bunesetek" />
+          </AssociationSet>
+          <AssociationSet Name="FelvettBizonyitekok_FK_buneset" Association="Self.FelvettBizonyitekok_FK_buneset">
+            <End Role="Bunesetek" EntitySet="Bunesetek" />
+            <End Role="FelvettBizonyitekok" EntitySet="FelvettBizonyitekok" />
+          </AssociationSet>
+          <AssociationSet Name="FelvettBizonyitekok_FK_buneset2" Association="Self.FelvettBizonyitekok_FK_buneset2">
+            <End Role="Bunesetek" EntitySet="Bunesetek" />
+            <End Role="FelvettGyanusitottak" EntitySet="FelvettGyanusitottak" />
+          </AssociationSet>
+          <AssociationSet Name="FelvettBizonyitekok_FK_buneset3" Association="Self.FelvettBizonyitekok_FK_buneset3">
+            <End Role="Bunesetek" EntitySet="Bunesetek" />
+            <End Role="FelvettDolgozok" EntitySet="FelvettDolgozok" />
+          </AssociationSet>
+          <AssociationSet Name="FelvettBizonyitekok_FK_dolgozo" Association="Self.FelvettBizonyitekok_FK_dolgozo">
+            <End Role="Dolgozok" EntitySet="Dolgozok" />
+            <End Role="FelvettDolgozok" EntitySet="FelvettDolgozok" />
           </AssociationSet>
           <AssociationSet Name="Uzenetek_FK_cimzett" Association="Self.Uzenetek_FK_cimzett">
             <End Role="Dolgozok" EntitySet="Dolgozok" />
@@ -383,25 +511,17 @@ warning 6002: The table/view 'D73DC6D659A9F7877AB52B4F48A5A5FF_!!!!\2015 - 2016 
             <End Role="Dolgozok" EntitySet="Dolgozok" />
             <End Role="Uzenetek" EntitySet="Uzenetek" />
           </AssociationSet>
-          <AssociationSet Name="FelvettBizonyitekok" Association="Self.FelvettBizonyitekok">
-            <End Role="Bizonyitekok" EntitySet="Bizonyitekok" />
-            <End Role="Bunesetek" EntitySet="Bunesetek" />
-          </AssociationSet>
-          <AssociationSet Name="FelvettDolgozok" Association="Self.FelvettDolgozok">
-            <End Role="Bunesetek" EntitySet="Bunesetek" />
-            <End Role="Dolgozok" EntitySet="Dolgozok" />
-          </AssociationSet>
-          <AssociationSet Name="FelvettGyanusitottak" Association="Self.FelvettGyanusitottak">
-            <End Role="Bunesetek" EntitySet="Bunesetek" />
+          <AssociationSet Name="FelvettBizonyitekok_FK_gyanusitott" Association="Self.FelvettBizonyitekok_FK_gyanusitott">
             <End Role="Gyanusitottak" EntitySet="Gyanusitottak" />
+            <End Role="FelvettGyanusitottak" EntitySet="FelvettGyanusitottak" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseEntities">
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseElements">
           <EntitySetMapping Name="Bizonyitekok">
             <EntityTypeMapping TypeName="DatabaseModel.Bizonyitekok">
               <MappingFragment StoreEntitySet="Bizonyitekok">
@@ -455,51 +575,54 @@ warning 6002: The table/view 'D73DC6D659A9F7877AB52B4F48A5A5FF_!!!!\2015 - 2016 
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="FelvettBizonyitekok" TypeName="DatabaseModel.FelvettBizonyitekok" StoreEntitySet="FelvettBizonyitekok">
-            <EndProperty Name="Bizonyitekok">
-              <ScalarProperty Name="bizonyitekID" ColumnName="bizonyitekID" />
-            </EndProperty>
-            <EndProperty Name="Bunesetek">
-              <ScalarProperty Name="bunesetID" ColumnName="bunesetID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FelvettDolgozok" TypeName="DatabaseModel.FelvettDolgozok" StoreEntitySet="FelvettDolgozok">
-            <EndProperty Name="Bunesetek">
-              <ScalarProperty Name="bunesetID" ColumnName="bunesetID" />
-            </EndProperty>
-            <EndProperty Name="Dolgozok">
-              <ScalarProperty Name="dolgozoID" ColumnName="dolgozoID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="FelvettGyanusitottak" TypeName="DatabaseModel.FelvettGyanusitottak" StoreEntitySet="FelvettGyanusitottak">
-            <EndProperty Name="Bunesetek">
-              <ScalarProperty Name="bunesetID" ColumnName="bunesetID" />
-            </EndProperty>
-            <EndProperty Name="Gyanusitottak">
-              <ScalarProperty Name="gyanusitottID" ColumnName="gyanusitottID" />
-            </EndProperty>
-          </AssociationSetMapping>
+          <EntitySetMapping Name="FelvettBizonyitekok">
+            <EntityTypeMapping TypeName="DatabaseModel.FelvettBizonyitekok">
+              <MappingFragment StoreEntitySet="FelvettBizonyitekok">
+                <ScalarProperty Name="bunesetID" ColumnName="bunesetID" />
+                <ScalarProperty Name="bizonyitekID" ColumnName="bizonyitekID" />
+                <ScalarProperty Name="felvetel_idopontja" ColumnName="felvetel_idopontja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FelvettDolgozok">
+            <EntityTypeMapping TypeName="DatabaseModel.FelvettDolgozok">
+              <MappingFragment StoreEntitySet="FelvettDolgozok">
+                <ScalarProperty Name="bunesetID" ColumnName="bunesetID" />
+                <ScalarProperty Name="dolgozoID" ColumnName="dolgozoID" />
+                <ScalarProperty Name="felvetel_idopontja" ColumnName="felvetel_idopontja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FelvettGyanusitottak">
+            <EntityTypeMapping TypeName="DatabaseModel.FelvettGyanusitottak">
+              <MappingFragment StoreEntitySet="FelvettGyanusitottak">
+                <ScalarProperty Name="bunesetID" ColumnName="bunesetID" />
+                <ScalarProperty Name="gyanusitottID" ColumnName="gyanusitottID" />
+                <ScalarProperty Name="felvetel_idopontja" ColumnName="felvetel_idopontja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <edmx:Designer>
-    <edmx:Connection>
-      <edmx:DesignerInfoPropertySet>
-        <edmx:DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
-      </edmx:DesignerInfoPropertySet>
-    </edmx:Connection>
-    <edmx:Options>
-      <edmx:DesignerInfoPropertySet>
-        <edmx:DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <edmx:DesignerProperty Name="EnablePluralization" Value="false" />
-        <edmx:DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <edmx:DesignerProperty Name="UseLegacyProvider" Value="false" />
-        <edmx:DesignerProperty Name="CodeGenerationStrategy" Value="None" />
-      </edmx:DesignerInfoPropertySet>
-    </edmx:Options>
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
     <!-- Diagram content (shape and connector positions) -->
-    <edmx:Diagrams />
-  </edmx:Designer>
+    <Diagrams></Diagrams>
+  </Designer>
 </edmx:Edmx>

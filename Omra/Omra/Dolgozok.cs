@@ -18,9 +18,9 @@ namespace Omra
         public Dolgozok()
         {
             this.Bunesetek = new HashSet<Bunesetek>();
+            this.FelvettDolgozok = new HashSet<FelvettDolgozok>();
             this.Uzenetek = new HashSet<Uzenetek>();
             this.Uzenetek1 = new HashSet<Uzenetek>();
-            this.Bunesetek1 = new HashSet<Bunesetek>();
         }
     
         public decimal dolgozoID { get; set; }
@@ -32,10 +32,10 @@ namespace Omra
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bunesetek> Bunesetek { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FelvettDolgozok> FelvettDolgozok { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Uzenetek> Uzenetek { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Uzenetek> Uzenetek1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Bunesetek> Bunesetek1 { get; set; }
     }
 }

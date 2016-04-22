@@ -20,7 +20,7 @@ namespace Omra
     /// </summary>
     public partial class MainWindow : Window
     {
-        DatabaseEntities DE = new DatabaseEntities();//
+        DatabaseElements DE = new DatabaseElements();
         public MainWindow()
         {
             InitializeComponent();

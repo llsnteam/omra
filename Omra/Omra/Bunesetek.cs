@@ -17,9 +17,9 @@ namespace Omra
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Bunesetek()
         {
-            this.Bizonyitekok = new HashSet<Bizonyitekok>();
-            this.Dolgozok1 = new HashSet<Dolgozok>();
-            this.Gyanusitottak = new HashSet<Gyanusitottak>();
+            this.FelvettBizonyitekok = new HashSet<FelvettBizonyitekok>();
+            this.FelvettGyanusitottak = new HashSet<FelvettGyanusitottak>();
+            this.FelvettDolgozok = new HashSet<FelvettDolgozok>();
         }
     
         public decimal bunesetID { get; set; }
@@ -31,10 +31,10 @@ namespace Omra
     
         public virtual Dolgozok Dolgozok { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Bizonyitekok> Bizonyitekok { get; set; }
+        public virtual ICollection<FelvettBizonyitekok> FelvettBizonyitekok { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Dolgozok> Dolgozok1 { get; set; }
+        public virtual ICollection<FelvettGyanusitottak> FelvettGyanusitottak { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Gyanusitottak> Gyanusitottak { get; set; }
+        public virtual ICollection<FelvettDolgozok> FelvettDolgozok { get; set; }
     }
 }

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5cb7b8c1d25f4bb99f5f22a1bd2472fe" Name="Diagram1">
+        <EntityTypeShape EntityType="DatabaseModel.Bizonyitekok" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Bunesetek" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Dolgozok" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Gyanusitottak" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.Uzenetek" Width="1.5" PointX="3" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.FelvettBizonyitekok" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.FelvettDolgozok" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.FelvettGyanusitottak" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <AssociationConnector Association="DatabaseModel.FelvettBizonyitekok_FK_bizonyitek" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.Buneset_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FelvettBizonyitekok_FK_buneset" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FelvettBizonyitekok_FK_buneset2" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FelvettBizonyitekok_FK_buneset3" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FelvettBizonyitekok_FK_dolgozo" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.Uzenetek_FK_cimzett" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.Uzenetek_FK_felado" ManuallyRouted="false" />
+        <AssociationConnector Association="DatabaseModel.FelvettBizonyitekok_FK_gyanusitott" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
