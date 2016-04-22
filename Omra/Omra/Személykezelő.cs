@@ -44,7 +44,7 @@ namespace Adatkezelõ {
                 dolg = new Dolgozó(val_rang, uj.jelszo, uj.nev, uj.lakcim, uj.dolgozoID);
             }
 
-            return dolg; // null-t dob, ha nem létezik ez a dolgozó
+            return dolg; // null-t dob, ha nem létezik ez a dolgozó 
 		}
 
 		/// 
