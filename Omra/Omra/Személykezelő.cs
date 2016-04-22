@@ -11,24 +11,38 @@
 
 using Adatkezelõ;
 using System.Collections.Generic;
+using System.Linq;
+using Omra;
+using System.Diagnostics;
+
 namespace Adatkezelõ {
-	public class Személykezelõ : IÜzenetkezelõ, IDolgozókezelõ, IGyanúsítottkezelõ {
-
-		private List<Dolgozó> dolgozók;  
-		private List<Gyanúsított> gyanúsítottak; 
-
-		public Személykezelõ(){
-            //---------------------------- dolgozókat és gyanúsítottakat lekérdezi az adatbázisból
-		}
+	public class Személykezelõ : IÜzenetkezelõ, IDolgozókezelõ, IGyanúsítottkezelõ
+    {
+        DatabaseElements DE = new DatabaseElements();
 
 		/// 
 		/// <param name="azonosító"></param>
 		/// <param name="jelszó"></param>
-		public Dolgozó Azonosítás(string azonosító, string jelszó){
+		public Dolgozó Azonosítás(string felhasználónév, string jelszó)
+        {
             Dolgozó dolg = null;
-            foreach (Dolgozó d in dolgozók)
-                if (d.GetAzonosító() == azonosító && d.GetJelszó() == jelszó)
-                    dolg = d;
+            var talalat = from x in DE.Dolgozok  // kikeresi a megadott felhasználót
+                            where x.nev == felhasználónév && x.jelszo == jelszó
+                            select x;
+
+            if (talalat != null)
+            {
+                Dolgozok uj = talalat.First();
+                Rang val_rang = new Rang();
+                switch (uj.rang)  // kiválasztja, hogy mi a rangja az adott felhasználónak, viszont ezt stringbõl Rang enum típusra kell alakítani
+                {
+                    case "Adminisztrátor": val_rang = Rang.Adminisztrátor; break;
+                    case "Kapitány": val_rang = Rang.Kapitány; break;
+                    case "Ornagy": val_rang = Rang.Ornagy; break;
+                    case "Tiszt": val_rang = Rang.Tiszt; break;
+                }
+                dolg = new Dolgozó(val_rang, uj.jelszo, uj.nev, uj.lakcim, uj.dolgozoID.ToString());
+            }
 
             return dolg; // null-t dob, ha nem létezik ez a dolgozó
 		}
@@ -42,19 +56,16 @@ namespace Adatkezelõ {
 
 		/// 
 		/// <param name="dolgozó"></param>
-		public void DolgozóMódosítása(Dolgozó dolgozó){
-            for (int i = 0; i < dolgozók.Count; i++ )
-                if (dolgozók[i].GetAzonosító() == dolgozó.GetAzonosító())
-                {
-                    dolgozók[i] = dolgozó;
-                    //------------------------------- Adatbázist módosítja: megkeresi ezzel az azonosítóval rendelkezõ dolgozót, és minden adatát felülírja
-                }
+		public void DolgozóMódosítása(Dolgozó dolgozó)
+        {
+            
 		}
 
 		/// 
 		/// <param name="Dolgozó"></param>
-		public void DolgozóTörlése(Dolgozó Dolgozó){
-            dolgozók.Remove(Dolgozó);
+		public void DolgozóTörlése(Dolgozó Dolgozó)
+        {
+            
             //------------------------------------------- Adatbázisból törli
 		}
 
@@ -68,13 +79,9 @@ namespace Adatkezelõ {
 
 		/// 
 		/// <param name="gyanúsított"></param>
-		public void GyanúsítottMódosítása(Gyanúsított gyanúsított){
-            for (int i = 0; i < gyanúsítottak.Count; i++)
-                if (gyanúsítottak[i].GetAzonosító() == gyanúsított.GetAzonosító())
-                {
-                    gyanúsítottak[i] = gyanúsított;
-                    //------------------------------- Adatbázist módosítja: megkeresi ezzel az azonosítóval rendelkezõ gyanúsítottat, és minden adatát felülírja
-                }
+		public void GyanúsítottMódosítása(Gyanúsított gyanúsított)
+        {
+            
 		}
 
 		/// 

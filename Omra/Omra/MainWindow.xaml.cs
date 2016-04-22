@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Adatkezelő;
 
 namespace Omra
 {
@@ -20,11 +21,29 @@ namespace Omra
     /// </summary>
     public partial class MainWindow : Window
     {
-        DatabaseElements DE = new DatabaseElements();
+        IDolgozókezelő dolgozokezelo = new Személykezelő();
         public MainWindow()
         {
             InitializeComponent();
             //A megadott felhasználónévvel és jelszóval az adatbázisból lekérdezi, hogy van-e ilyen dolgozó, ha van megnyitja a főablakot, ha nincs messagebox, majd a kód legvégén bezárja ezt az ablakot 
+        }
+
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
+            Dolgozó dolg = dolgozokezelo.Azonosítás(felh.Text, jelszo.Password);
+            if (dolg != null)
+            {
+                this.Hide();
+                FoAblak foablak_window = new FoAblak(dolg);
+                foablak_window.Show();
+            }
+            else
+                MessageBox.Show("Helytelen felhasználónév vagy jelszó lett megadva!");
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
