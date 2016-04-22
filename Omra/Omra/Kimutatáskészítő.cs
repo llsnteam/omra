@@ -13,7 +13,7 @@ using Adatkezelõ;
 using System;
 using System.Collections.Generic;
 namespace Adatkezelõ {
-	public class Kimutatáskészítõ : IKimutatáskezelõ 
+	public class Kimutatáskészítõ
     {
 
 		private Kimutatás kimutatások;

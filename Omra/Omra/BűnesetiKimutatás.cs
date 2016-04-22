@@ -18,6 +18,11 @@ namespace Adatkezelõ {
 		private List<Bizonyíték> bizonyítékok;
 		private List<Bûneset> bûnesetek;
 		private List<Gyanúsított> gyanúsítottak;
+
+        public BûnesetiKimutatás(DateTime vege, DateTime kezdet):base(vege,kezdet)
+        {
+    
+        }
         
 		public List<Bizonyíték> GetBizonyítékok(){
 
