@@ -39,7 +39,7 @@ namespace Adatkezelõ {
             decimal id = dolgozo.GetAzonosító();    // linq nem szereti ha ott kérem el
             List<Feladat> vissza = new List<Feladat>();
             var uzenetek = from x in DE.Bunesetek
-                           where x.felelos_ornagy == id || x.Dolgozok.dolgozoID == id
+                           where x.Dolgozok.dolgozoID == id
                            select x;
             foreach (var item in uzenetek)
             {
