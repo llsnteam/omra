@@ -32,7 +32,7 @@ namespace Adatkezelõ {
 		/// <param name="név"></param>
 		/// <param name="azonosító"></param>
 		/// <param name="lakcím"></param>
-		void ÚjDolgozó(string jelszó, Rang beosztás, string név, string azonosító, string lakcím);
+		void ÚjDolgozó(string jelszó, Rang beosztás, string név, decimal azonosító, string lakcím);
 	}//end IDolgozókezelõ
 
 }//end namespace Adatkezelõ
