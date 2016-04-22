@@ -7,7 +7,7 @@
         <TextBox x:Name="felh" HorizontalAlignment="Left" Height="29" Margin="235,124,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label Content="Jelszó" HorizontalAlignment="Left" Margin="129,171,0,0" VerticalAlignment="Top" Width="101" FlowDirection="RightToLeft"/>
         <PasswordBox x:Name="jelszo" HorizontalAlignment="Left" Height="26" Margin="235,171,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button Click="Login_Click" Content="Login" HorizontalAlignment="Left" Margin="253,222,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Click="Login_Click" Content="Login" HorizontalAlignment="Left" Margin="253,222,0,0" VerticalAlignment="Top" Width="75" IsDefault="True"/>
         <Button Click="Exit_Click" Content="Exit" HorizontalAlignment="Left" Margin="253,260,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.974,0.217"/>
     </Grid>
 </Window>

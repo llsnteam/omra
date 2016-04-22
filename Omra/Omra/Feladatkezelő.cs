@@ -7,15 +7,16 @@
 ///////////////////////////////////////////////////////////
 
 
-
-
 using Adatkezelõ;
 using Omra;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-namespace Adatkezelõ {
-	public class Feladatkezelõ : IFeladatkezelõ {
+
+namespace Adatkezelõ 
+{
+	public class Feladatkezelõ : IFeladatkezelõ
+    {
 
         DatabaseElements DE = new DatabaseElements();
         
@@ -38,10 +39,10 @@ namespace Adatkezelõ {
         {
             decimal id = dolgozo.GetAzonosító();    // linq nem szereti ha ott kérem el
             List<Feladat> vissza = new List<Feladat>();
-            var uzenetek = from x in DE.Bunesetek
-                           where x.Dolgozok.dolgozoID == id
+            var feladatok = from x in DE.Bunesetek
+                           where x.Dolgozok.dolgozoID == id    // NEM JÓ
                            select x;
-            foreach (var item in uzenetek)
+            foreach (var item in feladatok)
             {
                 vissza.Add(new Feladat(item.leiras, dolgozo, dolgozo));
             }
