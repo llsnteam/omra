@@ -33,9 +33,10 @@ namespace Omra
             Dolgozó dolg = dolgozokezelo.Azonosítás(felh.Text, jelszo.Password);
             if (dolg != null)
             {
-                this.Hide();
                 FoAblak foablak_window = new FoAblak(dolg);
+                App.Current.MainWindow = foablak_window;
                 foablak_window.Show();
+                this.Close();
             }
             else
                 MessageBox.Show("Helytelen felhasználónév vagy jelszó lett megadva!");

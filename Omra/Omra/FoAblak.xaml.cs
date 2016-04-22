@@ -58,5 +58,13 @@ namespace Omra
 
         }
 
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mw = new MainWindow();
+            App.Current.MainWindow = mw;
+            mw.Show();
+            this.Close();
+        }
+
     }
 }

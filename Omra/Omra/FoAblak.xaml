@@ -14,6 +14,7 @@
         <Label Content="Tárgy" Grid.Column="1" HorizontalAlignment="Left" Margin="73,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.237,-0.327" Width="214"/>
         <Label Content="Feladat szövege" Grid.Column="1" HorizontalAlignment="Left" Height="48" Margin="73,182,0,0" VerticalAlignment="Top" Width="197"/>
         <Button Content="Feladat készre állítása" Grid.Column="1" HorizontalAlignment="Left" Margin="73,235,0,0" VerticalAlignment="Top" Width="162" Style="{StaticResource BigButton}" Height="31"/>
+        <Button Click="Logout_Click" Content="Logout" Grid.Column="1" HorizontalAlignment="Left" Margin="425,240,0,0" VerticalAlignment="Top" Width="120" Style="{StaticResource BigButton}" Height="31"/>
         <Label Content="Kitől" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="312,107,0,0" VerticalAlignment="Top" Width="214"/>
         <Label Content="Tárgy" Grid.Column="1" HorizontalAlignment="Left" Margin="312,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.237,-0.327" Width="214"/>
         <Label Content="Üzenet szövege" Grid.Column="1" HorizontalAlignment="Left" Height="48" Margin="312,171,0,0" VerticalAlignment="Top" Width="197"/>
