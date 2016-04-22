@@ -21,6 +21,12 @@ namespace Omra
     
     public partial class FoAblak : Window
     {
+        Dolgozó aktDolgozo;
+        IÜzenetkezelő uzenetK;
+        Üzenet kivalasztottUzenet;
+        IFeladatkezelő feladatK;
+        Feladat kivalasztottFeladat;
+        
         public FoAblak(Dolgozó d)
         {
             InitializeComponent();
@@ -28,11 +34,29 @@ namespace Omra
             //Feltölti a listboxgombokat a felhasználónak megengedett funkciók gombjaival (pl. a listbox.childrenbe beleteszel egy újüzenet gombot, aminek a click eseménye kap egy lambda kifejezést, ami megnyitja az üzenet írása ablakot
             //Lekérdezi a felhasználóhoz kapcsolódó feladatokat és üzeneteket, ezeket megjeleníti a listboxaikban
             //A listbox alatt kijelzi a kiválasztott üzenet/feladat adatait
+
+            aktDolgozo = d;
+            uzenetK = new Üzenetkezelő();
+            feladatK = new Feladatkezelő();
+            AdatokBetoltese();
+            
+        }
+
+        private void AdatokBetoltese()  // controllok feltöltése az adott dolgozó adataival
+        {
+            this.ListboxÜzenetek.ItemsSource = uzenetK.ÜzenetMegtekintése(aktDolgozo);
+            ListboxÜzenetek.SelectedIndex = 0;
+            kivalasztottUzenet = (Üzenet)ListboxÜzenetek.SelectedItem;
+
+            this.ListboxFeladatok.ItemsSource = feladatK.FeladatokLekérdezése(aktDolgozo);
+            ListboxFeladatok.SelectedIndex = 0;
+            kivalasztottFeladat = (Feladat)ListboxFeladatok.SelectedItem;
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
+
     }
 }

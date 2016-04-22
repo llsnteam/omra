@@ -40,7 +40,7 @@ namespace Adatkezelõ {
 
 
 
-        void IFeladatkezelõ.FeladatokLekérdezése(Dolgozó Dolgozó)
+        List<Feladat> IFeladatkezelõ.FeladatokLekérdezése(Dolgozó Dolgozó)
         {
             throw new System.NotImplementedException();
         }
