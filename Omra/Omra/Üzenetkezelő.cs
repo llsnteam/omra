@@ -28,12 +28,22 @@ namespace Adatkezelõ {
 
 		/// 
 		/// <param name="Dolgozó"></param>
-		public List<Üzenet> ÜzenetMegtekintése(Dolgozó Dolgozó){
-
+		public List<Üzenet> ÜzenetMegtekintése(Dolgozó dolgozo)
+        {
+            List<Üzenet> vissza = new List<Üzenet>();
             var uzenetek = from x in DE.Uzenetek
-                           where x.cimzett == Dolgozó.GetAzonosító()
+                           where x.cimzett == dolgozo.GetAzonosító()
                            select x;
+            foreach (var item in uzenetek)
+            {
+                vissza.Add(new Üzenet(item.szoveg,item.targy,KitolJott(item.felado),dolgozo));
+            }
 		}
+
+        Dolgozó KitolJott(decimal id)
+        {
+ 
+        }
 
 		/// 
 		/// <param name="üzenet"></param>
