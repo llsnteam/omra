@@ -26,10 +26,10 @@ namespace Adatkezelõ {
 		/// 
 		/// <param name="kezdet"></param>
 		/// <param name="vege"></param>
-		public void ÚjKimutatás(DateTime kezdet, DateTime vege)
+        public void ÚjKimutatás(DateTime kezdet, DateTime vege)
         {
 
-		}
+        }
     }//end Kimutatáskészítõ
 
 }//end namespace Adatkezelõ

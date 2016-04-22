@@ -27,8 +27,8 @@ namespace Adatkezelõ {
             this.kezdet = kezdet;
             statAdatok = new List<int>();
 		}
-    
-        public void ÚjKimutatás(int selIndex)
+
+        public void ÚjKimutatás(DateTime vege, DateTime kezdet)
         {
  	        throw new NotImplementedException();
             // linq val összegyûjti az adatokat a listába

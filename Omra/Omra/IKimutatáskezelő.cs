@@ -18,7 +18,7 @@ namespace Adatkezelõ
 		/// 
 		/// <param name="kezdet"></param>
 		/// <param name="vege"></param>
-		void ÚjKimutatás(int selIndex);
+        void ÚjKimutatás(DateTime kezdet, DateTime vege);
 
 	}//end IKimutatáskezelõ
 
