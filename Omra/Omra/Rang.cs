@@ -13,7 +13,7 @@ namespace Adatkezelõ {
 	public enum Rang : int {
 
 		Tiszt,
-		Õrnagy,
+		Ornagy,
 		Kapitány,
 		Adminisztrátor
 
