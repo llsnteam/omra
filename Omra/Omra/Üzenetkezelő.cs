@@ -10,12 +10,13 @@
 
 
 using Adatkezelõ;
+using Omra;
 using System.Collections.Generic;
+using System.Linq;
 namespace Adatkezelõ {
 	public class Üzenetkezelõ : IÜzenetkezelõ {
 
-		private Üzenet üzenetek;
-
+        DatabaseElements DE = new DatabaseElements();
 		/// 
 		/// <param name="törzs"></param>
 		/// <param name="tárgy"></param>
@@ -29,7 +30,9 @@ namespace Adatkezelõ {
 		/// <param name="Dolgozó"></param>
 		public List<Üzenet> ÜzenetMegtekintése(Dolgozó Dolgozó){
 
-			return null;
+            var uzenetek = from x in DE.Uzenetek
+                           where x.cimzett == Dolgozó.GetAzonosító()
+                           select x;
 		}
 
 		/// 

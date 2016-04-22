@@ -10,6 +10,7 @@
 
 
 using Adatkezelõ;
+using System.Collections.Generic;
 namespace Adatkezelõ {
 	public interface IFeladatkezelõ {
 
@@ -19,7 +20,7 @@ namespace Adatkezelõ {
 
 		/// 
 		/// <param name="Dolgozó"></param>
-		void FeladatokLekérdezése(Dolgozó Dolgozó);
+		List<Feladat> FeladatokLekérdezése(Dolgozó Dolgozó);
 
 		/// 
 		/// <param name="célszemély"></param>
