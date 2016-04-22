@@ -88,7 +88,7 @@ namespace Adatkezelõ {
 		/// <param name="lakcím"></param>
 		/// <param name="személyiAzonosító"></param>
 		/// <param name="név"></param>
-		public void ÚjGyanúsított(GyanúsítottStátusz gyanúsítottStátusz, string lakcím, string személyiAzonosító, string név){
+		public void ÚjGyanúsított(GyanúsítottStátusz gyanúsítottStátusz, string lakcím, decimal személyiAzonosító, string név){
             Gyanúsított gy = new Gyanúsított(gyanúsítottStátusz, név, lakcím, személyiAzonosító);
             //----------------------------------------gyanúsított az adatbázisba
 		}

@@ -12,18 +12,18 @@
 namespace Adatkezelõ {
 	public abstract class Személy {
 
-		protected string azonosító;
+		protected decimal azonosító;
 		protected string bejelentettLakcím;
 		protected string név;
 
-        public Személy(string azonosító, string lakcím, string név)
+        public Személy(decimal azonosító, string lakcím, string név)
         {
             this.azonosító = azonosító;
             this.bejelentettLakcím = lakcím;
             this.név = név;
         }
 
-		public string GetAzonosító(){
+		public decimal GetAzonosító(){
 
 			return this.azonosító;
 		}

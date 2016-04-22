@@ -27,7 +27,7 @@ namespace Adatkezelõ {
 		/// <param name="lakcím"></param>
 		/// <param name="személyiAzonosító"></param>
 		/// <param name="név"></param>
-		void ÚjGyanúsított(GyanúsítottStátusz gyanúsítottStátusz, string lakcím, string személyiAzonosító, string név);
+		void ÚjGyanúsított(GyanúsítottStátusz gyanúsítottStátusz, string lakcím, decimal személyiAzonosító, string név);
 	}//end IGyanúsítottkezelõ
 
 }//end namespace Adatkezelõ

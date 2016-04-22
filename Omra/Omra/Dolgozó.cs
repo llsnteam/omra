@@ -22,7 +22,7 @@ namespace Adatkezelõ {
 		/// <param name="név"></param>
 		/// <param name="lakcím"></param>
 		/// <param name="személyiazonosító"></param>
-		public Dolgozó(Rang Rang, string jelszó, string név, string lakcím, string személyiazonosító)
+		public Dolgozó(Rang Rang, string jelszó, string név, string lakcím, decimal személyiazonosító)
             :base(személyiazonosító,lakcím,név)
         {
             this.beosztás = Rang;

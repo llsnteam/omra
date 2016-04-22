@@ -41,7 +41,7 @@ namespace Adatkezelõ {
                     case "Ornagy": val_rang = Rang.Ornagy; break;
                     case "Tiszt": val_rang = Rang.Tiszt; break;
                 }
-                dolg = new Dolgozó(val_rang, uj.jelszo, uj.nev, uj.lakcim, uj.dolgozoID.ToString());
+                dolg = new Dolgozó(val_rang, uj.jelszo, uj.nev, uj.lakcim, uj.dolgozoID);
             }
 
             return dolg; // null-t dob, ha nem létezik ez a dolgozó
@@ -90,7 +90,7 @@ namespace Adatkezelõ {
 		/// <param name="név"></param>
 		/// <param name="azonosító"></param>
 		/// <param name="lakcím"></param>
-		public void ÚjDolgozó(string jelszó, Rang beosztás, string név, string azonosító, string lakcím){
+		public void ÚjDolgozó(string jelszó, Rang beosztás, string név, decimal azonosító, string lakcím){
 
 		}
 
@@ -99,7 +99,7 @@ namespace Adatkezelõ {
 		/// <param name="lakcím"></param>
 		/// <param name="személyiAzonosító"></param>
 		/// <param name="név"></param>
-		public void ÚjGyanúsított(GyanúsítottStátusz gyanúsítottStátusz, string lakcím, string személyiAzonosító, string név){
+		public void ÚjGyanúsított(GyanúsítottStátusz gyanúsítottStátusz, string lakcím, decimal személyiAzonosító, string név){
 
 		}
 
