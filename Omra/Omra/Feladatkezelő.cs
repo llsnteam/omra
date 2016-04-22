@@ -10,11 +10,14 @@
 
 
 using Adatkezelõ;
+using Omra;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 namespace Adatkezelõ {
 	public class Feladatkezelõ : IFeladatkezelõ {
 
-		private List<Feladat> feladatok;
+        DatabaseElements DE = new DatabaseElements();
         
 		/// 
 		/// <param name="feladat"></param>
@@ -23,26 +26,26 @@ namespace Adatkezelõ {
 		}
 
 		/// 
-		/// <param name="Dolgozó"></param>
-		public List<Feladat> FeladatokLekérdezése(Dolgozó Dolgozó){
-
-			return this.feladatok;
-		}
-
-		/// 
 		/// <param name="célszemély"></param>
 		/// <param name="létrehozta"></param>
 		/// <param name="leírás"></param>
 		public void ÚjFeladat(Dolgozó célszemély, Dolgozó létrehozta, string leírás){
-            Feladat f = new Feladat(leírás, célszemély , létrehozta);
-            this.feladatok.Add(f);
+            //Feladat f = new Feladat(leírás, célszemély , létrehozta);
+            //this.feladatok.Add(f);
 		}
 
-
-
-        List<Feladat> IFeladatkezelõ.FeladatokLekérdezése(Dolgozó Dolgozó)
+        List<Feladat> IFeladatkezelõ.FeladatokLekérdezése(Dolgozó dolgozo)
         {
-            throw new System.NotImplementedException();
+            decimal id = dolgozo.GetAzonosító();    // linq nem szereti ha ott kérem el
+            List<Feladat> vissza = new List<Feladat>();
+            var uzenetek = from x in DE.Bunesetek
+                           where x.felelos_ornagy == id || x.Dolgozok.dolgozoID == id
+                           select x;
+            foreach (var item in uzenetek)
+            {
+                vissza.Add(new Feladat(item.leiras, dolgozo, dolgozo));
+            }
+            return vissza;
         }
     }//end Feladatkezelõ
 

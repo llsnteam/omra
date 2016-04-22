@@ -11,6 +11,7 @@
 
 using Adatkezelõ;
 using Omra;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 namespace Adatkezelõ {
@@ -28,21 +29,27 @@ namespace Adatkezelõ {
 
 		/// 
 		/// <param name="Dolgozó"></param>
-		public List<Üzenet> ÜzenetMegtekintése(Dolgozó dolgozo)
+		public List<Üzenet> ÜzenetMegtekintése(Dolgozó dolgozo)  // kilistázza a beérklezett üzeneteket
         {
+            decimal id = dolgozo.GetAzonosító();    // linq nem szereti ha ott kérem el
             List<Üzenet> vissza = new List<Üzenet>();
             var uzenetek = from x in DE.Uzenetek
-                           where x.cimzett == dolgozo.GetAzonosító()
+                           where x.cimzett == id
                            select x;
             foreach (var item in uzenetek)
             {
                 vissza.Add(new Üzenet(item.szoveg,item.targy,KitolJott(item.felado),dolgozo));
             }
+            return vissza;
 		}
 
-        Dolgozó KitolJott(decimal id)
+        Dolgozó KitolJott(decimal id)   // létrehoz az üzenetnek egy dolgozó példányt, azt akitõl jött az üzenet
         {
- 
+            var kitol = from x in DE.Dolgozok 
+                             where x.dolgozoID == id 
+                             select x;
+            Dolgozok vissza = kitol.First();
+            return new Dolgozó((Rang)Enum.Parse(typeof(Rang),vissza.rang.ToString()), vissza.jelszo, vissza.nev, vissza.lakcim, vissza.dolgozoID);
         }
 
 		/// 
