@@ -29,5 +29,10 @@ namespace Omra
             //Lekérdezi a felhasználóhoz kapcsolódó feladatokat és üzeneteket, ezeket megjeleníti a listboxaikban
             //A listbox alatt kijelzi a kiválasztott üzenet/feladat adatait
         }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

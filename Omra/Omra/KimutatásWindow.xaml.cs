@@ -36,13 +36,7 @@ namespace Omra
 
         private void click_kimutatas_keszites(object sender, RoutedEventArgs e)
         {
-            switch (cmb_kimutatasTipus.SelectedIndex)
-            {
-                case 0: k.ÚjKimutatás(0); break;
-                case 1: k.ÚjKimutatás(1); break;
-                case 2: k.ÚjKimutatás(2); break;
-                case 3: k.ÚjKimutatás(3); break;
-            }
+
         }
     }
 }
