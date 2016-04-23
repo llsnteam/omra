@@ -45,8 +45,9 @@ namespace Adatkezelõ
 		/// <param name="leírás"></param>
 		public void ÚjFeladat(Dolgozó célszemély, Dolgozó létrehozta, string leírás)
         {
-            //Feladat f = new Feladat(leírás, célszemély , létrehozta);
-            //this.feladatok.Add(f);
+            decimal utolsoFeladat = DE.Bunesetek.Last().bunesetID;
+            decimal felelosId = létrehozta.GetAzonosító();
+            var ujFeladat = new Bunesetek() { bunesetID=utolsoFeladat+1, allapot="Folyamatban", felvetel=DateTime.Now, leiras= leírás, felelos_ornagy=felelosId};   // DOLGOZOK ????
 		}
 
         List<Feladat> IFeladatkezelõ.FeladatokLekérdezése(Dolgozó dolgozo)

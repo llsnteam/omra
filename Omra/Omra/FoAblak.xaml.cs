@@ -36,7 +36,7 @@ namespace Omra
             //A listbox alatt kijelzi a kiválasztott üzenet/feladat adatait
             
             aktDolgozo = d;
-            foabl.Title = d.GetNév();
+            this.Title = d.GetNév();
             uzenetK = new Üzenetkezelő();
             feladatK = new Feladatkezelő();
             AdatokBetoltese();
