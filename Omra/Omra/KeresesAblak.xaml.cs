@@ -19,9 +19,9 @@ namespace Omra
     /// </summary>
     public partial class KeresesAblak : Window
     {
-        
+        public object feltoltendo;
 
-        public KeresesAblak() //általános keresés konstruktor
+        public KeresesAblak() 
         {
             InitializeComponent();
         }
@@ -54,18 +54,14 @@ namespace Omra
             RadioBuneset.IsEnabled = false;
             RadioDolgozo.IsEnabled = false;
             RadioGyanusitott.IsEnabled = false;
-
-
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e) //Keresés indítása: kereséskezelőtől kikéri a keresett listát, betölti a listboxba
         {
             IKereséskezelő kezelo = new Kereséskezelő();
 
-            if (RadioBizonyitek.IsChecked == true)
+            if (RadioBizonyitek.IsChecked == true) 
             {
-                //típus alapján, vagy ID alapján
-
                 List<Bizonyíték> eredmeny = kezelo.Bizonyítékkeresés(Azon.Text);
 
                 ListboxEredmeny.ItemsSource = null;
@@ -74,7 +70,6 @@ namespace Omra
 
             else if (RadioBuneset.IsChecked == true)
             {
-                //ID alapján - lehetne máshogy is ?
 
                 List<Bűneset> eredmeny = kezelo.Bűnesetkeresés(Azon.Text);
 
@@ -85,12 +80,53 @@ namespace Omra
 
             else if (RadioDolgozo.IsChecked == true)
             {
-                //név, ID alapján
+                List<Dolgozó> eredmeny = kezelo.Dolgozókeresés(Azon.Text);
+
+                ListboxEredmeny.ItemsSource = null;
+                ListboxEredmeny.ItemsSource = eredmeny;
             }
 
             else if (RadioGyanusitott.IsChecked == true)
             {
+                List<Gyanúsított> eredmeny = kezelo.Gyanúsítottkeresés(Azon.Text);
 
+                ListboxEredmeny.ItemsSource = null;
+                ListboxEredmeny.ItemsSource = eredmeny;
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e) //bezárja az ablakot, mintha nem történt volna semmi
+        {
+            this.Close();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e) //a feltöltendő publikus változóba (amit majd kiolvas a hívó ablak) értéket tesz, a kereséstől függően Dolgozó, bűneset stb.
+        {
+            if (ListboxEredmeny.SelectedItem != null)
+            {
+                if (RadioBizonyitek.IsChecked == true) //ha bizonyíték
+                {
+                    feltoltendo = (Bizonyíték)ListboxEredmeny.SelectedItem;
+                }
+
+                else if (RadioBuneset.IsChecked == true) //ha bűneset
+                {
+                    
+                    feltoltendo = (Bűneset)ListboxEredmeny.SelectedItem;
+                }
+
+                else if (RadioDolgozo.IsChecked == true) //ha dolgozó
+                {
+                    feltoltendo = (Dolgozó)ListboxEredmeny.SelectedItem;
+                }
+
+                else if (RadioGyanusitott.IsChecked == true) //ha gyanusított
+                {
+                    feltoltendo = (Gyanúsított)ListboxEredmeny.SelectedItem;
+                }
+
+                this.DialogResult = true;
+                this.Close();
             }
         }
     }

@@ -17,30 +17,30 @@ namespace Adatkezelõ {
     {
 
 		private string azonosító;
-		private List<Dolgozó> dolgozók;
-		private List<Gyanúsított> gyanúsítottak;
-		private List<Bizonyíték> bizonyítékok;
+
 		private BÁllapot állapot;
 
         private DateTime felvetel;
         private DateTime lezaras;
+
+        private string leiras;
         
 		/// 
 		/// <param name="azonosító"></param>
-		public Bûneset(string azonosító){   //felvételhez
+		public Bûneset(string azonosító, string leiras){   //felvételhez
             this.azonosító = azonosító;
-            this.dolgozók = new List<Dolgozó>();
-            this.gyanúsítottak = new List<Gyanúsított>();
-            this.bizonyítékok = new List<Bizonyíték>();
+
             this.állapot = BÁllapot.Folyamatban;
             this.felvetel = DateTime.Now;
+            this.leiras = leiras;
 		}
 
-        public Bûneset(string azonosító, BÁllapot allapot, DateTime felvetel)  //megjelenítéshez a keresésben
+        public Bûneset(string azonosító, BÁllapot allapot, DateTime felvetel, string leiras)  //megjelenítéshez a keresésben
         {
             this.azonosító = azonosító;
             this.állapot = allapot;
             this.felvetel = felvetel;
+            this.leiras = leiras;
         }
 
 		public void Állapotmódosítás(){
@@ -60,7 +60,7 @@ namespace Adatkezelõ {
 		/// <param name="Bûneset"></param>
 		/// <param name="Bizonyíték"></param>
 		public void BizonyítékHozzáadása(Bûneset Bûneset, Bizonyíték Bizonyíték){
-            this.bizonyítékok.Add(Bizonyíték);
+            
 		}
 
 		public BÁllapot GetÁllapot(){
@@ -91,25 +91,15 @@ namespace Adatkezelõ {
             }
         }
 
-		public List<Bizonyíték> GetBizonyítékok(){
-
-            return this.bizonyítékok;
-		}
-
-		public List<Gyanúsított> GetGyanúsítottak(){
-
-            return this.gyanúsítottak;
-		}
-
 		/// 
 		/// <param name="Gyanúsított"></param>
 		public void GyanúsítottHozzáadása(Gyanúsított Gyanúsított){
-            this.gyanúsítottak.Add(Gyanúsított);
+            
 		}
 
         public override string ToString()
         {
-            return "ID:" + azonosító + " Állapot: " + állapot.ToString() + " Felvétel: " + felvetel.ToShortDateString();
+            return "ID:" + azonosító + " Állapot: " + állapot.ToString() + " Felvétel: " + felvetel.ToShortDateString() + "\n Leírás: " + leiras;
         }
 
 	}//end Bûneset

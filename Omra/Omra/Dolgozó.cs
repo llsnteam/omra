@@ -38,6 +38,11 @@ namespace Adatkezelõ {
             return jelszó;
 		}
 
+        public override string ToString()
+        {
+            return this.név + " " + this.beosztás.ToString();
+        }
+
 	}//end Dolgozó
 
 }//end namespace Adatkezelõ

@@ -20,10 +20,10 @@
         <Button Click="Logout_Click" Grid.Column="0" Content="Logout" HorizontalAlignment="Left" Margin="6,241,0,0" VerticalAlignment="Top" Width="107" Style="{StaticResource BigButton}" Height="31"/>
         <ListBox Name="ListboxÜzenetek" HorizontalAlignment="Left" Height="92" Margin="13,10,0,0" VerticalAlignment="Top" Width="233" Grid.Column="2"/>
         <Grid x:Name="gr_feladat" Grid.Column="1">
-            <ListBox Name="ListboxFeladatok" HorizontalAlignment="Left" Height="92" Margin="20,10,0,0" VerticalAlignment="Top" Width="214" Grid.Column="1"/>
-            <Label Content="Kitől:" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="20,107,0,0" VerticalAlignment="Top" Width="214"/>
-            <Label Content="Tárgy:" Grid.Column="1" HorizontalAlignment="Left" Margin="20,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.237,-0.327" Width="214"/>
-            <Label Content="Feladat szövege:" HorizontalAlignment="Left" Height="48" Margin="20,171,0,0" VerticalAlignment="Top" Width="197"/>
+            <ListBox Name="ListboxFeladatok" HorizontalAlignment="Left" Height="92" Margin="10,10,0,0" VerticalAlignment="Top" Width="260" Grid.Column="1"/>
+            <Label Content="Kitől:" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="10,107,0,0" VerticalAlignment="Top" Width="214"/>
+            <Label Content="Tárgy:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.237,-0.327" Width="214"/>
+            <Label Content="Feladat szövege:" HorizontalAlignment="Left" Height="48" Margin="10,171,0,0" VerticalAlignment="Top" Width="197"/>
         </Grid>
         <Label Content="Kitől:" Grid.Column="2" HorizontalAlignment="Left" Height="28" Margin="13,107,0,0" VerticalAlignment="Top" Width="214"/>
         <Label Content="Tárgy:" Grid.Column="2" HorizontalAlignment="Left" Margin="13,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.237,-0.327" Width="214" Height="26"/>
