@@ -23,7 +23,8 @@ namespace Adatkezelõ {
 		/// <param name="tárgy"></param>
 		/// <param name="küldõ"></param>
 		/// <param name="címzett"></param>
-		public void ÜzenetKüldése(string törzs, string tárgy, Dolgozó küldõ, Dolgozó címzett){
+		public void ÜzenetKüldése(string törzs, string tárgy, Dolgozó küldõ, Dolgozó címzett)
+        {
             
 		}
 
@@ -54,8 +55,12 @@ namespace Adatkezelõ {
 
 		/// 
 		/// <param name="üzenet"></param>
-		public void ÜzenetTörlése(Üzenet üzenet){
-
+		public void ÜzenetTörlése(Üzenet üzenet)
+        {
+            decimal id = üzenet.GetUzenetID;
+            var aktUzenet = DE.Uzenetek.Single(x => x.uzenetID == id);
+            DE.Uzenetek.Remove(aktUzenet);
+            DE.SaveChanges();
 		}
 
 	}//end Üzenetkezelõ

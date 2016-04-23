@@ -23,6 +23,7 @@ namespace Adatkezelõ {
 		/// </summary>
 		private Dolgozó létrehozta;
 		private FÁllapot állapot;
+        private decimal feladatID;
         
 		/// 
 		/// <param name="leírás"></param>
@@ -39,35 +40,31 @@ namespace Adatkezelõ {
 		/// <summary>
 		/// Akinek a feladat szól
 		/// </summary>
-		public Dolgozó GetCélszemély{
-			get{
-				return célszemély;
-			}
-			set{
-				célszemély = value;
-			}
+		public Dolgozó GetCélszemély
+        {
+            get { return célszemély; }
+            set { célszemély = value; }
 		}
 
 		public string GetLeírás{
-			get{
-				return leírás;
-			}
-			set{
-				leírás = value;
-			}
+            get { return leírás; }
+            set { leírás = value; }
 		}
 
 		/// <summary>
 		/// Ki adta ki a feladatot
 		/// </summary>
-		public Dolgozó GetLétrehozta{
-			get{
-				return létrehozta;
-			}
-			set{
-				létrehozta = value;
-			}
-		}
+        public Dolgozó GetLétrehozta
+        {
+            get { return létrehozta; }
+            set { létrehozta = value; }
+        }
+
+        public decimal GetFeladatID
+        {
+            get { return feladatID; }
+            set { feladatID = value; }
+        }
 
         public override string ToString()
         {
