@@ -28,9 +28,9 @@ namespace Adatkezelõ {
             var utolsoUzenet = from x in DE.Uzenetek
                                where x.uzenetID == DE.Uzenetek.Last().uzenetID
                                select x.uzenetID;
-            decimal kuldoId=küldõ.GetAzonosító();
-            decimal cimzettId=címzett.GetAzonosító();
-            var ujUzenet = new Uzenetek() {uzenetID=+1, szoveg = törzs, targy = tárgy, felado = kuldoId, cimzett = cimzettId };
+            decimal kuldoId = küldõ.GetAzonosító();
+            decimal cimzettId = címzett.GetAzonosító();
+            var ujUzenet = new Uzenetek() { uzenetID = utolsoUzenet.First()+1, szoveg = törzs, targy = tárgy, felado = kuldoId, cimzett = cimzettId };
             DE.Uzenetek.Add(ujUzenet);     // TESZT !!!!!!!!!!!! 
             DE.SaveChanges();
 		}
