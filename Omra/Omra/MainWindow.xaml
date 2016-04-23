@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Omra.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        Title="OMRA" Height="350" Width="525">
     <Grid Background="{StaticResource hatter}">
         <Label Content="Felhasználónév" HorizontalAlignment="Left" Margin="124,80,0,0" VerticalAlignment="Top" Height="29" Width="101" FlowDirection="RightToLeft" />
         <TextBox x:Name="felh" HorizontalAlignment="Left" Height="29" Margin="230,80,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>

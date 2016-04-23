@@ -10,27 +10,94 @@
 
 
 using Adatkezelõ;
+using Omra;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+
 namespace Adatkezelõ {
 	public class Kereséskezelõ : IKereséskezelõ {
 
 		/// 
 		/// <param name="azonosító"></param>
-		public Bizonyíték Bizonyítékkeresés(string azonosító){
+		public List<Bizonyíték> Bizonyítékkeresés(string azonosító){
 
-			return null;
+            List<Bizonyíték> visszateresilista = new List<Bizonyíték>();
+
+            bool IDkereses = false;     //ID-re keres (számmal kezdõdik) vagy a bizonyíték típusára keres (betûvel kezdõdik)
+
+            for (int i = 0; i < 10; i++)
+                if (azonosító.StartsWith(Convert.ToString(i))) IDkereses = true;
+
+            if (IDkereses) //ha ID alapú
+            {
+                Decimal d = Convert.ToDecimal(azonosító);
+
+                DatabaseElements DE = new DatabaseElements(); 
+
+                var eredmeny = from x in DE.Bizonyitekok
+                               where x.bizonyitekID == d
+                               select x;
+
+                foreach (var v in eredmeny)
+                    visszateresilista.Add(new Bizonyíték(Convert.ToString(v.bizonyitekID), v.megnevezes, v.felvetel));
+            }
+            else //ha megnevezés alapú
+            {
+                DatabaseElements DE = new DatabaseElements();
+                var eredmeny = from x in DE.Bizonyitekok
+                               where x.megnevezes.Contains(azonosító)
+                               select x;
+
+                foreach (var v in eredmeny)
+                    visszateresilista.Add(new Bizonyíték(Convert.ToString(v.bizonyitekID), v.megnevezes, v.felvetel));
+            }
+
+            return visszateresilista;
 		}
 
 		/// 
 		/// <param name="azonosító"></param>
-		public Bûneset Bûnesetkeresés(string azonosító){
+		public List<Bûneset> Bûnesetkeresés(string azonosító){
 
-			return null;
+            List<Bûneset> visszateresilista = new List<Bûneset>();
+
+            if (azonosító != "")
+            {
+                Decimal d = Convert.ToDecimal(azonosító);
+
+                DatabaseElements DE = new DatabaseElements();
+
+                var eredmeny = from x in DE.Bunesetek
+                               where x.bunesetID == d
+                               select x;
+
+                foreach (var v in eredmeny)
+                {
+                                       
+                    visszateresilista.Add(new Bûneset(Convert.ToString(v.bunesetID), (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel));
+                }
+            }
+            else
+            {
+                DatabaseElements DE = new DatabaseElements();
+
+                var eredmeny = from x in DE.Bunesetek
+                               select x;
+
+                foreach (var v in eredmeny)
+                {
+                    visszateresilista.Add(new Bûneset(Convert.ToString(v.bunesetID), (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel));
+                }
+            }
+            
+
+            return visszateresilista;
 		}
 
 		/// 
 		/// <param name="azonosito"></param>
-		public Dolgozó Dolgozókeresés(string azonosito){
+		public List<Dolgozó> Dolgozókeresés(string azonosito){
 
 			return null;
 		}
@@ -40,12 +107,72 @@ namespace Adatkezelõ {
 		/// <param name="típus"></param>
 		public List<object> Keresés(string azonosító, KeresésTípus típus){
 
-			return null;
+            List<object> visszateresilista = new List<object>();
+
+            if (azonosító == "")
+            {
+                if (típus == KeresésTípus.Bizonyíték)
+                {
+                    bool IDkereses = false;     //ID-re keres (számmal kezdõdik) vagy a bizonyíték típusára keres (betûvel kezdõdik)
+                    for (int i = 0; i < 10; i++)
+                        if (azonosító.StartsWith(Convert.ToString(i))) IDkereses = true;
+
+                    if (IDkereses)
+                    {
+                        DatabaseElements DE = new DatabaseElements();
+
+
+                    }
+                    else
+                    {
+
+                    }
+                }
+
+                if (típus == KeresésTípus.Bûneset)
+                {
+
+                }
+
+                if (típus == KeresésTípus.Dolgozó)
+                {
+
+                }
+
+                if (típus == KeresésTípus.Gyanúsított)
+                {
+
+                }
+            }
+
+            else
+            {
+                if (típus == KeresésTípus.Bizonyíték)
+                {
+
+                }
+
+                if (típus == KeresésTípus.Bûneset)
+                {
+
+                }
+
+                if (típus == KeresésTípus.Dolgozó)
+                {
+
+                }
+
+                if (típus == KeresésTípus.Gyanúsított)
+                {
+
+                }
+            }
+            return visszateresilista;
 		}
 
 		/// 
 		/// <param name="azonosító"></param>
-		public Gyanúsított Gyanúsítottkeresés(string azonosító){
+		public List<Gyanúsított> Gyanúsítottkeresés(string azonosító){
 
 			return null;
 		}
