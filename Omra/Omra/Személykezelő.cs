@@ -30,7 +30,7 @@ namespace Adatkezelõ {
                             where x.nev == felhasználónév && x.jelszo == jelszó
                             select x;
 
-            if (talalat != null)
+            if (talalat.Count() != 0)
             {
                 Dolgozok uj = talalat.First();
                 Rang val_rang = new Rang();
