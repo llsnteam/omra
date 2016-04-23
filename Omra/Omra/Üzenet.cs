@@ -74,6 +74,11 @@ namespace Adatkezelõ {
             set { uzenetID = value; }
         }
 
+        public override string ToString()
+        {
+            return küldõ + ": " + tárgy;
+        }
+
 	}//end Üzenet
 
 }//end namespace Adatkezelõ

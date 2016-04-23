@@ -13,6 +13,7 @@ using Adatkezelõ;
 using Omra;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 namespace Adatkezelõ {
 	public class Üzenetkezelõ : IÜzenetkezelõ {
@@ -25,13 +26,18 @@ namespace Adatkezelõ {
 		/// <param name="címzett"></param>
 		public void ÜzenetKüldése(string törzs, string tárgy, Dolgozó küldõ, Dolgozó címzett)
         {
+            decimal id = -1;
             var utolsoUzenet = from x in DE.Uzenetek
-                               where x.uzenetID == DE.Uzenetek.Last().uzenetID
+                               where x.uzenetID == DE.Uzenetek.Max(y=>y.uzenetID)
                                select x.uzenetID;
+            if(utolsoUzenet.Count() != 0)
+            {
+                id = utolsoUzenet.First();
+            }
             decimal kuldoId = küldõ.GetAzonosító();
             decimal cimzettId = címzett.GetAzonosító();
-            var ujUzenet = new Uzenetek() { uzenetID = utolsoUzenet.First()+1, szoveg = törzs, targy = tárgy, felado = kuldoId, cimzett = cimzettId };
-            DE.Uzenetek.Add(ujUzenet);     // TESZT !!!!!!!!!!!! 
+            var ujUzenet = new Uzenetek() { uzenetID = id+1, szoveg = törzs, targy = tárgy, felado = kuldoId, cimzett = cimzettId };
+            DE.Uzenetek.Add(ujUzenet);
             DE.SaveChanges();
 		}
 
