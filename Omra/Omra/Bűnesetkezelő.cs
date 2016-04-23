@@ -86,8 +86,8 @@ namespace Adatkezelõ {
             DE.SaveChanges();
 		}
 
-		public void ÚjBûneset(){
-            Bûneset b = new Bûneset(AzonosítóGenerálás());
+		public void ÚjBûneset(string leiras){
+            Bûneset b = new Bûneset(AzonosítóGenerálás(), leiras);
             bûnesetek.Add(b); //------------------------------------- bûneset az adatbázisba
 		}
 

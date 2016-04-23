@@ -24,23 +24,27 @@ namespace Adatkezelõ {
 
         private DateTime felvetel;
         private DateTime lezaras;
+
+        private string leiras;
         
 		/// 
 		/// <param name="azonosító"></param>
-		public Bûneset(string azonosító){   //felvételhez
+		public Bûneset(string azonosító, string leiras){   //felvételhez
             this.azonosító = azonosító;
             this.dolgozók = new List<Dolgozó>();
             this.gyanúsítottak = new List<Gyanúsított>();
             this.bizonyítékok = new List<Bizonyíték>();
             this.állapot = BÁllapot.Folyamatban;
             this.felvetel = DateTime.Now;
+            this.leiras = leiras;
 		}
 
-        public Bûneset(string azonosító, BÁllapot allapot, DateTime felvetel)  //megjelenítéshez a keresésben
+        public Bûneset(string azonosító, BÁllapot allapot, DateTime felvetel, string leiras)  //megjelenítéshez a keresésben
         {
             this.azonosító = azonosító;
             this.állapot = allapot;
             this.felvetel = felvetel;
+            this.leiras = leiras;
         }
 
 		public void Állapotmódosítás(){
@@ -109,7 +113,7 @@ namespace Adatkezelõ {
 
         public override string ToString()
         {
-            return "ID:" + azonosító + " Állapot: " + állapot.ToString() + " Felvétel: " + felvetel.ToShortDateString();
+            return "ID:" + azonosító + " Állapot: " + állapot.ToString() + " Felvétel: " + felvetel.ToShortDateString() + "\n Leírás: " + leiras;
         }
 
 	}//end Bûneset
