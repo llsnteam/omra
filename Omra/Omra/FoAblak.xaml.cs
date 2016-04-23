@@ -79,6 +79,8 @@ namespace Omra
 
         private void Kereses_Click(object sender, RoutedEventArgs e)
         {
+            KeresesAblak keresablak = new KeresesAblak();
+            keresablak.ShowDialog();
 
         }
 

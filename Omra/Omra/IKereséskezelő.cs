@@ -18,24 +18,24 @@ namespace Adatkezelõ {
 
 		/// 
 		/// <param name="azonosító"></param>
-		Bizonyíték Bizonyítékkeresés(string azonosító);
+		List<Bizonyíték> Bizonyítékkeresés(string azonosító);
 
 		/// 
 		/// <param name="azonosító"></param>
-		Bûneset Bûnesetkeresés(string azonosító);
+		List<Bûneset> Bûnesetkeresés(string azonosító);
 
 		/// 
 		/// <param name="azonosito"></param>
-		Dolgozó Dolgozókeresés(string azonosito);
+		List<Dolgozó> Dolgozókeresés(string azonosito);
 
 		/// 
 		/// <param name="azonosító"></param>
-		Gyanúsított Gyanúsítottkeresés(string azonosító);
+		List<Gyanúsított> Gyanúsítottkeresés(string azonosító);
 
 		/// 
 		/// <param name="azonosító"></param>
 		/// <param name="típus"></param>
-		List<object> Keresés(string azonosító, KeresésTípus típus);
+		//List<object> Keresés(string azonosító, KeresésTípus típus);
 	}//end IKereséskezelõ
 
 }//end namespace Adatkezelõ

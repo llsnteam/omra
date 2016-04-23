@@ -10,6 +10,7 @@
 
 
 using Adatkezelõ;
+using System;
 using System.Collections.Generic;
 namespace Adatkezelõ {
 	public class Bûneset 
@@ -20,20 +21,39 @@ namespace Adatkezelõ {
 		private List<Gyanúsított> gyanúsítottak;
 		private List<Bizonyíték> bizonyítékok;
 		private BÁllapot állapot;
+
+        private DateTime felvetel;
+        private DateTime lezaras;
         
 		/// 
 		/// <param name="azonosító"></param>
-		public Bûneset(string azonosító){
+		public Bûneset(string azonosító){   //felvételhez
             this.azonosító = azonosító;
             this.dolgozók = new List<Dolgozó>();
             this.gyanúsítottak = new List<Gyanúsított>();
             this.bizonyítékok = new List<Bizonyíték>();
             this.állapot = BÁllapot.Folyamatban;
+            this.felvetel = DateTime.Now;
 		}
+
+        public Bûneset(string azonosító, BÁllapot allapot, DateTime felvetel)  //megjelenítéshez a keresésben
+        {
+            this.azonosító = azonosító;
+            this.állapot = allapot;
+            this.felvetel = felvetel;
+        }
 
 		public void Állapotmódosítás(){
             if (állapot == BÁllapot.Folyamatban)
+            {
                 állapot = BÁllapot.Lezárt;
+                this.lezaras = DateTime.Now;
+            }
+            if (állapot == BÁllapot.Lezárt)
+            {
+                állapot = BÁllapot.Folyamatban;
+                //lezaras = null    //datetime nem nullázható -> mivel legyen jelölve?
+            }
 		}
 
 		/// 
@@ -49,13 +69,27 @@ namespace Adatkezelõ {
 		}
 
 		public string GetAzonosító{
-			get{
+			get
+            {
 				return azonosító;
 			}
-			set{
-				azonosító = value;
-			}
 		}
+
+        public DateTime GetFelvetel
+        {
+            get
+            {
+                return felvetel;
+            }
+        }
+
+        public DateTime GetLezaras
+        {
+            get
+            {
+                return lezaras;
+            }
+        }
 
 		public List<Bizonyíték> GetBizonyítékok(){
 
@@ -72,6 +106,11 @@ namespace Adatkezelõ {
 		public void GyanúsítottHozzáadása(Gyanúsított Gyanúsított){
             this.gyanúsítottak.Add(Gyanúsított);
 		}
+
+        public override string ToString()
+        {
+            return "ID:" + azonosító + " Állapot: " + állapot.ToString() + " Felvétel: " + felvetel.ToShortDateString();
+        }
 
 	}//end Bûneset
 
