@@ -34,8 +34,9 @@ namespace Omra
             //Feltölti a listboxgombokat a felhasználónak megengedett funkciók gombjaival (pl. a listbox.childrenbe beleteszel egy újüzenet gombot, aminek a click eseménye kap egy lambda kifejezést, ami megnyitja az üzenet írása ablakot
             //Lekérdezi a felhasználóhoz kapcsolódó feladatokat és üzeneteket, ezeket megjeleníti a listboxaikban
             //A listbox alatt kijelzi a kiválasztott üzenet/feladat adatait
-
+            
             aktDolgozo = d;
+            foabl.Title = d.GetNév();
             uzenetK = new Üzenetkezelő();
             feladatK = new Feladatkezelő();
             AdatokBetoltese();
@@ -82,6 +83,11 @@ namespace Omra
         }
 
         private void UjFelh_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void FelhMod_Click(object sender, RoutedEventArgs e)
         {
 
         }

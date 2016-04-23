@@ -1,7 +1,7 @@
-﻿<Window x:Class="Omra.FoAblak"
+﻿<Window x:Name="foabl" x:Class="Omra.FoAblak"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="FoAblak" Height="312.397" Width="680">
+        Height="312.397" Width="680">
     <Grid Background="{StaticResource hatter}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="137*"/>
@@ -12,7 +12,6 @@
         <Button Click="UzenetTorles_Click" Grid.Column="0" Content="Üzenet törlése" HorizontalAlignment="Left" Margin="6,37,0,0" VerticalAlignment="Top" Width="121" Style="{StaticResource BigButton}" Height="31"/>
         <Button Click="Kereses_Click" Grid.Column="0" Content="Keresés" HorizontalAlignment="Left" Margin="6,71,0,0" VerticalAlignment="Top" Width="121" Style="{StaticResource BigButton}" Height="31"/>
         <Button Click="UjFelh_Click" Grid.Column="0" Content="Új felhasználó" HorizontalAlignment="Left" Margin="6,105,0,0" VerticalAlignment="Top" Width="121" Style="{StaticResource BigButton}" Height="31"/>
-        <Button Click="UjFelh_Click" Grid.Column="0" Content="Felhasználó módosítás" HorizontalAlignment="Left" Margin="6,139,0,0" VerticalAlignment="Top" Width="121" Style="{StaticResource BigButton}" Height="31"/>
         <Button Click="Logout_Click" Grid.Column="0" Content="Logout" HorizontalAlignment="Left" Margin="6,241,0,0" VerticalAlignment="Top" Width="107" Style="{StaticResource BigButton}" Height="31"/>
         <ListBox Name="ListboxÜzenetek" HorizontalAlignment="Left" Height="92" Margin="13,10,0,0" VerticalAlignment="Top" Width="233" Grid.Column="2"/>
         <Grid x:Name="gr_feladat" Grid.Column="1">
