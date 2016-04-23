@@ -50,16 +50,27 @@ namespace Omra
             Rang r = aktDolgozo.GetBeosztás();
             Visibility hidden = Visibility.Hidden;
 
-            switch (r)
+            if(r==Rang.Adminisztrátor||r==Rang.Kapitány)
             {
-                case Rang.Adminisztrátor:
-                    kap_kimut.Visibility = hidden;
-                    kap_ujbun.Visibility = hidden;
-                    orn_bunmod.Visibility = hidden;
-                    orn_felkio.Visibility = hidden;
-                    tiszt_bunmod.Visibility = hidden;
-                    gr_feladat.Visibility = hidden;
-                    break;
+                gr_feladat.Visibility = hidden;
+            }
+            if (r == Rang.Kapitány || r == Rang.Ornagy || r == Rang.Tiszt) // ha nem admin lép be
+            {
+                admin_ujfelh.Visibility = hidden;
+            }
+            if (r == Rang.Adminisztrátor || r == Rang.Ornagy || r == Rang.Tiszt) // ha nem kapitány lép be
+            {
+                kap_kimut.Visibility = hidden;
+                kap_ujbun.Visibility = hidden;
+            }
+            if (r == Rang.Adminisztrátor || r == Rang.Kapitány || r == Rang.Tiszt) // ha nem őrnagy lép be
+            {
+                orn_bunmod.Visibility = hidden;
+                orn_felkio.Visibility = hidden;
+            }
+            if(r == Rang.Adminisztrátor||r == Rang.Kapitány || r == Rang.Ornagy) // ha nem tiszt lép be
+            {
+                tiszt_bunmod.Visibility = hidden;
             }
         }
 
