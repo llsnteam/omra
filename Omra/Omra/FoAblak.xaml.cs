@@ -76,11 +76,11 @@ namespace Omra
 
         private void AdatokBetoltese()  // controllok feltöltése az adott dolgozó adataival
         {
-            this.ListboxÜzenetek.ItemsSource = uzenetK.ÜzenetMegtekintése(aktDolgozo);
+            ListboxÜzenetek.ItemsSource = uzenetK.ÜzenetMegtekintése(aktDolgozo);
             ListboxÜzenetek.SelectedIndex = 0;
             kivalasztottUzenet = (Üzenet)ListboxÜzenetek.SelectedItem;
 
-            this.ListboxFeladatok.ItemsSource = feladatK.FeladatokLekérdezése(aktDolgozo);
+            ListboxFeladatok.ItemsSource = feladatK.FeladatokLekérdezése(aktDolgozo);
             ListboxFeladatok.SelectedIndex = 0;
             kivalasztottFeladat = (Feladat)ListboxFeladatok.SelectedItem;
         }
@@ -95,44 +95,50 @@ namespace Omra
 
         private void UjUzenet_Click(object sender, RoutedEventArgs e)
         {
-
+            UjUzenet ujzenetablak = new UjUzenet();
+            ujzenetablak.ShowDialog();
         }
 
         private void UzenetTorles_Click(object sender, RoutedEventArgs e)
         {
-
+            kivalasztottUzenet = (Üzenet)ListboxÜzenetek.SelectedItem;
+            uzenetK.ÜzenetTörlése(kivalasztottUzenet);
         }
 
         private void Kereses_Click(object sender, RoutedEventArgs e)
         {
             KeresesAblak keresablak = new KeresesAblak();
             keresablak.ShowDialog();
-
         }
 
         private void UjFelh_Click(object sender, RoutedEventArgs e)
         {
-
+            DolgozoAblak dolgozoablak = new DolgozoAblak();
+            dolgozoablak.ShowDialog();
         }
 
         private void UjBun_Click(object sender, RoutedEventArgs e)
         {
-
+            BunesetAblak bunablak = new BunesetAblak();
+            bunablak.ShowDialog();
         }
 
         private void Kimut_Click(object sender, RoutedEventArgs e)
         {
-
+            KimutatásWindow kimutablak = new KimutatásWindow();
+            kimutablak.ShowDialog();
         }
 
         private void FelKio_Click(object sender, RoutedEventArgs e)
         {
-
+            UjFeladat ujfeladatablak = new UjFeladat();
+            ujfeladatablak.ShowDialog();
         }
 
         private void BunMod_Click(object sender, RoutedEventArgs e)
         {
-
+            BunesetAblak bunablak = new BunesetAblak();
+            bunablak.ShowDialog();
         }
 
     }

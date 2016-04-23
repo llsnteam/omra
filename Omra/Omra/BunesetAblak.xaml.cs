@@ -18,7 +18,7 @@ namespace Omra
     /// </summary>
     public partial class BunesetAblak : Window
     {
-        public BunesetAblak()
+        public BunesetAblak(bool mod) // módosítási szándékkal lett-e meghívva, vagy új bűnesetet kell létrehozni
         {
             InitializeComponent();
         }
