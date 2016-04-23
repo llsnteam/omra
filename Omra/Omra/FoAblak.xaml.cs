@@ -66,5 +66,10 @@ namespace Omra
             this.Close();
         }
 
+        private void UjUzenet_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }

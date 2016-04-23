@@ -26,6 +26,7 @@ namespace Omra
         {
             InitializeComponent();
             //A megadott felhasználónévvel és jelszóval az adatbázisból lekérdezi, hogy van-e ilyen dolgozó, ha van megnyitja a főablakot, ha nincs messagebox, majd a kód legvégén bezárja ezt az ablakot 
+            felh.Focus();
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
