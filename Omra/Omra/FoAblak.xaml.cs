@@ -66,5 +66,25 @@ namespace Omra
             this.Close();
         }
 
+        private void UjUzenet_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void UzenetTorles_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Kereses_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void UjFelh_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }

@@ -4,12 +4,17 @@
         Title="FoAblak" Height="312.397" Width="680">
     <Grid Background="{StaticResource hatter}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="117*"/>
-            <ColumnDefinition Width="299*"/>
+            <ColumnDefinition Width="137*"/>
+            <ColumnDefinition Width="279*"/>
             <ColumnDefinition Width="256*"/>
         </Grid.ColumnDefinitions>
-        <Button Click="Logout_Click" Grid.Column="0" Content="Logout" HorizontalAlignment="Left" Margin="6,246,0,0" VerticalAlignment="Top" Width="107" Style="{StaticResource BigButton}" Height="31"/>
-        <ListBox Name="ListboxÜzenetek" HorizontalAlignment="Left" Height="92" Margin="12.574,10,0,0" VerticalAlignment="Top" Width="233" Grid.Column="2"/>
+        <Button Click="UjUzenet_Click" Grid.Column="0" Content="Új üzenet" HorizontalAlignment="Left" Margin="6,3,0,0" VerticalAlignment="Top" Width="121" Style="{StaticResource BigButton}" Height="31"/>
+        <Button Click="UzenetTorles_Click" Grid.Column="0" Content="Üzenet törlése" HorizontalAlignment="Left" Margin="6,37,0,0" VerticalAlignment="Top" Width="121" Style="{StaticResource BigButton}" Height="31"/>
+        <Button Click="Kereses_Click" Grid.Column="0" Content="Keresés" HorizontalAlignment="Left" Margin="6,71,0,0" VerticalAlignment="Top" Width="121" Style="{StaticResource BigButton}" Height="31"/>
+        <Button Click="UjFelh_Click" Grid.Column="0" Content="Új felhasználó" HorizontalAlignment="Left" Margin="6,105,0,0" VerticalAlignment="Top" Width="121" Style="{StaticResource BigButton}" Height="31"/>
+        <Button Click="UjFelh_Click" Grid.Column="0" Content="Felhasználó módosítás" HorizontalAlignment="Left" Margin="6,139,0,0" VerticalAlignment="Top" Width="121" Style="{StaticResource BigButton}" Height="31"/>
+        <Button Click="Logout_Click" Grid.Column="0" Content="Logout" HorizontalAlignment="Left" Margin="6,241,0,0" VerticalAlignment="Top" Width="107" Style="{StaticResource BigButton}" Height="31"/>
+        <ListBox Name="ListboxÜzenetek" HorizontalAlignment="Left" Height="92" Margin="13,10,0,0" VerticalAlignment="Top" Width="233" Grid.Column="2"/>
         <Grid x:Name="gr_feladat" Grid.Column="1">
             <ListBox Name="ListboxFeladatok" HorizontalAlignment="Left" Height="92" Margin="20,10,0,0" VerticalAlignment="Top" Width="214" Grid.Column="1"/>
             <Label Content="Kitől:" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="20,107,0,0" VerticalAlignment="Top" Width="214"/>
@@ -17,7 +22,7 @@
             <Label Content="Feladat szövege:" HorizontalAlignment="Left" Height="48" Margin="20,171,0,0" VerticalAlignment="Top" Width="197"/>
         </Grid>
         <Label Content="Kitől:" Grid.Column="2" HorizontalAlignment="Left" Height="28" Margin="13,107,0,0" VerticalAlignment="Top" Width="214"/>
-        <Label Content="Tárgy:" Grid.Column="2" HorizontalAlignment="Left" Margin="13,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.237,-0.327" Width="214"/>
+        <Label Content="Tárgy:" Grid.Column="2" HorizontalAlignment="Left" Margin="13,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.237,-0.327" Width="214" Height="26"/>
         <Label Content="Üzenet szövege:" Grid.Column="2" HorizontalAlignment="Left" Height="48" Margin="13,171,0,0" VerticalAlignment="Top" Width="197"/>
 
     </Grid>

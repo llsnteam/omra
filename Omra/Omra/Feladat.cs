@@ -68,7 +68,7 @@ namespace Adatkezelõ {
 
         public override string ToString()
         {
-            return this.leírás;
+            return this.leírás.Substring(0,30) + "...";
         }
 
 	}//end Feladat

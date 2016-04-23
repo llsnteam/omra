@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Omra;
 using System.Diagnostics;
+using System;
 
 namespace Adatkezelõ {
 	public class Személykezelõ : IÜzenetkezelõ, IDolgozókezelõ, IGyanúsítottkezelõ
@@ -33,15 +34,7 @@ namespace Adatkezelõ {
             if (talalat.Count() != 0)
             {
                 Dolgozok uj = talalat.First();
-                Rang val_rang = new Rang();
-                switch (uj.rang)  // kiválasztja, hogy mi a rangja az adott felhasználónak, viszont ezt stringbõl Rang enum típusra kell alakítani
-                {
-                    case "Adminisztrátor": val_rang = Rang.Adminisztrátor; break;
-                    case "Kapitány": val_rang = Rang.Kapitány; break;
-                    case "Ornagy": val_rang = Rang.Ornagy; break;
-                    case "Tiszt": val_rang = Rang.Tiszt; break;
-                }
-                dolg = new Dolgozó(val_rang, uj.jelszo, uj.nev, uj.lakcim, uj.dolgozoID);
+                dolg = new Dolgozó((Rang)Enum.Parse(typeof(Rang),uj.rang.ToString()), uj.jelszo, uj.nev, uj.lakcim, uj.dolgozoID);
             }
 
             return dolg; // null-t dob, ha nem létezik ez a dolgozó 
