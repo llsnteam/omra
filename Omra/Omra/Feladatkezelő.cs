@@ -19,19 +19,32 @@ namespace Adatkezelõ
     {
 
         DatabaseElements DE = new DatabaseElements();
-        
+
 		/// 
 		/// <param name="feladat"></param>
 		public void FeladatÁllapotMódosítás(Feladat feladat)
         {
-
+            decimal id = feladat.GetFeladatID;
+            var aktFeladat = from x in DE.Bunesetek
+                             where x.bunesetID == id
+                             select x;
+            Bunesetek kiválasztott = aktFeladat.First();
+            if (kiválasztott.allapot == "Folyamatban")
+            {
+                kiválasztott.allapot = "Lezárt";
+            }
+            else
+            {
+                kiválasztott.allapot = "Folyamatban";
+            }
 		}
 
 		/// 
 		/// <param name="célszemély"></param>
 		/// <param name="létrehozta"></param>
 		/// <param name="leírás"></param>
-		public void ÚjFeladat(Dolgozó célszemély, Dolgozó létrehozta, string leírás){
+		public void ÚjFeladat(Dolgozó célszemély, Dolgozó létrehozta, string leírás)
+        {
             //Feladat f = new Feladat(leírás, célszemély , létrehozta);
             //this.feladatok.Add(f);
 		}
@@ -46,7 +59,7 @@ namespace Adatkezelõ
 
             foreach (var item in bunesetek)
             {
-                vissza.Add(new Feladat(item.leiras, dolgozo, dolgozo));
+                vissza.Add(new Feladat(item.leiras, dolgozo, dolgozo));   // LÉTREHOZÓ KELL ?????
             }
             return vissza;
         }

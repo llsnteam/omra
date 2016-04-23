@@ -17,13 +17,15 @@ namespace Adatkezelõ {
 		private Dolgozó küldõ;
 		private string tárgy;
 		private string törzs;
+        private decimal uzenetID;
         
 		/// 
 		/// <param name="törzs"></param>
 		/// <param name="tárgy"></param>
 		/// <param name="küldõ"></param>
 		/// <param name="címzett"></param>
-		public Üzenet(string törzs, string tárgy, Dolgozó küldõ, Dolgozó címzett){
+		public Üzenet(string törzs, string tárgy, Dolgozó küldõ, Dolgozó címzett)
+        {
             this.törzs = törzs;
             this.tárgy = tárgy;
             this.küldõ = küldõ;
@@ -65,6 +67,12 @@ namespace Adatkezelõ {
 				törzs = value;
 			}
 		}
+
+        public decimal GetUzenetID
+        {
+            get { return uzenetID; }
+            set { uzenetID = value; }
+        }
 
 	}//end Üzenet
 
