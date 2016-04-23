@@ -54,9 +54,17 @@ namespace Adatkezelõ
         {
             decimal id = dolgozo.GetAzonosító();    // linq nem szereti ha ott kérem el
             List<Feladat> vissza = new List<Feladat>();
+
             var bunesetek = from dolg in DE.FelvettDolgozok
-                            where dolg.dolgozoID == id
-                            select new {dolg.Bunesetek.bunesetID,dolg.Bunesetek.leiras};
+                        where dolg.dolgozoID == id
+                        select new { dolg.Bunesetek.bunesetID, dolg.Bunesetek.leiras };
+
+            if (dolgozo.GetBeosztás() == Rang.Ornagy)
+            {
+                bunesetek = from bun in DE.Bunesetek
+                                where bun.felelos_ornagy == id
+                                select new { bun.bunesetID, bun.leiras };
+            }
 
             foreach (var item in bunesetek)
             {
