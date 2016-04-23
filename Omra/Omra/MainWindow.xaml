@@ -3,11 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid Background="{StaticResource hatter}">
-        <Label Content="Felhasználónév" HorizontalAlignment="Left" Margin="129,124,0,0" VerticalAlignment="Top" Height="29" Width="101" FlowDirection="RightToLeft" />
-        <TextBox x:Name="felh" HorizontalAlignment="Left" Height="29" Margin="235,124,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Jelszó" HorizontalAlignment="Left" Margin="129,171,0,0" VerticalAlignment="Top" Width="101" FlowDirection="RightToLeft"/>
-        <PasswordBox x:Name="jelszo" HorizontalAlignment="Left" Height="26" Margin="235,171,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button Click="Login_Click" Content="Login" HorizontalAlignment="Left" Margin="243,222,0,0" VerticalAlignment="Top" Width="100" Style="{StaticResource BigButton}" IsDefault="True"/>
-        <Button Click="Exit_Click" Content="Exit" HorizontalAlignment="Left" Margin="243,260,0,0" VerticalAlignment="Top" Width="100" Style="{StaticResource BigButton}" RenderTransformOrigin="0.974,0.217"/>
+        <Label Content="Felhasználónév" HorizontalAlignment="Left" Margin="124,80,0,0" VerticalAlignment="Top" Height="29" Width="101" FlowDirection="RightToLeft" />
+        <TextBox x:Name="felh" HorizontalAlignment="Left" Height="29" Margin="230,80,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Jelszó" HorizontalAlignment="Left" Margin="124,127,0,0" VerticalAlignment="Top" Width="101" FlowDirection="RightToLeft"/>
+        <PasswordBox x:Name="jelszo" HorizontalAlignment="Left" Height="26" Margin="230,127,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button Click="Login_Click" Content="Login" HorizontalAlignment="Left" Margin="238,178,0,0" VerticalAlignment="Top" Width="100" Style="{StaticResource BigButton}" IsDefault="True"/>
+        <Button Click="Exit_Click" Content="Exit" HorizontalAlignment="Left" Margin="238,216,0,0" VerticalAlignment="Top" Width="100" Style="{StaticResource BigButton}" RenderTransformOrigin="0.974,0.217"/>
     </Grid>
 </Window>
