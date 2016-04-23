@@ -42,9 +42,12 @@ namespace Omra
 
         private void CimzettKeres_Click(object sender, RoutedEventArgs e)
         {
-            KeresesAblak keresablak = new KeresesAblak(cimzett);
+            KeresesAblak keresablak = new KeresesAblak(KeresésTípus.Dolgozó);
             if (keresablak.ShowDialog() == true)
+            {
+                cimzett = (Dolgozó)keresablak.feltoltendo;
                 cimzett_txb.Text = cimzett.GetNév();
+            }
         }
     }
 }

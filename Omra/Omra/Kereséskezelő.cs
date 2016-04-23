@@ -18,8 +18,6 @@ using System.Linq;
 namespace Adatkezelõ {
 	public class Kereséskezelõ : IKereséskezelõ {
 
-		/// 
-		/// <param name="azonosító"></param>
 		public List<Bizonyíték> Bizonyítékkeresés(string azonosító){
 
             List<Bizonyíték> visszateresilista = new List<Bizonyíték>();
@@ -56,8 +54,7 @@ namespace Adatkezelõ {
             return visszateresilista;
 		}
 
-		/// 
-		/// <param name="azonosító"></param>
+
 		public List<Bûneset> Bûnesetkeresés(string azonosító){
 
             List<Bûneset> visszateresilista = new List<Bûneset>();
@@ -95,83 +92,112 @@ namespace Adatkezelõ {
             return visszateresilista;
 		}
 
-		/// 
-		/// <param name="azonosito"></param>
+
 		public List<Dolgozó> Dolgozókeresés(string azonosito){
 
-			return null;
+            List<Dolgozó> visszateresilista = new List<Dolgozó>();
+
+            bool IDkereses = false;     //ID-re keres (számmal kezdõdik) vagy a bizonyíték típusára keres (betûvel kezdõdik)
+
+            for (int i = 0; i < 10; i++)
+                if (azonosito.StartsWith(Convert.ToString(i))) IDkereses = true;
+
+            if (IDkereses) //ha ID alapú
+            {
+                Decimal d = Convert.ToDecimal(azonosito);
+
+                DatabaseElements DE = new DatabaseElements();
+
+                var eredmeny = from x in DE.Dolgozok
+                               where x.dolgozoID == d
+                               select x;
+
+                foreach (var v in eredmeny)
+                    visszateresilista.Add(new Dolgozó((Rang)Enum.Parse(typeof(Rang),v.rang.ToString()), v.jelszo, v.nev, v.lakcim, v.dolgozoID));
+            }
+            else //ha megnevezés alapú
+            {
+                DatabaseElements DE = new DatabaseElements();
+
+                var eredmeny = from x in DE.Dolgozok
+                               where x.nev.Contains(azonosito)
+                               select x;
+
+                foreach (var v in eredmeny)
+                    visszateresilista.Add(new Dolgozó((Rang)Enum.Parse(typeof(Rang), v.rang.ToString()), v.jelszo, v.nev, v.lakcim, v.dolgozoID));
+            }
+
+			return visszateresilista;
 		}
 
-		/// 
-		/// <param name="azonosító"></param>
-		/// <param name="típus"></param>
+
 		public List<object> Keresés(string azonosító, KeresésTípus típus){
 
-            List<object> visszateresilista = new List<object>();
+            //List<object> visszateresilista = new List<object>();
 
-            if (azonosító == "")
-            {
-                if (típus == KeresésTípus.Bizonyíték)
-                {
-                    bool IDkereses = false;     //ID-re keres (számmal kezdõdik) vagy a bizonyíték típusára keres (betûvel kezdõdik)
-                    for (int i = 0; i < 10; i++)
-                        if (azonosító.StartsWith(Convert.ToString(i))) IDkereses = true;
+            //if (azonosító == "")
+            //{
+            //    if (típus == KeresésTípus.Bizonyíték)
+            //    {
+            //        bool IDkereses = false;     //ID-re keres (számmal kezdõdik) vagy a bizonyíték típusára keres (betûvel kezdõdik)
+            //        for (int i = 0; i < 10; i++)
+            //            if (azonosító.StartsWith(Convert.ToString(i))) IDkereses = true;
 
-                    if (IDkereses)
-                    {
-                        DatabaseElements DE = new DatabaseElements();
+            //        if (IDkereses)
+            //        {
+            //            DatabaseElements DE = new DatabaseElements();
 
 
-                    }
-                    else
-                    {
+            //        }
+            //        else
+            //        {
 
-                    }
-                }
+            //        }
+            //    }
 
-                if (típus == KeresésTípus.Bûneset)
-                {
+            //    if (típus == KeresésTípus.Bûneset)
+            //    {
 
-                }
+            //    }
 
-                if (típus == KeresésTípus.Dolgozó)
-                {
+            //    if (típus == KeresésTípus.Dolgozó)
+            //    {
 
-                }
+            //    }
 
-                if (típus == KeresésTípus.Gyanúsított)
-                {
+            //    if (típus == KeresésTípus.Gyanúsított)
+            //    {
 
-                }
-            }
+            //    }
+            //}
 
-            else
-            {
-                if (típus == KeresésTípus.Bizonyíték)
-                {
+            //else
+            //{
+            //    if (típus == KeresésTípus.Bizonyíték)
+            //    {
 
-                }
+            //    }
 
-                if (típus == KeresésTípus.Bûneset)
-                {
+            //    if (típus == KeresésTípus.Bûneset)
+            //    {
 
-                }
+            //    }
 
-                if (típus == KeresésTípus.Dolgozó)
-                {
+            //    if (típus == KeresésTípus.Dolgozó)
+            //    {
 
-                }
+            //    }
 
-                if (típus == KeresésTípus.Gyanúsított)
-                {
+            //    if (típus == KeresésTípus.Gyanúsított)
+            //    {
 
-                }
-            }
-            return visszateresilista;
+            //    }
+            //}
+            //return visszateresilista;
+            return new List<object>();
 		}
 
-		/// 
-		/// <param name="azonosító"></param>
+
 		public List<Gyanúsított> Gyanúsítottkeresés(string azonosító){
 
 			return null;

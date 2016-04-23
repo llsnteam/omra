@@ -19,9 +19,11 @@ namespace Omra
     /// </summary>
     public partial class KeresesAblak : Window
     {
-        
+        public object feltoltendo;
 
-        public KeresesAblak() //általános keresés konstruktor
+        KeresésTípus tipus;
+
+        public KeresesAblak() 
         {
             InitializeComponent();
         }
@@ -54,8 +56,6 @@ namespace Omra
             RadioBuneset.IsEnabled = false;
             RadioDolgozo.IsEnabled = false;
             RadioGyanusitott.IsEnabled = false;
-
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -85,12 +85,53 @@ namespace Omra
 
             else if (RadioDolgozo.IsChecked == true)
             {
-                //név, ID alapján
+                List<Dolgozó> eredmeny = kezelo.Dolgozókeresés(Azon.Text);
+
+                ListboxEredmeny.ItemsSource = null;
+                ListboxEredmeny.ItemsSource = eredmeny;
             }
 
             else if (RadioGyanusitott.IsChecked == true)
             {
 
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            if (ListboxEredmeny.SelectedItem != null)
+            {
+                if (RadioBizonyitek.IsChecked == true)
+                {
+                    //típus alapján, vagy ID alapján
+
+                    feltoltendo = (Bizonyíték)ListboxEredmeny.SelectedItem;
+                }
+
+                else if (RadioBuneset.IsChecked == true)
+                {
+                    //ID alapján - lehetne máshogy is ?
+                    feltoltendo = (Bűneset)ListboxEredmeny.SelectedItem;
+                }
+
+
+                else if (RadioDolgozo.IsChecked == true)
+                {
+                    feltoltendo = (Dolgozó)ListboxEredmeny.SelectedItem;
+                }
+
+                else if (RadioGyanusitott.IsChecked == true)
+                {
+                    feltoltendo = (Gyanúsított)ListboxEredmeny.SelectedItem;
+                }
+
+                this.DialogResult = true;
+                this.Close();
             }
         }
     }
