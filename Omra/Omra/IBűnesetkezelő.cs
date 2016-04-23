@@ -21,7 +21,7 @@ namespace Adatkezelõ {
 		/// <param name="Bûneset"></param>
 		void GyanúsítottHozzáadása(Gyanúsított Gyanúsított, Bûneset Bûneset);
 
-		void ÚjBûneset();
+		void ÚjBûneset(string leiras);
 	}//end IBûnesetkezelõ
 
 }//end namespace Adatkezelõ
