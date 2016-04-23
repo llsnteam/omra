@@ -8,6 +8,7 @@
             <ColumnDefinition Width="299*"/>
             <ColumnDefinition Width="256*"/>
         </Grid.ColumnDefinitions>
+        <Button Click="UjUzenet_Click" Grid.Column="0" Content="Új üzenet" HorizontalAlignment="Left" Margin="6,100,0,0" VerticalAlignment="Top" Width="107" Style="{StaticResource BigButton}" Height="31"/>
         <Button Click="Logout_Click" Grid.Column="0" Content="Logout" HorizontalAlignment="Left" Margin="6,246,0,0" VerticalAlignment="Top" Width="107" Style="{StaticResource BigButton}" Height="31"/>
         <ListBox Name="ListboxÜzenetek" HorizontalAlignment="Left" Height="92" Margin="12.574,10,0,0" VerticalAlignment="Top" Width="233" Grid.Column="2"/>
         <Grid x:Name="gr_feladat" Grid.Column="1">
