@@ -22,7 +22,8 @@ namespace Adatkezelõ
         
 		/// 
 		/// <param name="feladat"></param>
-		public void FeladatÁllapotMódosítás(Feladat feladat){
+		public void FeladatÁllapotMódosítás(Feladat feladat)
+        {
 
 		}
 
@@ -39,10 +40,11 @@ namespace Adatkezelõ
         {
             decimal id = dolgozo.GetAzonosító();    // linq nem szereti ha ott kérem el
             List<Feladat> vissza = new List<Feladat>();
-            var feladatok = from x in DE.Bunesetek
-                           where x.Dolgozok.dolgozoID == id    // NEM JÓ
-                           select x;
-            foreach (var item in feladatok)
+            var bunesetek = from dolg in DE.FelvettDolgozok
+                            where dolg.dolgozoID == id
+                            select new {dolg.Bunesetek.bunesetID,dolg.Bunesetek.leiras};
+
+            foreach (var item in bunesetek)
             {
                 vissza.Add(new Feladat(item.leiras, dolgozo, dolgozo));
             }
