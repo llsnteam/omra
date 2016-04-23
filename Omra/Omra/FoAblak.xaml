@@ -7,13 +7,11 @@
             <ColumnDefinition Width="39*"/>
             <ColumnDefinition Width="185*"/>
         </Grid.ColumnDefinitions>
-        <ListBox Name="ListboxGombok" HorizontalAlignment="Left" Height="256" Margin="10,10,0,0" VerticalAlignment="Top" Width="149" SelectionChanged="ListBox_SelectionChanged" Grid.ColumnSpan="2"/>
         <ListBox Name="ListboxFeladatok" HorizontalAlignment="Left" Height="92" Margin="73,10,0,0" VerticalAlignment="Top" Width="214" Grid.Column="1"/>
         <ListBox Name="ListboxÜzenetek" HorizontalAlignment="Left" Height="92" Margin="312,10,0,0" VerticalAlignment="Top" Width="233" Grid.Column="1"/>
         <Label Content="Kitől" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="73,107,0,0" VerticalAlignment="Top" Width="214"/>
         <Label Content="Tárgy" Grid.Column="1" HorizontalAlignment="Left" Margin="73,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.237,-0.327" Width="214"/>
         <Label Content="Feladat szövege" Grid.Column="1" HorizontalAlignment="Left" Height="48" Margin="73,182,0,0" VerticalAlignment="Top" Width="197"/>
-        <Button Content="Feladat készre állítása" Grid.Column="1" HorizontalAlignment="Left" Margin="73,235,0,0" VerticalAlignment="Top" Width="162" Style="{StaticResource BigButton}" Height="31"/>
         <Button Click="Logout_Click" Content="Logout" Grid.Column="1" HorizontalAlignment="Left" Margin="425,240,0,0" VerticalAlignment="Top" Width="120" Style="{StaticResource BigButton}" Height="31"/>
         <Label Content="Kitől" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="312,107,0,0" VerticalAlignment="Top" Width="214"/>
         <Label Content="Tárgy" Grid.Column="1" HorizontalAlignment="Left" Margin="312,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.237,-0.327" Width="214"/>
