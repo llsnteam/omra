@@ -36,11 +36,30 @@ namespace Omra
             //A listbox alatt kijelzi a kiválasztott üzenet/feladat adatait
             
             aktDolgozo = d;
-            foabl.Title = d.GetNév();
+            this.Title = d.GetNév();
             uzenetK = new Üzenetkezelő();
             feladatK = new Feladatkezelő();
             AdatokBetoltese();
+
+
             
+        }
+
+        private void FoablakTestreszabas()  // a bejelentkezett dolgozó rangjától függően alakítja ki a főablak kinézetét, hogy milyen funkciók érhetőek el neki
+        {
+            Rang r = aktDolgozo.GetBeosztás();
+            Visibility hidden = Visibility.Hidden;
+
+            switch (r)
+            {
+                case Rang.Adminisztrátor:
+                    kap_kimut.Visibility = hidden;
+                    kap_ujbun.Visibility = hidden;
+                    orn_bunmod.Visibility = hidden;
+                    orn_felkio.Visibility = hidden;
+                    tiszt_bunmod.Visibility = hidden;
+                    break;
+            }
         }
 
         private void AdatokBetoltese()  // controllok feltöltése az adott dolgozó adataival
@@ -52,11 +71,6 @@ namespace Omra
             this.ListboxFeladatok.ItemsSource = feladatK.FeladatokLekérdezése(aktDolgozo);
             ListboxFeladatok.SelectedIndex = 0;
             kivalasztottFeladat = (Feladat)ListboxFeladatok.SelectedItem;
-        }
-
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
 
         private void Logout_Click(object sender, RoutedEventArgs e)
@@ -89,7 +103,22 @@ namespace Omra
 
         }
 
-        private void FelhMod_Click(object sender, RoutedEventArgs e)
+        private void UjBun_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Kimut_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void FelKio_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BunMod_Click(object sender, RoutedEventArgs e)
         {
 
         }

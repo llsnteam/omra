@@ -25,7 +25,12 @@ namespace Adatkezelõ {
 		/// <param name="címzett"></param>
 		public void ÜzenetKüldése(string törzs, string tárgy, Dolgozó küldõ, Dolgozó címzett)
         {
-            
+            decimal utolsoUzenet = DE.Uzenetek.Last().uzenetID;
+            decimal kuldoId=küldõ.GetAzonosító();
+            decimal cimzettId=címzett.GetAzonosító();
+            var ujUzenet = new Uzenetek() {uzenetID=utolsoUzenet+1, szoveg = törzs, targy = tárgy, felado = kuldoId, cimzett = cimzettId };
+            DE.Uzenetek.Add(ujUzenet);     // TESZT !!!!!!!!!!!! 
+            DE.SaveChanges();
 		}
 
 		/// 
