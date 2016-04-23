@@ -119,7 +119,7 @@ namespace Omra
 
         private void UjBun_Click(object sender, RoutedEventArgs e)
         {
-            BunesetAblak bunablak = new BunesetAblak();
+            BunesetAblak bunablak = new BunesetAblak(false);
             bunablak.ShowDialog();
         }
 
@@ -137,7 +137,7 @@ namespace Omra
 
         private void BunMod_Click(object sender, RoutedEventArgs e)
         {
-            BunesetAblak bunablak = new BunesetAblak();
+            BunesetAblak bunablak = new BunesetAblak(true);
             bunablak.ShowDialog();
         }
 
