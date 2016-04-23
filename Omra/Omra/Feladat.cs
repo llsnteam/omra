@@ -28,7 +28,8 @@ namespace Adatkezelõ {
 		/// <param name="leírás"></param>
 		/// <param name="célszemély"></param>
 		/// <param name="létrehozó"></param>
-		public Feladat(string leírás, Dolgozó célszemély, Dolgozó létrehozó){
+		public Feladat(string leírás, Dolgozó célszemély, Dolgozó létrehozó)
+        {
             this.leírás = leírás;
             this.célszemély = célszemély;
             this.létrehozta = létrehozó;
@@ -67,6 +68,11 @@ namespace Adatkezelõ {
 				létrehozta = value;
 			}
 		}
+
+        public override string ToString()
+        {
+            return this.leírás;
+        }
 
 	}//end Feladat
 
