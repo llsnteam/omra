@@ -95,8 +95,11 @@ namespace Omra
 
         private void UjUzenet_Click(object sender, RoutedEventArgs e)
         {
-            UjUzenet ujzenetablak = new UjUzenet();
-            ujzenetablak.ShowDialog();
+            UjUzenet ujuzenetablak = new UjUzenet();
+            if(ujuzenetablak.ShowDialog()==true)
+            {
+                uzenetK.ÜzenetKüldése(ujuzenetablak.Tartalom, ujuzenetablak.Targy, aktDolgozo, ujuzenetablak.Cimzett);
+            }
         }
 
         private void UzenetTorles_Click(object sender, RoutedEventArgs e)

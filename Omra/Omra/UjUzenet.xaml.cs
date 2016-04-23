@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Adatkezelő;
 
 namespace Omra
 {
@@ -19,9 +20,31 @@ namespace Omra
     /// </summary>
     public partial class UjUzenet : Window
     {
+        private Dolgozó cimzett;
+        private string targy;
+        private string tartalom;
+
+        public Dolgozó Cimzett { get { return cimzett; } }
+        public string Targy { get { return targy; } }
+        public string Tartalom { get { return tartalom; } }
+
         public UjUzenet()
         {
             InitializeComponent();
+        }
+
+        private void UjUzenet_Click(object sender, RoutedEventArgs e)
+        {
+            targy = targy_txb.Text;
+            tartalom = tartalom_txb.Text;
+            this.DialogResult = true;
+        }
+
+        private void CimzettKeres_Click(object sender, RoutedEventArgs e)
+        {
+            KeresesAblak keresablak = new KeresesAblak(cimzett);
+            if (keresablak.ShowDialog() == true)
+                cimzett_txb.Text = cimzett.GetNév();
         }
     }
 }

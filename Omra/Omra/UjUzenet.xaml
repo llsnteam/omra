@@ -1,8 +1,16 @@
 ﻿<Window x:Class="Omra.UjUzenet"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="UjUzenet" Height="300" Width="300">
+        Title="UjUzenet" Height="390.015" Width="373.851">
     <Grid>
-        
+        <Label Content="Címzett:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="cimzett_txb" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="68,13,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Tárgy:" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="targy_txb" HorizontalAlignment="Left" Height="23" Margin="68,63,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Tartalom:" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tartalom_txb" HorizontalAlignment="Left" Height="166" Margin="10,136,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="346"/>
+        <Button Click="UjUzenet_Click" Content="Küldés" HorizontalAlignment="Left" Margin="140,317,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Click="CimzettKeres_Click" Content="Keresés" HorizontalAlignment="Left" Margin="237,15,0,0" VerticalAlignment="Top" Width="75"/>
+
     </Grid>
 </Window>
