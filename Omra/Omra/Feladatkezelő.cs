@@ -60,7 +60,7 @@ namespace Adatkezelõ
 
             foreach (var item in bunesetek)
             {
-                vissza.Add(new Feladat(item.leiras, dolgozo, dolgozo));   // LÉTREHOZÓ KELL ?????
+                vissza.Add(new Feladat(item.leiras, dolgozo, dolgozo));   // LÉTREHOZÓ KELL ????
             }
             return vissza;
         }

@@ -41,7 +41,7 @@ namespace Omra
             feladatK = new Feladatkezelő();
             AdatokBetoltese();
 
-
+            FoablakTestreszabas();
             
         }
 
@@ -58,6 +58,7 @@ namespace Omra
                     orn_bunmod.Visibility = hidden;
                     orn_felkio.Visibility = hidden;
                     tiszt_bunmod.Visibility = hidden;
+                    gr_feladat.Visibility = hidden;
                     break;
             }
         }
