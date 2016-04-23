@@ -9,6 +9,7 @@
 
 
 
+using System;
 namespace Adatkezelõ {
 	public class Bizonyíték {
 
@@ -17,13 +18,16 @@ namespace Adatkezelõ {
 		/// pl. kés, pisztoly stb.
 		/// </summary>
 		private string megnevezés;
+
+        private DateTime felvetel;
         
 		/// 
 		/// <param name="megnevezés"></param>
 		/// <param name="azonosító"></param>
-		public Bizonyíték(string megnevezés, string azonosító){
+		public Bizonyíték(string megnevezés, string azonosító, DateTime felvetel){
             this.megnevezés = megnevezés;
             this.azonosító = azonosító;
+            this.felvetel = felvetel;
 		}
 
 		public string GetAzonosító{
@@ -40,6 +44,15 @@ namespace Adatkezelõ {
 			return this.megnevezés;
 		}
 
+        public DateTime Felvetel()
+        {
+            return this.felvetel;
+        }
+
+        public override string ToString()
+        {
+            return "ID " + azonosító + " Megnevezés: " + megnevezés + " Felvétel: " + felvetel;
+        }
 	}//end Bizonyíték
 
 }//end namespace Adatkezelõ

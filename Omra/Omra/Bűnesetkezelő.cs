@@ -11,6 +11,7 @@
 
 using Adatkezelõ;
 using Omra;
+using System;
 using System.Collections.Generic;
 namespace Adatkezelõ {
 	public class Bûnesetkezelõ : IBûnesetkezelõ, IGyanúsítottkezelõ, IBizonyítékkezelõ 
@@ -68,8 +69,21 @@ namespace Adatkezelõ {
 		/// <param name="megnevezés">Mint pl. kés, pisztoly stb.</param>
 		/// <param name="azonosító"></param>
 		public void ÚjBizonyíték(string megnevezés){
-            string azonosító = AzonosítóGenerálás();
-            Bizonyíték b = new Bizonyíték(megnevezés, azonosító);
+            Decimal azonosító = Convert.ToDecimal(AzonosítóGenerálás());
+
+            //Bizonyíték b = new Bizonyíték(megnevezés, azonosító, DateTime.Now);
+
+            DatabaseElements DE = new DatabaseElements();
+
+            var ujbizonyitek = new Bizonyitekok()
+            {
+                bizonyitekID = azonosító,
+                megnevezes = megnevezés,
+                felvetel = DateTime.Now
+            };
+
+            DE.Bizonyitekok.Add(ujbizonyitek);
+            DE.SaveChanges();
 		}
 
 		public void ÚjBûneset(){

@@ -41,13 +41,26 @@ namespace Omra
             feladatK = new Feladatkezelő();
             AdatokBetoltese();
 
-
+            FoablakTestreszabas();
             
         }
 
         private void FoablakTestreszabas()  // a bejelentkezett dolgozó rangjától függően alakítja ki a főablak kinézetét, hogy milyen funkciók érhetőek el neki
         {
+            Rang r = aktDolgozo.GetBeosztás();
+            Visibility hidden = Visibility.Hidden;
 
+            switch (r)
+            {
+                case Rang.Adminisztrátor:
+                    kap_kimut.Visibility = hidden;
+                    kap_ujbun.Visibility = hidden;
+                    orn_bunmod.Visibility = hidden;
+                    orn_felkio.Visibility = hidden;
+                    tiszt_bunmod.Visibility = hidden;
+                    gr_feladat.Visibility = hidden;
+                    break;
+            }
         }
 
         private void AdatokBetoltese()  // controllok feltöltése az adott dolgozó adataival
@@ -81,6 +94,8 @@ namespace Omra
 
         private void Kereses_Click(object sender, RoutedEventArgs e)
         {
+            KeresesAblak keresablak = new KeresesAblak();
+            keresablak.ShowDialog();
 
         }
 
