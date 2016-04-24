@@ -144,5 +144,12 @@ namespace Omra
             bunablak.ShowDialog();
         }
 
+        private void UzenetKival_Click(object sender, RoutedEventArgs e)
+        {
+            kitol_lbl.Content = (ListboxÜzenetek.SelectedItem as Üzenet).GetKüldő.ToString();
+            targy_lbl.Content = (ListboxÜzenetek.SelectedItem as Üzenet).GetTárgy;
+            szoveg_txb.Text = (ListboxÜzenetek.SelectedItem as Üzenet).GetTörzs;
+        }
+
     }
 }
