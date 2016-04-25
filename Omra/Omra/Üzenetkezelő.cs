@@ -31,7 +31,7 @@ namespace Adatkezelõ {
             decimal kuldoId = küldõ.GetAzonosító();
             decimal cimzettId = címzett.GetAzonosító();
             var ujUzenet = new Uzenetek() { uzenetID = utolsoUzenet.First()+1, szoveg = törzs, targy = tárgy, felado = kuldoId, cimzett = cimzettId };
-            DE.Uzenetek.Add(ujUzenet);     // TESZT !!!!!!!!!!!! 
+            DE.Uzenetek.Add(ujUzenet);     // TESZT !!!!!!!!!!! 
             DE.SaveChanges();
 		}
 
