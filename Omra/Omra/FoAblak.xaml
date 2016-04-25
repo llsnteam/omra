@@ -20,11 +20,11 @@
         <Button Click="Logout_Click" Grid.Column="0" Content="Logout" HorizontalAlignment="Left" Margin="6,241,0,0" VerticalAlignment="Top" Width="107" Style="{StaticResource BigButton}" Height="31"/>
         <Grid x:Name="gr_feladat" Grid.Column="1">
             <ListBox SelectionChanged="FeladatKival_Click" Name="ListboxFeladatok" HorizontalAlignment="Left" Height="92" Margin="10,10,0,0" VerticalAlignment="Top" Width="260" Grid.Column="1"/>
-            <Label Content="Kitől:" HorizontalAlignment="Left" Height="28" Margin="10,107,0,0" VerticalAlignment="Top" Width="44"/>
-            <Label Content="Tárgy:" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.237,-0.327" Width="44"/>
+            <Label Content="Felvétel dátuma:" HorizontalAlignment="Left" Height="28" Margin="10,107,0,0" VerticalAlignment="Top" Width="99"/>
+            <Label Content="Állapot:" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.237,-0.327" Width="53"/>
             <Label Content="Feladat szövege:" HorizontalAlignment="Left" Height="27" Margin="10,171,0,0" VerticalAlignment="Top" Width="99"/>
-            <Label x:Name="kitol_fel_lbl" Content="" HorizontalAlignment="Left" Margin="54,107,0,0" VerticalAlignment="Top" Width="215"/>
-            <Label x:Name="targy_fel_lbl" Content="" HorizontalAlignment="Left" Margin="54,140,0,0" VerticalAlignment="Top" Width="215"/>
+            <Label x:Name="datum_fel_lbl" Content="" HorizontalAlignment="Left" Margin="109,107,0,0" VerticalAlignment="Top" Width="160"/>
+            <Label x:Name="allapot_fel_lbl" Content="" HorizontalAlignment="Left" Margin="63,140,0,0" VerticalAlignment="Top" Width="206"/>
             <TextBox x:Name="szoveg_fel_txb" HorizontalAlignment="Left" Height="68" Margin="10,203,0,0" IsEnabled="False" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="259"/>
         </Grid>
         <ListBox SelectionChanged="UzenetKival_Click" Name="ListboxÜzenetek" HorizontalAlignment="Left" Height="92" Margin="13,10,0,0" VerticalAlignment="Top" Width="233" Grid.Column="2"/>

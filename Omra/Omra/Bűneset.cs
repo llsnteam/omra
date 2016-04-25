@@ -91,6 +91,14 @@ namespace Adatkezelõ {
             }
         }
 
+        public string GetLeiras
+        {
+            get
+            {
+                return leiras;
+            }
+        }
+
 		/// 
 		/// <param name="Gyanúsított"></param>
 		public void GyanúsítottHozzáadása(Gyanúsított Gyanúsított){

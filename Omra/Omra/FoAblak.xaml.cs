@@ -153,7 +153,9 @@ namespace Omra
 
         private void FeladatKival_Click(object sender, SelectionChangedEventArgs e)
         {
-            kitol_fel_lbl.Content = (ListboxFeladatok.SelectedItem as Bűneset);
+            datum_fel_lbl.Content = (ListboxFeladatok.SelectedItem as Bűneset).GetFelvetel.ToString();
+            allapot_fel_lbl.Content = (ListboxFeladatok.SelectedItem as Bűneset).GetÁllapot().ToString();
+            szoveg_fel_txb.Text = (ListboxFeladatok.SelectedItem as Bűneset).GetLeiras;
         }
 
     }

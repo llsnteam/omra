@@ -18,12 +18,10 @@ namespace Omra
     /// </summary>
     public partial class DolgozoAblak : Window
     {
-        public DolgozoAblak()
+        public DolgozoAblak(bool mod)
         {
             InitializeComponent();
-            //Label/textbox: dolgozó adatai, tetszés szerint kell alakítani
-            //Save: menti a változást
-            //Vissza: nem menti
+            
         }
     }
 }

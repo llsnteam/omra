@@ -9,8 +9,9 @@
         <TextBox x:Name="targy_txb" HorizontalAlignment="Left" Height="23" Margin="68,63,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label Content="Tartalom:" HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tartalom_txb" HorizontalAlignment="Left" Height="166" Margin="10,136,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="346"/>
-        <Button Click="UjUzenet_Click" Content="Küldés" HorizontalAlignment="Left" Margin="140,317,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Click="UjUzenet_Click" Content="Küldés" HorizontalAlignment="Left" Margin="88,317,0,0" VerticalAlignment="Top" Width="75"/>
         <Button Click="CimzettKeres_Click" Content="Keresés" HorizontalAlignment="Left" Margin="237,15,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Click="Vissza_Click" Content="Vissza" HorizontalAlignment="Left" Margin="197,317,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Window>

@@ -1,20 +1,20 @@
 ﻿<Window x:Class="Omra.DolgozoAblak"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="DolgozoAblak" Height="300" Width="300">
+        Title="DolgozoAblak" Height="262.766" Width="300">
     <Grid>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="96"/>
+        <Label Content="Név:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="96"/>
         <TextBox HorizontalAlignment="Left" Height="26" Margin="111,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="96"/>
+        <Label Content="Jelszó:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="96"/>
         <TextBox HorizontalAlignment="Left" Height="26" Margin="111,41,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="96"/>
-        <TextBox HorizontalAlignment="Left" Height="26" Margin="111,72,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Rang" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="96"/>
+        <ComboBox HorizontalAlignment="Left" Margin="111,74,0,0" VerticalAlignment="Top" Width="120"/>
         <Label Content="Label" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Width="96"/>
         <TextBox HorizontalAlignment="Left" Height="26" Margin="111,103,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
         <Label Content="Label" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Width="96"/>
         <TextBox HorizontalAlignment="Left" Height="26" Margin="111,134,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Save" HorizontalAlignment="Left" Margin="58,239,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Vissza" HorizontalAlignment="Left" Margin="138,239,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Mentés" HorizontalAlignment="Left" Margin="49,189,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Vissza" HorizontalAlignment="Left" Margin="167,189,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Window>
