@@ -19,18 +19,21 @@
         <Button x:Name="orn_bunmod" Click="BunMod_Click" Grid.Column="0" Content="Bűneset módosítás" HorizontalAlignment="Left" Margin="6,139,0,0" VerticalAlignment="Top" Width="121" Style="{StaticResource BigButton}" Height="31"/>
         <Button Click="Logout_Click" Grid.Column="0" Content="Logout" HorizontalAlignment="Left" Margin="6,241,0,0" VerticalAlignment="Top" Width="107" Style="{StaticResource BigButton}" Height="31"/>
         <Grid x:Name="gr_feladat" Grid.Column="1">
-            <ListBox Name="ListboxFeladatok" HorizontalAlignment="Left" Height="92" Margin="10,10,0,0" VerticalAlignment="Top" Width="260" Grid.Column="1"/>
-            <Label Content="Kitől:" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="10,107,0,0" VerticalAlignment="Top" Width="214"/>
-            <Label Content="Tárgy:" Grid.Column="1" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.237,-0.327" Width="214"/>
-            <Label Content="Feladat szövege:" HorizontalAlignment="Left" Height="48" Margin="10,171,0,0" VerticalAlignment="Top" Width="197"/>
+            <ListBox SelectionChanged="FeladatKival_Click" Name="ListboxFeladatok" HorizontalAlignment="Left" Height="92" Margin="10,10,0,0" VerticalAlignment="Top" Width="260" Grid.Column="1"/>
+            <Label Content="Kitől:" HorizontalAlignment="Left" Height="28" Margin="10,107,0,0" VerticalAlignment="Top" Width="44"/>
+            <Label Content="Tárgy:" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.237,-0.327" Width="44"/>
+            <Label Content="Feladat szövege:" HorizontalAlignment="Left" Height="27" Margin="10,171,0,0" VerticalAlignment="Top" Width="99"/>
+            <Label x:Name="kitol_fel_lbl" Content="" HorizontalAlignment="Left" Margin="54,107,0,0" VerticalAlignment="Top" Width="215"/>
+            <Label x:Name="targy_fel_lbl" Content="" HorizontalAlignment="Left" Margin="54,140,0,0" VerticalAlignment="Top" Width="215"/>
+            <TextBox x:Name="szoveg_fel_txb" HorizontalAlignment="Left" Height="68" Margin="10,203,0,0" IsEnabled="False" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="259"/>
         </Grid>
         <ListBox SelectionChanged="UzenetKival_Click" Name="ListboxÜzenetek" HorizontalAlignment="Left" Height="92" Margin="13,10,0,0" VerticalAlignment="Top" Width="233" Grid.Column="2"/>
         <Label Content="Kitől:" Grid.Column="2" HorizontalAlignment="Left" Height="28" Margin="13,107,0,0" VerticalAlignment="Top" Width="39"/>
         <Label Content="Tárgy:" Grid.Column="2" HorizontalAlignment="Left" Margin="13,140,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.237,-0.327" Width="44" Height="26"/>
         <Label Content="Üzenet szövege:" Grid.Column="2" HorizontalAlignment="Left" Height="27" Margin="13,171,0,0" VerticalAlignment="Top" Width="101"/>
-        <Label x:Name="kitol_lbl" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="57,108,0,0" VerticalAlignment="Top" Width="189"/>
-        <Label x:Name="targy_lbl" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="62,142,0,0" VerticalAlignment="Top" Width="184"/>
-        <TextBox x:Name="szoveg_txb" IsEnabled="False" Grid.Column="2" HorizontalAlignment="Left" Height="68" Margin="13,203,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="233"/>
+        <Label x:Name="kitol_uz_lbl" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="57,108,0,0" VerticalAlignment="Top" Width="189"/>
+        <Label x:Name="targy_uz_lbl" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="62,142,0,0" VerticalAlignment="Top" Width="184"/>
+        <TextBox x:Name="szoveg_uz_txb" IsEnabled="False" Grid.Column="2" HorizontalAlignment="Left" Height="68" Margin="13,203,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="233"/>
 
     </Grid>
 </Window>

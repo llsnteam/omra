@@ -146,9 +146,14 @@ namespace Omra
 
         private void UzenetKival_Click(object sender, RoutedEventArgs e)
         {
-            kitol_lbl.Content = (ListboxÜzenetek.SelectedItem as Üzenet).GetKüldő.ToString();
-            targy_lbl.Content = (ListboxÜzenetek.SelectedItem as Üzenet).GetTárgy;
-            szoveg_txb.Text = (ListboxÜzenetek.SelectedItem as Üzenet).GetTörzs;
+            kitol_uz_lbl.Content = (ListboxÜzenetek.SelectedItem as Üzenet).GetKüldő.ToString();
+            targy_uz_lbl.Content = (ListboxÜzenetek.SelectedItem as Üzenet).GetTárgy;
+            szoveg_uz_txb.Text = (ListboxÜzenetek.SelectedItem as Üzenet).GetTörzs;
+        }
+
+        private void FeladatKival_Click(object sender, SelectionChangedEventArgs e)
+        {
+            kitol_fel_lbl.Content = (ListboxFeladatok.SelectedItem as Bűneset);
         }
 
     }
