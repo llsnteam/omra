@@ -25,20 +25,24 @@ namespace Adatkezelõ {
 		/// 
 		/// <param name="vege"></param>
 		/// <param name="kezdet"></param>
-		public Kimutatás(DateTime vege, DateTime kezdet)
+		/*public Kimutatás(DateTime vege, DateTime kezdet)
         {
             this.vege = vege;
             this.kezdet = kezdet;
-            ÚjKimutatás(vege,kezdet);
-		}
+            statAdatok = new List<Bûneset>();
+		}*/
 
         public void ÚjKimutatás(DateTime vege, DateTime kezdet)
         {
+            this.vege = vege;
+            this.kezdet = kezdet;
+            statAdatok = new List<Bûneset>();
+
             // linq val összegyûjti az adatokat a listába
             DatabaseElements DE = new DatabaseElements();
 
             var eredmeny = from x in DE.Bunesetek
-                           where x.felvetel >= this.kezdet && x.felvetel <= this.vege
+                           where x.felvetel  >= this.kezdet && x.felvetel <= this.kezdet
                            select x;
 
             foreach (var v in eredmeny)

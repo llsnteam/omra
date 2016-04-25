@@ -18,9 +18,11 @@ namespace Adatkezelõ {
     {
         private KimutatasTipus tipus;
 		private Kimutatás kimutatás;
-        
-		public Kimutatás GetKimutatás(){
-			return this.kimutatás;
+        private List<StatAdat> adatok;
+
+        public List<StatAdat> GetAdatok()
+        {
+			return this.adatok;
 		}
 
         public KimutatasTipus GetKimutatásTípus()
@@ -30,20 +32,34 @@ namespace Adatkezelõ {
 
         public Kimutatáskészítõ(DateTime kezdet, DateTime vege, KimutatasTipus tipus)
         {
-            this.kimutatás = new Kimutatás(vege, kezdet);
+            this.kimutatás = new Kimutatás();
+            kimutatás.ÚjKimutatás(vege,kezdet);
             this.tipus = tipus;
+            adatok = new List<StatAdat>();
         }
 
-        public List<Bizonyíték> GetBizonyítékok()
+        public void BûnesetKimutatás()
         {
-            //adott intervallumban levõ bûnesetek id-jai
-            var ids = from x in this.kimutatás.GetAdatok
-                      select x.GetAzonosító;
+            List<Bûneset> bûnesetek = this.kimutatás.GetAdatok;
 
-            //felvett tábla alapján a bizonyítékok kikeresése
-                        //...       
-            throw new NotImplementedException();
+            //a bûnesetek állapot szerinti csoportosítása
+            var query1 = from x in bûnesetek
+                         group x by x.GetÁllapot() into groups
+                         select new {Állapot = groups.Key, Darab = groups.Count() };
+
+            //StatAdat osztály típusba mentés, a könnyebb kezelés érdekében
+            foreach (var akt in query1)
+	        {
+                adatok.Add(new StatAdat() { Darab = akt.Darab, Csoport = akt.Állapot.ToString() });
+	        }
         }
     }//end Kimutatáskészítõ
 
+
+     //Ez itt az adatok tárolását szolgálja
+    public class StatAdat
+    {
+        public int Darab { get; set; }
+        public string Csoport { get; set; }
+    }
 }//end namespace Adatkezelõ
