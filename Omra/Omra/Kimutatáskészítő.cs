@@ -8,27 +8,41 @@
 
 
 
-
+using Omra;
 using Adatkezelõ;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 namespace Adatkezelõ {
 	public class Kimutatáskészítõ
     {
-
-		private Kimutatás kimutatások;
+        private KimutatasTipus tipus;
+		private Kimutatás kimutatás;
         
-		public List<Kimutatás> GetKimutatások(){
-
-			return null;
+		public Kimutatás GetKimutatás(){
+			return this.kimutatás;
 		}
 
-		/// 
-		/// <param name="kezdet"></param>
-		/// <param name="vege"></param>
-        public void ÚjKimutatás(DateTime kezdet, DateTime vege)
+        public KimutatasTipus GetKimutatásTípus()
         {
+            return this.tipus;
+        }
 
+        public Kimutatáskészítõ(DateTime kezdet, DateTime vege, KimutatasTipus tipus)
+        {
+            this.kimutatás = new Kimutatás(vege, kezdet);
+            this.tipus = tipus;
+        }
+
+        public List<Bizonyíték> GetBizonyítékok()
+        {
+            //adott intervallumban levõ bûnesetek id-jai
+            var ids = from x in this.kimutatás.GetAdatok
+                      select x.GetAzonosító;
+
+            //felvett tábla alapján a bizonyítékok kikeresése
+                        //...       
+            throw new NotImplementedException();
         }
     }//end Kimutatáskészítõ
 
