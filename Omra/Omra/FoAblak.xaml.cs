@@ -116,7 +116,7 @@ namespace Omra
 
         private void UjFelh_Click(object sender, RoutedEventArgs e)
         {
-            DolgozoAblak dolgozoablak = new DolgozoAblak(false);
+            DolgozoAblak dolgozoablak = new DolgozoAblak();
             dolgozoablak.ShowDialog();
         }
 
