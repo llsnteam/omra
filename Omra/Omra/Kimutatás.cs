@@ -32,7 +32,7 @@ namespace Adatkezelõ {
             ÚjKimutatás(vege,kezdet);
 		}
 
-        private void ÚjKimutatás(DateTime vege, DateTime kezdet)
+        public void ÚjKimutatás(DateTime vege, DateTime kezdet)
         {
             // linq val összegyûjti az adatokat a listába
             DatabaseElements DE = new DatabaseElements();

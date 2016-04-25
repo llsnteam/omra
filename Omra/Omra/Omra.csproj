@@ -190,7 +190,6 @@
     <Compile Include="Bizonyíték.cs" />
     <Compile Include="BÁllapot.cs" />
     <Compile Include="Bűneset.cs" />
-    <Compile Include="BűnesetiKimutatás.cs" />
     <Compile Include="Bűnesetkezelő.cs" />
     <Compile Include="Dolgozó.cs" />
     <Compile Include="Feladat.cs" />
@@ -244,6 +243,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DatabaseModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="ClassDiagram1.cd" />
     <None Include="DatabaseModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DatabaseModel.edmx</DependentUpon>

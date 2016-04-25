@@ -54,7 +54,6 @@ namespace Omra
 
         private void Oszlopok()
         {
-            var ids = from x in 
         }
 
         private void Tengelyek()
