@@ -17,11 +17,6 @@ namespace Adatkezelõ {
 
 		protected GyanúsítottStátusz státusz;
         
-		/// 
-		/// <param name="státusz"></param>
-		/// <param name="név"></param>
-		/// <param name="lakcím"></param>
-		/// <param name="személyiazonosító"></param>
 		public Gyanúsított(GyanúsítottStátusz státusz, string név, string lakcím, decimal személyiazonosító)
             :base(személyiazonosító,lakcím,név)
         {

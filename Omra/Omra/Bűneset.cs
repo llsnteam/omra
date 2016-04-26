@@ -21,7 +21,7 @@ namespace Adatkezelõ {
 		private BÁllapot állapot;
 
         private DateTime felvetel;
-        private DateTime lezaras;
+        private DateTime? lezaras;
 
         private string leiras;
         
@@ -35,12 +35,13 @@ namespace Adatkezelõ {
             this.leiras = leiras;
 		}
 
-        public Bûneset(string azonosító, BÁllapot allapot, DateTime felvetel, string leiras)  //megjelenítéshez a keresésben
+        public Bûneset(string azonosító, BÁllapot allapot, DateTime felvetel, string leiras, DateTime? lezaras)  //megjelenítéshez a keresésben
         {
             this.azonosító = azonosító;
             this.állapot = allapot;
             this.felvetel = felvetel;
             this.leiras = leiras;
+            this.lezaras = lezaras;
         }
 
 		public void Állapotmódosítás(){
@@ -83,7 +84,7 @@ namespace Adatkezelõ {
             }
         }
 
-        public DateTime GetLezaras
+        public DateTime? GetLezaras
         {
             get
             {
