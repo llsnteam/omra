@@ -21,6 +21,8 @@ namespace Omra
     {
         public object feltoltendo;
 
+        public bool altalanos = true;
+
         public KeresesAblak() 
         {
             InitializeComponent();
@@ -54,6 +56,8 @@ namespace Omra
             RadioBuneset.IsEnabled = false;
             RadioDolgozo.IsEnabled = false;
             RadioGyanusitott.IsEnabled = false;
+
+            altalanos = false;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e) //Keresés indítása: kereséskezelőtől kikéri a keresett listát, betölti a listboxba
@@ -104,29 +108,58 @@ namespace Omra
         {
             if (ListboxEredmeny.SelectedItem != null)
             {
-                if (RadioBizonyitek.IsChecked == true) //ha bizonyíték
+                if (!altalanos)
                 {
-                    feltoltendo = (Bizonyíték)ListboxEredmeny.SelectedItem;
-                }
 
-                else if (RadioBuneset.IsChecked == true) //ha bűneset
+                    if (RadioBizonyitek.IsChecked == true) //ha bizonyíték
+                    {
+                        feltoltendo = (Bizonyíték)ListboxEredmeny.SelectedItem;
+                    }
+
+                    else if (RadioBuneset.IsChecked == true) //ha bűneset
+                    {
+
+                        feltoltendo = (Bűneset)ListboxEredmeny.SelectedItem;
+                    }
+
+                    else if (RadioDolgozo.IsChecked == true) //ha dolgozó
+                    {
+                        feltoltendo = (Dolgozó)ListboxEredmeny.SelectedItem;
+                    }
+
+                    else if (RadioGyanusitott.IsChecked == true) //ha gyanusított
+                    {
+                        feltoltendo = (Gyanúsított)ListboxEredmeny.SelectedItem;
+                    }
+
+                    this.DialogResult = true;
+                    this.Close();
+                }
+                else
                 {
-                    
-                    feltoltendo = (Bűneset)ListboxEredmeny.SelectedItem;
-                }
+                    if (RadioBizonyitek.IsChecked == true) //ha bizonyíték
+                    {
+                        BizonyitekWindow bw = new BizonyitekWindow((Bizonyíték)ListboxEredmeny.SelectedItem);
+                    }
 
-                else if (RadioDolgozo.IsChecked == true) //ha dolgozó
-                {
-                    feltoltendo = (Dolgozó)ListboxEredmeny.SelectedItem;
-                }
+                    else if (RadioBuneset.IsChecked == true) //ha bűneset
+                    {
+                        BunesetAblak ba = new BunesetAblak(true, (Bűneset)ListboxEredmeny.SelectedItem);
+                    }
 
-                else if (RadioGyanusitott.IsChecked == true) //ha gyanusított
-                {
-                    feltoltendo = (Gyanúsított)ListboxEredmeny.SelectedItem;
-                }
+                    else if (RadioDolgozo.IsChecked == true) //ha dolgozó
+                    {
+                        DolgozoAblak da = new DolgozoAblak((Dolgozó)ListboxEredmeny.SelectedItem);
+                    }
 
-                this.DialogResult = true;
-                this.Close();
+                    else if (RadioGyanusitott.IsChecked == true) //ha gyanusított
+                    {
+                        GyanusitottAblak ga = new GyanusitottAblak((Gyanúsított)ListboxEredmeny.SelectedItem);
+                    }
+
+                    this.DialogResult = true;
+                    this.Close();
+                }
             }
         }
     }

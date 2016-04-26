@@ -10,7 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using Adatkezelő;
 namespace Omra
 {
     /// <summary>
@@ -21,6 +21,11 @@ namespace Omra
         public BizonyitekWindow()
         {
             InitializeComponent();
+        }
+
+        public BizonyitekWindow(Bizonyíték bizonyitek) //módosítás
+        {
+
         }
     }
 }

@@ -200,7 +200,42 @@ namespace Adatkezelõ {
 
 		public List<Gyanúsított> Gyanúsítottkeresés(string azonosító){
 
-			return null;
+            List<Gyanúsított> visszateresilista = new List<Gyanúsított>();
+
+            bool IDkereses = false;     //ID-re keres (számmal kezdõdik) vagy a bizonyíték típusára keres (betûvel kezdõdik)
+
+            for (int i = 0; i < 10; i++)
+                if (azonosító.StartsWith(Convert.ToString(i))) IDkereses = true;
+
+            if (IDkereses) //ha ID alapú
+            {
+                Decimal d = Convert.ToDecimal(azonosító);
+
+                DatabaseElements DE = new DatabaseElements();
+
+                var eredmeny = from x in DE.Gyanusitottak
+                               where x.gyanusitottID == d
+                               select x;
+
+                foreach (var v in eredmeny)
+                    visszateresilista.Add(new Gyanúsított((GyanúsítottStátusz)Enum.Parse(typeof(GyanúsítottStátusz), v.statusz.ToString()), v.nev, v.lakcim, v.gyanusitottID));
+
+            }
+            else //ha megnevezés alapú
+            {
+                DatabaseElements DE = new DatabaseElements();
+
+                var eredmeny = from x in DE.Gyanusitottak
+                               where x.nev.Contains(azonosító)
+                               select x;
+
+                foreach (var v in eredmeny)
+                    visszateresilista.Add(new Gyanúsított((GyanúsítottStátusz)Enum.Parse(typeof(GyanúsítottStátusz), v.statusz.ToString()), v.nev, v.lakcim, v.gyanusitottID));
+            }
+
+            return visszateresilista;
+
+			
 		}
 
 	}//end Kereséskezelõ

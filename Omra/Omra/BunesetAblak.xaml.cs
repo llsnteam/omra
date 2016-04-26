@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Adatkezelő;
 
 namespace Omra
 {
@@ -21,6 +22,11 @@ namespace Omra
         public BunesetAblak(bool mod) // módosítási szándékkal lett-e meghívva, vagy új bűnesetet kell létrehozni
         {
             InitializeComponent();
+        }
+
+        public BunesetAblak(bool mod, Bűneset buneset) //módosítási szándákkal
+        {
+
         }
     }
 }

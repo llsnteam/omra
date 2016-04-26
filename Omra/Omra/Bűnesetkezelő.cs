@@ -17,9 +17,6 @@ namespace Adatkezelõ {
 	public class Bûnesetkezelõ : IBûnesetkezelõ, IGyanúsítottkezelõ, IBizonyítékkezelõ 
     {
         
-
-
-		private List<Bûneset> bûnesetek;
         
 		public string AzonosítóGenerálás(){
 
@@ -54,10 +51,6 @@ namespace Adatkezelõ {
 			return null;
 		}
 
-		public List<Bûneset> GetBûnesetek(){
-			return bûnesetek;
-		}
-
 		/// 
 		/// <param name="Gyanúsított"></param>
 		/// <param name="Bûneset"></param>
@@ -88,7 +81,7 @@ namespace Adatkezelõ {
 
 		public void ÚjBûneset(string leiras){
             Bûneset b = new Bûneset(AzonosítóGenerálás(), leiras);
-            bûnesetek.Add(b); //------------------------------------- bûneset az adatbázisba
+            //------------------------------------- bûneset az adatbázisba
 		}
 
 		/// 
