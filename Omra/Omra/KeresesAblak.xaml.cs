@@ -135,30 +135,31 @@ namespace Omra
                     this.DialogResult = true;
                     this.Close();
                 }
-                else
+                else //kiválasztott módosítása
                 {
                     if (RadioBizonyitek.IsChecked == true) //ha bizonyíték
                     {
                         BizonyitekWindow bw = new BizonyitekWindow((Bizonyíték)ListboxEredmeny.SelectedItem);
+                        bw.ShowDialog();
                     }
 
                     else if (RadioBuneset.IsChecked == true) //ha bűneset
                     {
                         BunesetAblak ba = new BunesetAblak(true, (Bűneset)ListboxEredmeny.SelectedItem);
+                        ba.ShowDialog();
                     }
 
                     else if (RadioDolgozo.IsChecked == true) //ha dolgozó
                     {
                         DolgozoAblak da = new DolgozoAblak((Dolgozó)ListboxEredmeny.SelectedItem);
+                        da.ShowDialog();
                     }
 
                     else if (RadioGyanusitott.IsChecked == true) //ha gyanusított
                     {
                         GyanusitottAblak ga = new GyanusitottAblak((Gyanúsított)ListboxEredmeny.SelectedItem);
+                        ga.ShowDialog();
                     }
-
-                    this.DialogResult = true;
-                    this.Close();
                 }
             }
         }
