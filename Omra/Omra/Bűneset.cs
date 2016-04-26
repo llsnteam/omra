@@ -43,7 +43,8 @@ namespace Adatkezelõ {
             this.leiras = leiras;
         }
 
-		public void Állapotmódosítás(){
+		public void Állapotmódosítás()
+        {
             if (állapot == BÁllapot.Folyamatban)
             {
                 állapot = BÁllapot.Lezárt;

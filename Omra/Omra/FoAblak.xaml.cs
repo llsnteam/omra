@@ -153,9 +153,10 @@ namespace Omra
 
         private void FeladatKival_Click(object sender, SelectionChangedEventArgs e)
         {
-            /*datum_fel_lbl.Content = (ListboxFeladatok.SelectedItem as Bűneset).GetFelvetel.Year;
-            allapot_fel_lbl.Content = (ListboxFeladatok.SelectedItem as Bűneset).GetÁllapot().ToString();
-            szoveg_fel_txb.Text = (ListboxFeladatok.SelectedItem as Bűneset).GetLeiras;*/
+            string dateformat = (ListboxFeladatok.SelectedItem as Feladat).GetLétrehozás.Year + ". " + (ListboxFeladatok.SelectedItem as Feladat).GetLétrehozás.Month + ". " + (ListboxFeladatok.SelectedItem as Feladat).GetLétrehozás.Day + ".";
+            datum_fel_lbl.Content = dateformat; // csak azért, hogy normálisan jelenítse meg a dátumot
+            allapot_fel_lbl.Content = (ListboxFeladatok.SelectedItem as Feladat).GetÁllapot;
+            szoveg_fel_txb.Text = (ListboxFeladatok.SelectedItem as Feladat).GetLeírás;
         }
 
     }

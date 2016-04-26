@@ -10,6 +10,7 @@
 
 
 using Adatkezelõ;
+using System;
 namespace Adatkezelõ {
 	public class Feladat {
 
@@ -18,23 +19,23 @@ namespace Adatkezelõ {
 		/// </summary>
 		private Dolgozó célszemély;
 		private string leírás;
-		/// <summary>
-		/// Ki adta ki a feladatot
-		/// </summary>
-		private Dolgozó létrehozta;
 		private FÁllapot állapot;
         private decimal feladatID;
+        /// <summary>
+        /// Amikor a bûneset létre lett hozva
+        /// </summary>
+        private DateTime létrehozás;
         
 		/// 
 		/// <param name="leírás"></param>
 		/// <param name="célszemély"></param>
 		/// <param name="létrehozó"></param>
-		public Feladat(string leírás, Dolgozó célszemély, Dolgozó létrehozó)
+		public Feladat(string leírás, Dolgozó célszemély, DateTime létrehozás,FÁllapot állapot)
         {
             this.leírás = leírás;
             this.célszemély = célszemély;
-            this.létrehozta = létrehozó;
-            this.állapot = FÁllapot.Folyamatban;
+            this.állapot = állapot;
+            this.létrehozás = létrehozás;
 		}
 
 		/// <summary>
@@ -50,25 +51,28 @@ namespace Adatkezelõ {
             get { return leírás; }
             set { leírás = value; }
 		}
-
-		/// <summary>
-		/// Ki adta ki a feladatot
-		/// </summary>
-        public Dolgozó GetLétrehozta
-        {
-            get { return létrehozta; }
-            set { létrehozta = value; }
-        }
-
+        
         public decimal GetFeladatID
         {
             get { return feladatID; }
             set { feladatID = value; }
         }
 
+        public DateTime GetLétrehozás
+        {
+            get { return létrehozás; }
+            set { létrehozás = value; }
+        }
+
+        public FÁllapot GetÁllapot
+        {
+            get { return állapot; }
+            set { állapot = value; }
+        }
+        
         public override string ToString()
         {
-            return this.leírás.Substring(0,30) + "...";
+            return this.leírás.Substring(0, 30) + "...";
         }
 
 	}//end Feladat

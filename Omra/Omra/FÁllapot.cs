@@ -13,7 +13,7 @@ namespace Adatkezelõ {
 	public enum FÁllapot : int {
 
 		Folyamatban,
-		Befejezve
+		Lezárt
 
 	}//end FÁllapot
 
