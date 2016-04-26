@@ -16,7 +16,7 @@ namespace Adatkezelõ {
 	public class Bûneset 
     {
 
-		private string azonosító;
+		private decimal azonosító;
 
 		private BÁllapot állapot;
 
@@ -24,18 +24,21 @@ namespace Adatkezelõ {
         private DateTime? lezaras;
 
         private string leiras;
+
+        private Dolgozó felelõsõrnagy;
         
 		/// 
 		/// <param name="azonosító"></param>
-		public Bûneset(string azonosító, string leiras){   //felvételhez
+		public Bûneset(decimal azonosító, string leiras, Dolgozó felõrnagy){   //felvételhez
             this.azonosító = azonosító;
 
             this.állapot = BÁllapot.Folyamatban;
             this.felvetel = DateTime.Now;
             this.leiras = leiras;
+            this.felelõsõrnagy = felõrnagy;
 		}
 
-        public Bûneset(string azonosító, BÁllapot allapot, DateTime felvetel, string leiras, DateTime? lezaras)  //megjelenítéshez a keresésben
+        public Bûneset(decimal azonosító, BÁllapot allapot, DateTime felvetel, string leiras, DateTime? lezaras)  //megjelenítéshez a keresésben
         {
             this.azonosító = azonosító;
             this.állapot = allapot;
@@ -61,7 +64,8 @@ namespace Adatkezelõ {
 		/// 
 		/// <param name="Bûneset"></param>
 		/// <param name="Bizonyíték"></param>
-		public void BizonyítékHozzáadása(Bûneset Bûneset, Bizonyíték Bizonyíték){
+		public void BizonyítékHozzáadása(Bûneset Bûneset, Bizonyíték Bizonyíték)
+        {
             
 		}
 
@@ -70,7 +74,7 @@ namespace Adatkezelõ {
             return this.állapot;
 		}
 
-		public string GetAzonosító{
+		public decimal GetAzonosító{
 			get
             {
 				return azonosító;
@@ -101,9 +105,18 @@ namespace Adatkezelõ {
             }
         }
 
+        public Dolgozó GetFelelõs
+        {
+            get
+            {
+                return felelõsõrnagy;
+            }
+        }
+
 		/// 
 		/// <param name="Gyanúsított"></param>
-		public void GyanúsítottHozzáadása(Gyanúsított Gyanúsított){
+		public void GyanúsítottHozzáadása(Gyanúsított Gyanúsított)
+        {
             
 		}
 

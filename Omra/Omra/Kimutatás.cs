@@ -37,7 +37,7 @@ namespace Adatkezelõ {
 
             foreach (var v in eredmeny)
             {
-                statAdatok.Add(new Bûneset(Convert.ToString(v.bunesetID), (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras,v.lezaras));
+                statAdatok.Add(new Bûneset(v.bunesetID, (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras,v.lezaras));
             }
         }
 

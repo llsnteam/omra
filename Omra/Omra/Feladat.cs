@@ -72,7 +72,9 @@ namespace Adatkezelõ {
         
         public override string ToString()
         {
-            return this.leírás.Substring(0, 30) + "...";
+            if (this.leírás.Length > 30)
+                return this.leírás.Substring(0, 30) + "...";
+            return this.leírás;
         }
 
 	}//end Feladat

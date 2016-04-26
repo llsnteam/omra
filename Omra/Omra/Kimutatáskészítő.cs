@@ -58,7 +58,7 @@ namespace Adatkezelõ {
             foreach (var akt in bûnesetek)
             {
                 var q = from x in DE.FelvettBizonyitekok
-                        where x.bunesetID.ToString() == akt.GetAzonosító
+                        where x.bunesetID == akt.GetAzonosító
                         select new { Nev = x.Bizonyitekok.megnevezes };
 
                 //Egy bûnesetnél több bizonyíték is lehet
@@ -89,7 +89,7 @@ namespace Adatkezelõ {
             foreach (var akt in bûnesetek)
             {
                 var q = from x in DE.FelvettGyanusitottak
-                        where x.bunesetID.ToString() == akt.GetAzonosító
+                        where x.bunesetID == akt.GetAzonosító
                         select new { Nev = x.Gyanusitottak.nev };
 
                 //Egy bûnesetnél több gyanusított is lehet

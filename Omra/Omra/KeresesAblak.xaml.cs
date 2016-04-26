@@ -145,7 +145,7 @@ namespace Omra
 
                     else if (RadioBuneset.IsChecked == true) //ha bűneset
                     {
-                        BunesetAblak ba = new BunesetAblak(true, (Bűneset)ListboxEredmeny.SelectedItem);
+                        BunesetAblak ba = new BunesetAblak((Bűneset)ListboxEredmeny.SelectedItem);
                         ba.ShowDialog();
                     }
 

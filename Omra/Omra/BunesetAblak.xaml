@@ -1,8 +1,20 @@
 ﻿<Window x:Class="Omra.BunesetAblak"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="BunesetAblak" Height="336" Width="847">
+        Title="BunesetAblak" Height="301.447" Width="891.085">
     <Grid>
-        
+        <Label Content="Felelős őrnagy:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="felorn_txb" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="104,14,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button Click="FelelosOrnagyKereses_Click" Content="Keresés" HorizontalAlignment="Left" Margin="126,42,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Leírás:" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="leiras_txb" HorizontalAlignment="Left" Height="139" Margin="58,74,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="209"/>
+        <Button Click="Mentes_Click" Content="Mentés" HorizontalAlignment="Left" Margin="72,229,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Click="Vissza_Click" Content="Vissza" HorizontalAlignment="Left" Margin="175,229,0,0" VerticalAlignment="Top" Width="75"/>
+        <ListBox Name="ListboxGyanúsítottak" HorizontalAlignment="Left" Height="203" Margin="369,10,0,0" VerticalAlignment="Top" Width="195"/>
+        <Label Content="Gyanúsítottak:" HorizontalAlignment="Left" Margin="278,10,0,0" VerticalAlignment="Top"/>
+        <Button Click="GyanusitottFelvetel_Click" Content="Felvétel" HorizontalAlignment="Left" Margin="430,229,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Bizonyítékok:" HorizontalAlignment="Left" Margin="582,10,0,0" VerticalAlignment="Top"/>
+        <ListBox Name="ListboxBizonyítékok" HorizontalAlignment="Left" Height="203" Margin="667,10,0,0" VerticalAlignment="Top" Width="195"/>
+        <Button Click="BizonyitekFelvetel_Click" Content="Felvétel" HorizontalAlignment="Left" Margin="731,229,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </Window>

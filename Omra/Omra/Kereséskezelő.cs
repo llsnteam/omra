@@ -38,7 +38,7 @@ namespace Adatkezelõ {
                                select x;
 
                 foreach (var v in eredmeny)
-                    visszateresilista.Add(new Bizonyíték(Convert.ToString(v.bizonyitekID), v.megnevezes, v.felvetel));
+                    visszateresilista.Add(new Bizonyíték(v.bizonyitekID, v.megnevezes, v.felvetel));
             }
             else //ha megnevezés alapú
             {
@@ -48,7 +48,7 @@ namespace Adatkezelõ {
                                select x;
 
                 foreach (var v in eredmeny)
-                    visszateresilista.Add(new Bizonyíték(Convert.ToString(v.bizonyitekID), v.megnevezes, v.felvetel));
+                    visszateresilista.Add(new Bizonyíték(v.bizonyitekID, v.megnevezes, v.felvetel));
             }
 
             return visszateresilista;
@@ -72,7 +72,7 @@ namespace Adatkezelõ {
                 foreach (var v in eredmeny)
                 {
                                        
-                    visszateresilista.Add(new Bûneset(Convert.ToString(v.bunesetID), (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras, v.lezaras));
+                    visszateresilista.Add(new Bûneset(v.bunesetID, (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras, v.lezaras));
                 }
             }
             else
@@ -84,7 +84,7 @@ namespace Adatkezelõ {
 
                 foreach (var v in eredmeny)
                 {
-                    visszateresilista.Add(new Bûneset(Convert.ToString(v.bunesetID), (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras, v.lezaras));
+                    visszateresilista.Add(new Bûneset(v.bunesetID, (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras, v.lezaras));
                 }
             }
             
