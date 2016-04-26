@@ -42,7 +42,7 @@ namespace Adatkezelõ {
             DatabaseElements DE = new DatabaseElements();
 
             var eredmeny = from x in DE.Bunesetek
-                           where x.felvetel  >= this.kezdet && x.felvetel <= this.kezdet
+                           where x.felvetel  >= this.kezdet && x.felvetel <= this.vege
                            select x;
 
             foreach (var v in eredmeny)

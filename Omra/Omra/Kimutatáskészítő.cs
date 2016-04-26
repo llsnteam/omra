@@ -43,15 +43,47 @@ namespace Adatkezelõ {
             List<Bûneset> bûnesetek = this.kimutatás.GetAdatok;
 
             //a bûnesetek állapot szerinti csoportosítása
-            var query1 = from x in bûnesetek
+            var query = from x in bûnesetek
                          group x by x.GetÁllapot() into groups
                          select new {Állapot = groups.Key, Darab = groups.Count() };
 
             //StatAdat osztály típusba mentés, a könnyebb kezelés érdekében
-            foreach (var akt in query1)
+            foreach (var akt in query)
 	        {
                 adatok.Add(new StatAdat() { Darab = akt.Darab, Csoport = akt.Állapot.ToString() });
 	        }
+        }
+
+        public void BizonyítékKimutatás()
+        {
+            //Releváns bûnesetek
+            List<Bûneset> bûnesetek = this.kimutatás.GetAdatok;
+
+            List<string> bizonyitekok = new List<string>();
+
+            DatabaseElements DE = new DatabaseElements();
+
+            //Bizonyítékok nevének egy listába mentése
+            foreach (var akt in bûnesetek)
+            {
+                var q = from x in DE.FelvettBizonyitekok
+                        where x.bunesetID.ToString() == akt.GetAzonosító
+                        select new { Nev = x.Bizonyitekok.megnevezes };
+
+                foreach (var q_akt in q)
+                {
+                    bizonyitekok.Add(q_akt.Nev);
+                }
+            }
+
+            //A bizonyítékok csoportosítása
+            var query = bizonyitekok.GroupBy(x => x).Select(g => new { Állapot = g.Key, Darab = g.Count() });
+
+            //StatAdat osztály típusba mentés, a könnyebb kezelés érdekében
+            foreach (var akt in query)
+            {
+                adatok.Add(new StatAdat() { Darab = akt.Darab, Csoport = akt.Állapot.ToString() });
+            }
         }
     }//end Kimutatáskészítõ
 
