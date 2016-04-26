@@ -47,22 +47,29 @@ namespace Omra
             //Annak ellenőrzése, hogy lett-e választva dátum. A kimutatás típusa nem lehet null a comboboxból adódóan
             if (date_tol.SelectedDate != null && date_ig.SelectedDate != null)
             {
-                k = new Kimutatáskészítő((DateTime)date_tol.SelectedDate, (DateTime)date_ig.SelectedDate, (KimutatasTipus)cmb_kimutatasTipus.SelectedItem);
+                k = new Kimutatáskészítő((DateTime)date_tol.SelectedDate, (DateTime)date_ig.SelectedDate);
             }
             else
                 MessageBox.Show("Válasszon időintervallumot!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
 
             //Különböző típusú kimutatások
-            if (KimutatasTipus.Bűneset.Equals(cmb_kimutatasTipus.SelectedItem))
+            switch ((KimutatasTipus)cmb_kimutatasTipus.SelectedItem)
             {
-                k.BűnesetKimutatás();
-                this.adatok = k.GetAdatok();
+                case KimutatasTipus.Bűneset:
+                    k.BűnesetKimutatás();
+                    break;
+                case KimutatasTipus.Gyanusított:
+                    k.GyanusítottKimutatás();
+                    break;
+                case KimutatasTipus.Bizonyíték:
+                    k.BizonyítékKimutatás();
+                    break;
+                default:
+                    break;
             }
-            else if (KimutatasTipus.Bizonyíték.Equals(cmb_kimutatasTipus.SelectedItem))
-            {
-                k.BizonyítékKimutatás();
-                this.adatok = k.GetAdatok();
-            }
+
+            this.adatok = k.GetAdatok();
+
             Rajzol();
         }
 

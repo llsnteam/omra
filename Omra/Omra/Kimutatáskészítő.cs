@@ -16,7 +16,6 @@ using System.Collections.Generic;
 namespace Adatkezelõ {
 	public class Kimutatáskészítõ
     {
-        private KimutatasTipus tipus;
 		private Kimutatás kimutatás;
         private List<StatAdat> adatok;
 
@@ -25,16 +24,10 @@ namespace Adatkezelõ {
 			return this.adatok;
 		}
 
-        public KimutatasTipus GetKimutatásTípus()
-        {
-            return this.tipus;
-        }
-
-        public Kimutatáskészítõ(DateTime kezdet, DateTime vege, KimutatasTipus tipus)
+        public Kimutatáskészítõ(DateTime kezdet, DateTime vege)
         {
             this.kimutatás = new Kimutatás();
             kimutatás.ÚjKimutatás(vege,kezdet);
-            this.tipus = tipus;
             adatok = new List<StatAdat>();
         }
 
@@ -49,9 +42,7 @@ namespace Adatkezelõ {
 
             //StatAdat osztály típusba mentés, a könnyebb kezelés érdekében
             foreach (var akt in query)
-	        {
                 adatok.Add(new StatAdat() { Darab = akt.Darab, Csoport = akt.Állapot.ToString() });
-	        }
         }
 
         public void BizonyítékKimutatás()
@@ -70,20 +61,50 @@ namespace Adatkezelõ {
                         where x.bunesetID.ToString() == akt.GetAzonosító
                         select new { Nev = x.Bizonyitekok.megnevezes };
 
+                //Egy bûnesetnél több bizonyíték is lehet
                 foreach (var q_akt in q)
-                {
                     bizonyitekok.Add(q_akt.Nev);
-                }
             }
 
             //A bizonyítékok csoportosítása
-            var query = bizonyitekok.GroupBy(x => x).Select(g => new { Állapot = g.Key, Darab = g.Count() });
+            var query = bizonyitekok
+                                .GroupBy(x => x)
+                                .Select(g => new { Név = g.Key, Darab = g.Count() });
 
             //StatAdat osztály típusba mentés, a könnyebb kezelés érdekében
             foreach (var akt in query)
+                adatok.Add(new StatAdat() { Darab = akt.Darab, Csoport = akt.Név.ToString() });
+        }
+
+        public void GyanusítottKimutatás()
+        {
+            //Releváns bûnesetek
+            List<Bûneset> bûnesetek = this.kimutatás.GetAdatok;
+
+            List<string> gyanusitottakNevei = new List<string>();
+
+            DatabaseElements DE = new DatabaseElements();
+
+            //Gyanusítottak nevének egy listába mentése
+            foreach (var akt in bûnesetek)
             {
-                adatok.Add(new StatAdat() { Darab = akt.Darab, Csoport = akt.Állapot.ToString() });
+                var q = from x in DE.FelvettGyanusitottak
+                        where x.bunesetID.ToString() == akt.GetAzonosító
+                        select new { Nev = x.Gyanusitottak.nev };
+
+                //Egy bûnesetnél több gyanusított is lehet
+                foreach (var q_akt in q)
+                    gyanusitottakNevei.Add(q_akt.Nev);
             }
+
+            //A gyanusítottak csoportosítása
+            var query = gyanusitottakNevei
+                                .GroupBy(x => x)
+                                .Select(g => new { Név = g.Key, Darab = g.Count() });
+
+            //StatAdat osztály típusba mentés, a könnyebb kezelés érdekében
+            foreach (var akt in query)
+                adatok.Add(new StatAdat() { Darab = akt.Darab, Csoport = akt.Név.ToString() });
         }
     }//end Kimutatáskészítõ
 

@@ -72,7 +72,7 @@ namespace Adatkezelõ {
                 foreach (var v in eredmeny)
                 {
                                        
-                    visszateresilista.Add(new Bûneset(Convert.ToString(v.bunesetID), (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras));
+                    visszateresilista.Add(new Bûneset(Convert.ToString(v.bunesetID), (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras, v.lezaras));
                 }
             }
             else
@@ -84,7 +84,7 @@ namespace Adatkezelõ {
 
                 foreach (var v in eredmeny)
                 {
-                    visszateresilista.Add(new Bûneset(Convert.ToString(v.bunesetID), (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras));
+                    visszateresilista.Add(new Bûneset(Convert.ToString(v.bunesetID), (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras, v.lezaras));
                 }
             }
             
