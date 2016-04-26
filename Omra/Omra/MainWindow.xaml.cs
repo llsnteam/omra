@@ -40,7 +40,7 @@ namespace Omra
                 this.Close();
             }
             else
-                MessageBox.Show("Helytelen felhasználónév vagy jelszó lett megadva!");
+                MessageBox.Show("Helytelen felhasználónév vagy jelszó lett megadva!","Hiba!",MessageBoxButton.OK,MessageBoxImage.Error);
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
