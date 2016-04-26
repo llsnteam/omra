@@ -22,23 +22,13 @@ namespace Adatkezelõ {
 
         public List<Bûneset> GetAdatok { get { return this.statAdatok; } }
 
-		/// 
-		/// <param name="vege"></param>
-		/// <param name="kezdet"></param>
-		/*public Kimutatás(DateTime vege, DateTime kezdet)
-        {
-            this.vege = vege;
-            this.kezdet = kezdet;
-            statAdatok = new List<Bûneset>();
-		}*/
-
         public void ÚjKimutatás(DateTime vege, DateTime kezdet)
         {
             this.vege = vege;
             this.kezdet = kezdet;
             statAdatok = new List<Bûneset>();
 
-            // linq val összegyûjti az adatokat a listába
+            // Adatokat a listába gyûjtése
             DatabaseElements DE = new DatabaseElements();
 
             var eredmeny = from x in DE.Bunesetek
@@ -47,7 +37,7 @@ namespace Adatkezelõ {
 
             foreach (var v in eredmeny)
             {
-                statAdatok.Add(new Bûneset(Convert.ToString(v.bunesetID), (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras));
+                statAdatok.Add(new Bûneset(Convert.ToString(v.bunesetID), (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras,v.lezaras));
             }
         }
 
