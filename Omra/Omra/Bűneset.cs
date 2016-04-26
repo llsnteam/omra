@@ -53,7 +53,7 @@ namespace Adatkezelõ {
             if (állapot == BÁllapot.Lezárt)
             {
                 állapot = BÁllapot.Folyamatban;
-                //lezaras = null    //datetime nem nullázható -> mivel legyen jelölve?
+                lezaras = null;
             }
 		}
 
