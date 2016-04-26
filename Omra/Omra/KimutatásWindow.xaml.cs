@@ -58,6 +58,11 @@ namespace Omra
                 k.BűnesetKimutatás();
                 this.adatok = k.GetAdatok();
             }
+            else if (KimutatasTipus.Bizonyíték.Equals(cmb_kimutatasTipus.SelectedItem))
+            {
+                k.BizonyítékKimutatás();
+                this.adatok = k.GetAdatok();
+            }
             Rajzol();
         }
 
@@ -75,7 +80,6 @@ namespace Omra
             //Arányok meghatározása
             double egyOszlopSzelessege = this.grafikon.ActualWidth / osszes;
             double egysegnyiMagassag = this.grafikon.ActualHeight / adatok.Sum(x => x.Darab);
-            double elsoOszlopKozepe = egyOszlopSzelessege / 2;
 
             //Segéd változók
             double elozoOszlopSzele = 0;
@@ -99,11 +103,9 @@ namespace Omra
                 this.grafikon.Children.Add(oszlop);
 
                 //Csoportnevek kiírása
-
-                //még nem sikerült középre rendeznem őket
                 Label csoportnev = new Label();
                 csoportnev.Content = akt.Csoport;
-                csoportnev.SetValue(Canvas.LeftProperty, elsoOszlopKozepe + (seged * egyOszlopSzelessege));
+                csoportnev.SetValue(Canvas.LeftProperty, (seged * egyOszlopSzelessege));
                 csoportnev.SetValue(Canvas.BottomProperty, oszlopok.ElementAt(seged).Y);
                 this.grafikon.Children.Add(csoportnev);
 
@@ -113,16 +115,19 @@ namespace Omra
                 vonal.Stroke = System.Windows.Media.Brushes.Black;
                 vonal.X1 = 0;
                 vonal.X2 = 5;
-                vonal.Y1 = oszlopok.ElementAt(seged).Height;
+                vonal.Y1 = this.grafikon.Height - oszlopok.ElementAt(seged).Height;
                 vonal.Y2 = vonal.Y1;
                 this.grafikon.Children.Add(vonal);
-
 
                 Label mennyiseg = new Label();
                 mennyiseg.Content = akt.Darab;
                 mennyiseg.SetValue(Canvas.LeftProperty, oszlopok.ElementAt(0).X);
-                mennyiseg.SetValue(Canvas.BottomProperty, oszlopok.ElementAt(seged).Y + oszlopok.ElementAt(seged).Height);
+                if(osszes  > 1 )
+                    mennyiseg.SetValue(Canvas.BottomProperty, oszlopok.ElementAt(seged).Y + oszlopok.ElementAt(seged).Height);
+                else
+                    mennyiseg.SetValue(Canvas.BottomProperty, oszlopok.ElementAt(seged).Y + oszlopok.ElementAt(seged).Height - 20);
                 this.grafikon.Children.Add(mennyiseg);
+
                 seged++;
             }
         }

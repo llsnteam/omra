@@ -35,11 +35,11 @@ namespace Omra
 
             Feltoltes("", "", Rang.Adminisztrátor, "");
         }
-        public DolgozoAblak(Dolgozó kivDolgozó, decimal dolgozoID)  // ez a konstruktor a módosításhoz van
+        public DolgozoAblak(Dolgozó kivDolgozó)  // ez a konstruktor a módosításhoz van, kiválasztott dolgozót kapja bemenetnek
         {
             InitializeComponent();
             mod = true;
-            id = dolgozoID;
+            id = kivDolgozó.GetAzonosító();
             Feltoltes(kivDolgozó.GetNév(), kivDolgozó.GetJelszó(), kivDolgozó.GetBeosztás(), kivDolgozó.GetBejelentettLakcím());
         }
 
