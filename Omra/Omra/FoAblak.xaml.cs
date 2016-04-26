@@ -36,7 +36,7 @@ namespace Omra
             //A listbox alatt kijelzi a kiválasztott üzenet/feladat adatait
             
             aktDolgozo = d;
-            this.Title = d.GetNév();
+            this.Title = d.ToString();
             uzenetK = new Üzenetkezelő();
             feladatK = new Feladatkezelő();
             AdatokBetoltese();
@@ -142,6 +142,20 @@ namespace Omra
         {
             BunesetAblak bunablak = new BunesetAblak(true);
             bunablak.ShowDialog();
+        }
+
+        private void UzenetKival_Click(object sender, RoutedEventArgs e)
+        {
+            kitol_uz_lbl.Content = (ListboxÜzenetek.SelectedItem as Üzenet).GetKüldő.ToString();
+            targy_uz_lbl.Content = (ListboxÜzenetek.SelectedItem as Üzenet).GetTárgy;
+            szoveg_uz_txb.Text = (ListboxÜzenetek.SelectedItem as Üzenet).GetTörzs;
+        }
+
+        private void FeladatKival_Click(object sender, SelectionChangedEventArgs e)
+        {
+            /*datum_fel_lbl.Content = (ListboxFeladatok.SelectedItem as Bűneset).GetFelvetel.Year;
+            allapot_fel_lbl.Content = (ListboxFeladatok.SelectedItem as Bűneset).GetÁllapot().ToString();
+            szoveg_fel_txb.Text = (ListboxFeladatok.SelectedItem as Bűneset).GetLeiras;*/
         }
 
     }

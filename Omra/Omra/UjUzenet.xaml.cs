@@ -49,5 +49,10 @@ namespace Omra
                 cimzett_txb.Text = cimzett.GetNév();
             }
         }
+
+        private void Vissza_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

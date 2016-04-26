@@ -9,30 +9,46 @@
 
 
 
+using Omra;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 namespace Adatkezelõ {
 	public class Kimutatás:IKimutatáskezelõ 
     {
 		protected DateTime kezdet;
 		protected DateTime vege;
-        private List<int> statAdatok;
+        private List<Bûneset> statAdatok;
+
+        public List<Bûneset> GetAdatok { get { return this.statAdatok; } }
 
 		/// 
 		/// <param name="vege"></param>
 		/// <param name="kezdet"></param>
-		public Kimutatás(DateTime vege, DateTime kezdet)
+		/*public Kimutatás(DateTime vege, DateTime kezdet)
         {
             this.vege = vege;
             this.kezdet = kezdet;
-            statAdatok = new List<int>();
-		}
+            statAdatok = new List<Bûneset>();
+		}*/
 
         public void ÚjKimutatás(DateTime vege, DateTime kezdet)
         {
- 	        throw new NotImplementedException();
+            this.vege = vege;
+            this.kezdet = kezdet;
+            statAdatok = new List<Bûneset>();
+
             // linq val összegyûjti az adatokat a listába
-            // 
+            DatabaseElements DE = new DatabaseElements();
+
+            var eredmeny = from x in DE.Bunesetek
+                           where x.felvetel  >= this.kezdet && x.felvetel <= this.vege
+                           select x;
+
+            foreach (var v in eredmeny)
+            {
+                statAdatok.Add(new Bûneset(Convert.ToString(v.bunesetID), (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras));
+            }
         }
 
     }//end Kimutatás

@@ -40,7 +40,7 @@ namespace Adatkezelõ {
 
         public override string ToString()
         {
-            return this.név + " " + this.beosztás.ToString();
+            return this.név + " (" + this.beosztás.ToString() + ")";
         }
 
 	}//end Dolgozó

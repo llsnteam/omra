@@ -8,28 +8,58 @@
 
 
 
-
+using Omra;
 using Adatkezelõ;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 namespace Adatkezelõ {
 	public class Kimutatáskészítõ
     {
+        private KimutatasTipus tipus;
+		private Kimutatás kimutatás;
+        private List<StatAdat> adatok;
 
-		private Kimutatás kimutatások;
-        
-		public List<Kimutatás> GetKimutatások(){
-
-			return null;
+        public List<StatAdat> GetAdatok()
+        {
+			return this.adatok;
 		}
 
-		/// 
-		/// <param name="kezdet"></param>
-		/// <param name="vege"></param>
-        public void ÚjKimutatás(DateTime kezdet, DateTime vege)
+        public KimutatasTipus GetKimutatásTípus()
         {
+            return this.tipus;
+        }
 
+        public Kimutatáskészítõ(DateTime kezdet, DateTime vege, KimutatasTipus tipus)
+        {
+            this.kimutatás = new Kimutatás();
+            kimutatás.ÚjKimutatás(vege,kezdet);
+            this.tipus = tipus;
+            adatok = new List<StatAdat>();
+        }
+
+        public void BûnesetKimutatás()
+        {
+            List<Bûneset> bûnesetek = this.kimutatás.GetAdatok;
+
+            //a bûnesetek állapot szerinti csoportosítása
+            var query1 = from x in bûnesetek
+                         group x by x.GetÁllapot() into groups
+                         select new {Állapot = groups.Key, Darab = groups.Count() };
+
+            //StatAdat osztály típusba mentés, a könnyebb kezelés érdekében
+            foreach (var akt in query1)
+	        {
+                adatok.Add(new StatAdat() { Darab = akt.Darab, Csoport = akt.Állapot.ToString() });
+	        }
         }
     }//end Kimutatáskészítõ
 
+
+     //Ez itt az adatok tárolását szolgálja
+    public class StatAdat
+    {
+        public int Darab { get; set; }
+        public string Csoport { get; set; }
+    }
 }//end namespace Adatkezelõ
