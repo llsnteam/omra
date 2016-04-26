@@ -28,7 +28,7 @@ namespace Omra
 
         public GyanusitottAblak(Gyanúsított gyanusitott) //módosításhoz
         {
-
+            InitializeComponent();
         }
 
         private void click_mentes(object sender, RoutedEventArgs e)

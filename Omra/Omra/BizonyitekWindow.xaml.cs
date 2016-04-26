@@ -25,7 +25,7 @@ namespace Omra
 
         public BizonyitekWindow(Bizonyíték bizonyitek) //módosítás
         {
-
+            InitializeComponent();
         }
     }
 }

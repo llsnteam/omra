@@ -26,7 +26,7 @@ namespace Omra
 
         public BunesetAblak(bool mod, Bűneset buneset) //módosítási szándákkal
         {
-
+            InitializeComponent();
         }
     }
 }
