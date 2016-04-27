@@ -75,14 +75,16 @@ namespace Adatkezelõ {
         
 		/// 
 		/// <param name="megnevezés"></param>
-		public List<Bizonyíték> BizonyítékKeresés(string megnevezés){
+		public List<Bizonyíték> BizonyítékKeresés(string megnevezés)
+        {
             //nem is kellene ide ? -> kereséskezelõ valósítja meg
 			return null;
 		}
 
 		/// 
 		/// <param name="bûneset"></param>
-		public void BûnesetÁllapotmódosítás(Bûneset bûneset){
+		public void BûnesetÁllapotmódosítás(Bûneset bûneset)
+        {
             bûneset.Állapotmódosítás();
             //---------------------Adatbázisban módosítani
 		}
@@ -90,7 +92,8 @@ namespace Adatkezelõ {
 		/// 
 		/// <param name="Gyanúsított"></param>
 		/// <param name="Bûneset"></param>
-		public void GyanúsítottHozzáadása(Gyanúsított Gyanúsított, Bûneset Bûneset){
+		public void GyanúsítottHozzáadása(Gyanúsított Gyanúsított, Bûneset Bûneset)
+        {
             Bûneset.GyanúsítottHozzáadása(Gyanúsított);
 		}
 

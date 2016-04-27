@@ -157,7 +157,7 @@ namespace Omra
 
                     else if (RadioGyanusitott.IsChecked == true) //ha gyanusított
                     {
-                        GyanusitottAblak ga = new GyanusitottAblak((Gyanúsított)ListboxEredmeny.SelectedItem);
+                        GyanusitottAblak ga = new GyanusitottAblak(null,(Gyanúsított)ListboxEredmeny.SelectedItem);
                         ga.ShowDialog();
                     }
 

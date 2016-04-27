@@ -105,7 +105,7 @@ namespace Omra
                 this.DialogResult = true;
             }
             else
-                MessageBox.Show("Rohadj meg!");
+                MessageBox.Show("Nincs kiválasztva a bűnesethez felelős őrnagy!","Hiba!",MessageBoxButton.OK,MessageBoxImage.Warning);
         }
 
         private void Vissza_Click(object sender, RoutedEventArgs e)
@@ -119,7 +119,6 @@ namespace Omra
             if (keresablak.ShowDialog() == true)
             {
                 gyanúsítottak.Add((Gyanúsított)keresablak.feltoltendo);
-                ListboxGyanúsítottak.ItemsSource = gyanúsítottak;
             }
         }
 
@@ -129,15 +128,16 @@ namespace Omra
             if (keresablak.ShowDialog() == true)
             {
                 bizonyítékok.Add((Bizonyíték)keresablak.feltoltendo);
-
-                ListboxBizonyítékok.ItemsSource = bizonyítékok;
             }
         }
 
         private void UjGyan_Click(object sender, RoutedEventArgs e)
         {
-            GyanusitottAblak gyanablak = new GyanusitottAblak();
-            gyanablak.ShowDialog();
+            GyanusitottAblak gyanablak = new GyanusitottAblak(new Bűneset(id,leiras_txb.Text,felelősŐrnagy));
+            if (gyanablak.ShowDialog() == true)
+            {
+                gyanúsítottak.Add(gyanablak.ÚjGyanúsítottVissza());
+            }
         }
 
         private void UjBiz_Click(object sender, RoutedEventArgs e)
