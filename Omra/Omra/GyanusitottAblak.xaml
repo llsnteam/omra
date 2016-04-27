@@ -3,20 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="GyanusitottAblak" Height="313" Width="308">
     <Grid>
-        <Image HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="107"/>
-
-        <TextBox x:Name="txt_azonosito" HorizontalAlignment="Left" Height="26" Margin="125,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"/>
-        <Label Content="Azonosító" HorizontalAlignment="Left" Margin="10,115,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.737,-0.231" Width="107"/>
+        <Image x:Name="kep" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="107"/>
 
         <TextBox x:Name="txt_nev" HorizontalAlignment="Left" Height="26" Margin="125,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"/>
-        <Label Content="Teljes név" HorizontalAlignment="Left" Margin="10,146,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.737,-0.231" Width="107"/>
+        <Label Content="Név" HorizontalAlignment="Left" Margin="10,146,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.737,-0.231" Width="107"/>
 
         <TextBox x:Name="txt_lackim" HorizontalAlignment="Left" Height="26" Margin="125,177,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"/>
         <Label Content="Lakcím" HorizontalAlignment="Left" Margin="10,177,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.737,-0.231" Width="107"/>
-
-        <TextBox x:Name="txt_telszam" HorizontalAlignment="Left" Height="26" Margin="125,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"/>
         <Label Content="Telefonszám" HorizontalAlignment="Left" Margin="10,208,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.737,-0.231" Width="107"/>
-        <Button Content="Mentés" HorizontalAlignment="Left" Margin="42,246,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.16,0" Click="click_mentes"/>
+        <Button Content="Mentés" HorizontalAlignment="Left" Margin="42,246,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.16,0"/>
         <Button Content="Vissza" HorizontalAlignment="Left" Margin="150,246,0,0" VerticalAlignment="Top" Width="75" IsCancel="True"/>
 
     </Grid>

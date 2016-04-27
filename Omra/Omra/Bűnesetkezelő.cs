@@ -13,6 +13,7 @@ using Adatkezelõ;
 using Omra;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 namespace Adatkezelõ {
 	public class Bûnesetkezelõ : IBûnesetkezelõ, IGyanúsítottkezelõ, IBizonyítékkezelõ 
@@ -39,9 +40,9 @@ namespace Adatkezelõ {
             }
 		}
 
-        public List<Gyanúsított> GyanúsítottakKigyûjtése(Bûneset bûneset)
+        public ObservableCollection<Gyanúsított> GyanúsítottakKigyûjtése(Bûneset bûneset)
         {
-            List<Gyanúsított> gyanúsítottak = new List<Gyanúsított>();
+            ObservableCollection<Gyanúsított> gyanúsítottak = new ObservableCollection<Gyanúsított>();
             var gyanlista = from x in DE.FelvettGyanusitottak
                             where x.bunesetID == bûneset.GetAzonosító
                             select x.Gyanusitottak;
@@ -52,9 +53,9 @@ namespace Adatkezelõ {
             return gyanúsítottak;
         }
 
-        public List<Bizonyíték> BizonyítékokKigyûjtése(Bûneset bûneset)
+        public ObservableCollection<Bizonyíték> BizonyítékokKigyûjtése(Bûneset bûneset)
         {
-            List<Bizonyíték> bizonyíték = new List<Bizonyíték>();
+            ObservableCollection<Bizonyíték> bizonyíték = new ObservableCollection<Bizonyíték>();
             var bizlista = from x in DE.FelvettBizonyitekok
                             where x.bunesetID == bûneset.GetAzonosító
                             select x.Bizonyitekok;

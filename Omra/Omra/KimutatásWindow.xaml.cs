@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Adatkezelő;
+using System.Threading.Tasks;
 
 
 namespace Omra
@@ -22,8 +23,9 @@ namespace Omra
     public enum KimutatasTipus { Bűneset, Gyanusított, Bizonyíték };
     public partial class KimutatásWindow : Window
     {
-        Kimutatáskészítő k;
+        IKimutatáskezelő kezelo;
         List<StatAdat> adatok;
+        static Random rnd = new Random();
 
         public KimutatásWindow()
         {
@@ -44,31 +46,35 @@ namespace Omra
             //Új kimutatás rajzolása előtt, a canvas törlése
             this.grafikon.Children.Clear();
 
-            //Annak ellenőrzése, hogy lett-e választva dátum. A kimutatás típusa nem lehet null a comboboxból adódóan
-            if (date_tol.SelectedDate != null && date_ig.SelectedDate != null)
+            //Annak ellenőrzése, hogy lett-e választva dátum, illetve, hogy az intervallum eleje kisebb-e, mint a vége. A kimutatás típusa nem lehet null a comboboxból adódóan. 
+            if (date_tol.SelectedDate != null && date_ig.SelectedDate != null && (date_ig.SelectedDate >= date_tol.SelectedDate))
             {
-                k = new Kimutatáskészítő((DateTime)date_tol.SelectedDate, (DateTime)date_ig.SelectedDate);
+                kezelo = new Kimutatáskészítő((DateTime)date_tol.SelectedDate, (DateTime)date_ig.SelectedDate);
+                Keszites();
             }
             else
-                MessageBox.Show("Válasszon időintervallumot!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
+               MessageBox.Show("Válasszon megfelelő időintervallumot!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);         
+        }
 
+        private void Keszites()
+        {
             //Különböző típusú kimutatások
             switch ((KimutatasTipus)cmb_kimutatasTipus.SelectedItem)
             {
                 case KimutatasTipus.Bűneset:
-                    k.BűnesetKimutatás();
+                    (kezelo as Kimutatáskészítő).BűnesetKimutatás();
                     break;
                 case KimutatasTipus.Gyanusított:
-                    k.GyanusítottKimutatás();
+                    (kezelo as Kimutatáskészítő).GyanusítottKimutatás();
                     break;
                 case KimutatasTipus.Bizonyíték:
-                    k.BizonyítékKimutatás();
+                    (kezelo as Kimutatáskészítő).BizonyítékKimutatás();
                     break;
                 default:
                     break;
             }
 
-            this.adatok = k.GetAdatok();
+            this.adatok = (kezelo as Kimutatáskészítő).GetAdatok();
 
             Rajzol();
         }
@@ -98,12 +104,13 @@ namespace Omra
             {
                 oszlopok.Add(new Rect(elozoOszlopSzele,0,egyOszlopSzelessege,egysegnyiMagassag*akt.Darab));
                 Rectangle oszlop = new Rectangle();
-                oszlop.SetValue(Canvas.LeftProperty, oszlopok.ElementAt(seged).X);
-                oszlop.SetValue(Canvas.BottomProperty, oszlopok.ElementAt(seged).Y);
+                oszlop.SetValue(Canvas.LeftProperty, oszlopok.ElementAt(seged).X + 1);
+                oszlop.SetValue(Canvas.BottomProperty, oszlopok.ElementAt(seged).Y + 1);
                 oszlop.SetValue(Rectangle.WidthProperty, oszlopok.ElementAt(seged).Width);
                 oszlop.SetValue(Rectangle.HeightProperty, oszlopok.ElementAt(seged).Height);
-                oszlop.Fill = new SolidColorBrush(Color.FromRgb(22,181,229));
-                oszlop.Stroke = Brushes.Black;
+                //oszlop.Fill = new SolidColorBrush(Color.FromRgb(22,181,229));
+                oszlop.Fill = new SolidColorBrush(Color.FromRgb((byte)rnd.Next(45,56), (byte)rnd.Next(85,215), (byte)rnd.Next(230,256)));
+                oszlop.Stroke = Brushes.WhiteSmoke;
 
                 elozoOszlopSzele += egyOszlopSzelessege;
 
@@ -137,6 +144,7 @@ namespace Omra
 
                 seged++;
             }
+
         }
 
         private void Tengelyek()

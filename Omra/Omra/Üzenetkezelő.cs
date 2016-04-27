@@ -68,12 +68,15 @@ namespace Adatkezelõ {
 
 		/// 
 		/// <param name="üzenet"></param>
-		public void ÜzenetTörlése(Üzenet üzenet)
+		public bool ÜzenetTörlése(Üzenet üzenet)
         {
+            if (üzenet == null)
+                return false;
             decimal id = üzenet.GetUzenetID;
             var aktUzenet = DE.Uzenetek.Single(x => x.uzenetID == id);
             DE.Uzenetek.Remove(aktUzenet);
             DE.SaveChanges();
+            return true;
 		}
 
 	}//end Üzenetkezelõ

@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Adatkezelő;
+using System.Collections.ObjectModel;
 
 namespace Omra
 {
@@ -21,8 +22,8 @@ namespace Omra
     {
         private bool mod; // azt jelzi, hogy módosítási céllal lett-e meghívva ez az osztály, vagy új elem felvétellel
         private decimal id;
-        private List<Gyanúsított> gyanúsítottak;
-        private List<Bizonyíték> bizonyítékok;
+        private ObservableCollection<Gyanúsított> gyanúsítottak;
+        private ObservableCollection<Bizonyíték> bizonyítékok;
         private DatabaseElements DE = new DatabaseElements();
         private Bűnesetkezelő bunesetK = new Bűnesetkezelő();
         private Kereséskezelő keresesK = new Kereséskezelő();
@@ -33,8 +34,8 @@ namespace Omra
         {
             InitializeComponent();
             id = bunesetK.AzonosítóGenerálás(null);
-            gyanúsítottak = new List<Gyanúsított>();
-            bizonyítékok = new List<Bizonyíték>();
+            gyanúsítottak = new ObservableCollection<Gyanúsított>();
+            bizonyítékok = new ObservableCollection<Bizonyíték>();
             Feltoltes(new Dolgozó(Rang.Ornagy, "", "", "", 0), "", gyanúsítottak, bizonyítékok);
         }
 
@@ -44,12 +45,13 @@ namespace Omra
             mod = true;
             kivBűneset = buneset;
             id = kivBűneset.GetAzonosító;
+            felelősŐrnagy = buneset.GetFelelős;
             gyanúsítottak = bunesetK.GyanúsítottakKigyűjtése(buneset);
             bizonyítékok = bunesetK.BizonyítékokKigyűjtése(buneset);
             Feltoltes(buneset.GetFelelős, buneset.GetLeiras, gyanúsítottak, bizonyítékok);
         }
 
-        private void Feltoltes(Dolgozó felelosOrnagy, string leírás, List<Gyanúsított> gyan, List<Bizonyíték> biz)
+        private void Feltoltes(Dolgozó felelosOrnagy, string leírás, ObservableCollection<Gyanúsított> gyan, ObservableCollection<Bizonyíték> biz)
         {
             felorn_txb.Text = felelosOrnagy.GetNév();
             leiras_txb.Text = leírás;
@@ -75,7 +77,7 @@ namespace Omra
 
         private void Mentes_Click(object sender, RoutedEventArgs e)
         {
-            if(felelősŐrnagy!=null)
+            if (felelősŐrnagy != null)
             {
                 if (mod)
                 {
@@ -102,6 +104,8 @@ namespace Omra
                 DE.SaveChanges();
                 this.DialogResult = true;
             }
+            else
+                MessageBox.Show("Rohadj meg!");
         }
 
         private void Vissza_Click(object sender, RoutedEventArgs e)
@@ -125,8 +129,21 @@ namespace Omra
             if (keresablak.ShowDialog() == true)
             {
                 bizonyítékok.Add((Bizonyíték)keresablak.feltoltendo);
+
                 ListboxBizonyítékok.ItemsSource = bizonyítékok;
             }
+        }
+
+        private void UjGyan_Click(object sender, RoutedEventArgs e)
+        {
+            GyanusitottAblak gyanablak = new GyanusitottAblak();
+            gyanablak.ShowDialog();
+        }
+
+        private void UjBiz_Click(object sender, RoutedEventArgs e)
+        {
+            BizonyitekWindow bizablak = new BizonyitekWindow();
+            bizablak.ShowDialog();
         }
 
     }
