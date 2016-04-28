@@ -22,7 +22,7 @@ namespace Omra
         public BizonyitekWindow()
         {
             InitializeComponent();
-           
+            datepicker.SelectedDate = DateTime.Now;
         }
 
         public BizonyitekWindow(Bizonyíték bizonyitek) //módosítás
