@@ -12,9 +12,11 @@
         <Button Click="Vissza_Click" Content="Vissza" HorizontalAlignment="Left" Margin="175,229,0,0" VerticalAlignment="Top" Width="75"/>
         <ListBox Name="ListboxGyanúsítottak" HorizontalAlignment="Left" Height="203" Margin="369,10,0,0" VerticalAlignment="Top" Width="195"/>
         <Label Content="Gyanúsítottak:" HorizontalAlignment="Left" Margin="278,10,0,0" VerticalAlignment="Top"/>
-        <Button Click="GyanusitottFelvetel_Click" Content="Felvétel" HorizontalAlignment="Left" Margin="430,229,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Click="GyanusitottFelvetel_Click" Content="Keresés" HorizontalAlignment="Left" Margin="369,229,0,0" VerticalAlignment="Top" Width="75"/>
         <Label Content="Bizonyítékok:" HorizontalAlignment="Left" Margin="582,10,0,0" VerticalAlignment="Top"/>
         <ListBox Name="ListboxBizonyítékok" HorizontalAlignment="Left" Height="203" Margin="667,10,0,0" VerticalAlignment="Top" Width="195"/>
-        <Button Click="BizonyitekFelvetel_Click" Content="Felvétel" HorizontalAlignment="Left" Margin="731,229,0,0" VerticalAlignment="Top" Width="75"/>
-    </Grid>
+        <Button Click="BizonyitekFelvetel_Click" Content="Keresés" HorizontalAlignment="Left" Margin="667,229,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Click="UjGyan_Click" Content="Új gyanúsított" HorizontalAlignment="Left" Margin="481,229,0,0" VerticalAlignment="Top" Width="83"/>
+        <Button Click="UjBiz_Click" Content="Új bizonyíték" HorizontalAlignment="Left" Margin="782,229,0,0" VerticalAlignment="Top" Width="80"/>
+    </Grid> 
 </Window>
