@@ -33,7 +33,7 @@ namespace Omra
 
         private void click_mentes(object sender, RoutedEventArgs e)
         {
-           
+ 
+            }
         }
     }
-}
