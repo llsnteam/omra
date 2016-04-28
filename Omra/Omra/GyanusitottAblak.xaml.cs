@@ -45,17 +45,17 @@ namespace Omra
             InitializeComponent();
             if (buneset == null)
             {
-                var bunID = from x in DE.FelvettGyanusitottak
+                var bunID = from x in DE.FelvettGyanusitottak // gyanúsítotthoz tartozó bűneset
                             where x.gyanusitottID == id
                             select x.bunesetID;
                 decimal bunesID = bunID.First();
 
-                var bun = from x in DE.Bunesetek
+                var bun = from x in DE.Bunesetek  // bűneset kivlasztása
                           where x.bunesetID == bunesID
                           select x;
                 Bunesetek kivbuneset = bun.First();
 
-                var felornagy = from x in DE.Dolgozok
+                var felornagy = from x in DE.Dolgozok  // bűnesethez tartozó felelős őrnagy kiválasztása
                                 where x.dolgozoID == kivbuneset.felelos_ornagy
                                 select x;
                 Dolgozok felelősőrnagy = felornagy.First();
