@@ -104,7 +104,8 @@ namespace Omra
         private void UzenetTorles_Click(object sender, RoutedEventArgs e)
         {
             kivalasztottUzenet = (Üzenet)ListboxÜzenetek.SelectedItem;
-            uzenetK.ÜzenetTörlése(kivalasztottUzenet);
+            if (!uzenetK.ÜzenetTörlése(kivalasztottUzenet))
+                MessageBox.Show("Nincs törlendő üzenet!");
         }
 
         private void Kereses_Click(object sender, RoutedEventArgs e)

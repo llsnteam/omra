@@ -114,7 +114,7 @@ namespace Adatkezelõ {
                            select x;
 
             foreach (var v in eredmeny)
-                relevánsBûnesetek.Add(new Bûneset(v.bunesetID, (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras, v.lezaras));
+                relevánsBûnesetek.Add(new Bûneset(v.bunesetID, (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras, v.lezaras, null));
         }
     }//end Kimutatáskészítõ
 
