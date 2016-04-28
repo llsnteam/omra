@@ -33,10 +33,7 @@ namespace Omra
 
         private void click_mentes(object sender, RoutedEventArgs e)
         {
-            if (txt_azonosito.Text.Length != 0 && txt_nev.Text.Length != 0 && txt_lackim.Text.Length != 0 && txt_telszam.Text.Length != 0)
-            {
- 
-            }
+           
         }
     }
 }
