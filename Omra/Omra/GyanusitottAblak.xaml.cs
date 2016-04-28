@@ -82,7 +82,6 @@ namespace Omra
         private void Mentes_Click(object sender, RoutedEventArgs e)
         {
             gyKezelo.GyanúsítottHozzáadása(new Gyanúsított((GyanúsítottStátusz)statusz_cbx.SelectedItem, nev_txt.Text, lakcim_txt.Text, id),bűneset);
-            DE.SaveChanges();  // ennek itt semmi hatása, ahogy észrevettem
             this.DialogResult = true;
         }
 
