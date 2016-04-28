@@ -147,6 +147,7 @@
     <Compile Include="UjUzenet.xaml.cs">
       <DependentUpon>UjUzenet.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UnitTester.cs" />
     <Compile Include="Uzenetek.cs">
       <DependentUpon>DatabaseModel.tt</DependentUpon>
     </Compile>
