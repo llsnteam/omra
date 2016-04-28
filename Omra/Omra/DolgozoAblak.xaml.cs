@@ -19,10 +19,10 @@ namespace Omra
     /// </summary>
     public partial class DolgozoAblak : Window
     {
-        private decimal id;
-        private bool mod;
+        private decimal id; // ezt a program számolja ki, nem a felhasználó adja meg
+        private bool mod; // azt jelzi, hogy módosítás céljából lett megnyitva az ablak, vagy új dolgozó felvételéhez
         DatabaseElements DE = new DatabaseElements();
-        public DolgozoAblak()
+        public DolgozoAblak()  // ez a konstruktor új dolgozó felvételéhez van
         {
             InitializeComponent();
             mod = false;
@@ -35,15 +35,15 @@ namespace Omra
 
             Feltoltes("", "", Rang.Adminisztrátor, "");
         }
-        public DolgozoAblak(Dolgozó kivDolgozó, decimal dolgozoID)
+        public DolgozoAblak(Dolgozó kivDolgozó)  // ez a konstruktor a módosításhoz van, kiválasztott dolgozót kapja bemenetnek
         {
             InitializeComponent();
             mod = true;
-            id = dolgozoID;
+            id = kivDolgozó.GetAzonosító();
             Feltoltes(kivDolgozó.GetNév(), kivDolgozó.GetJelszó(), kivDolgozó.GetBeosztás(), kivDolgozó.GetBejelentettLakcím());
         }
 
-        private void Feltoltes(string nev, string jelszo, Rang rang, string lakcim)
+        private void Feltoltes(string nev, string jelszo, Rang rang, string lakcim) // bemeneti paraméterek alapján feltölti a mezőket az ablakban
         {
             rang_cbx.ItemsSource = Enum.GetValues(typeof(Rang));
             nev_txb.Text = nev;

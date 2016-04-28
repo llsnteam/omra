@@ -22,7 +22,7 @@ namespace Adatkezelõ {
 
             List<Bizonyíték> visszateresilista = new List<Bizonyíték>();
 
-            bool IDkereses = false;     //ID-re keres (számmal kezdõdik) vagy a bizonyíték típusára keres (betûvel kezdõdik)
+            bool IDkereses = false;     //ID-re keres (ha számmal kezdõdik) vagy a bizonyíték típusára keres (betûvel kezdõdik)
 
             for (int i = 0; i < 10; i++)
                 if (azonosító.StartsWith(Convert.ToString(i))) IDkereses = true;
@@ -33,22 +33,23 @@ namespace Adatkezelõ {
 
                 DatabaseElements DE = new DatabaseElements(); 
 
-                var eredmeny = from x in DE.Bizonyitekok
+                var eredmeny = from x in DE.Bizonyitekok    //megkeresi és feltölti a bizonyítékokat
                                where x.bizonyitekID == d
                                select x;
 
                 foreach (var v in eredmeny)
-                    visszateresilista.Add(new Bizonyíték(Convert.ToString(v.bizonyitekID), v.megnevezes, v.felvetel));
+                    visszateresilista.Add(new Bizonyíték(v.bizonyitekID, v.megnevezes, v.felvetel));
             }
             else //ha megnevezés alapú
             {
                 DatabaseElements DE = new DatabaseElements();
-                var eredmeny = from x in DE.Bizonyitekok
+
+                var eredmeny = from x in DE.Bizonyitekok    //megkeresi és feltölti a bizonyítékokat
                                where x.megnevezes.Contains(azonosító)
                                select x;
 
-                foreach (var v in eredmeny)
-                    visszateresilista.Add(new Bizonyíték(Convert.ToString(v.bizonyitekID), v.megnevezes, v.felvetel));
+                foreach (var v in eredmeny)    
+                    visszateresilista.Add(new Bizonyíték(v.bizonyitekID, v.megnevezes, v.felvetel));
             }
 
             return visszateresilista;
@@ -59,7 +60,12 @@ namespace Adatkezelõ {
 
             List<Bûneset> visszateresilista = new List<Bûneset>();
 
-            if (azonosító != "")
+            bool IDkereses = false;     //ID-re keres (ha számmal kezdõdik) vagy a bizonyíték típusára keres (betûvel kezdõdik)
+
+            for (int i = 0; i < 10; i++)
+                if (azonosító.StartsWith(Convert.ToString(i))) IDkereses = true;
+
+            if (IDkereses)
             {
                 Decimal d = Convert.ToDecimal(azonosító);
 
@@ -71,8 +77,16 @@ namespace Adatkezelõ {
 
                 foreach (var v in eredmeny)
                 {
-                                       
-                    visszateresilista.Add(new Bûneset(Convert.ToString(v.bunesetID), (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras));
+                    var ered = from x in DE.Dolgozok
+                                   where x.dolgozoID == v.felelos_ornagy
+                                   select x;
+
+                    Dolgozó felelosornagy = null;
+
+                    foreach (var m in ered)
+                        felelosornagy = new Dolgozó((Rang)Enum.Parse(typeof(Rang), m.rang.ToString()), m.jelszo, m.nev, m.lakcim, m.dolgozoID);
+
+                    visszateresilista.Add(new Bûneset(v.bunesetID, (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras, v.lezaras, felelosornagy));
                 }
             }
             else
@@ -80,11 +94,21 @@ namespace Adatkezelõ {
                 DatabaseElements DE = new DatabaseElements();
 
                 var eredmeny = from x in DE.Bunesetek
+                               where x.leiras.Contains(azonosító)
                                select x;
 
                 foreach (var v in eredmeny)
                 {
-                    visszateresilista.Add(new Bûneset(Convert.ToString(v.bunesetID), (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras));
+                    var ered = from x in DE.Dolgozok
+                               where x.dolgozoID == v.felelos_ornagy
+                               select x;
+
+                    Dolgozó felelosornagy = null;
+
+                    foreach (var m in ered)
+                        felelosornagy = new Dolgozó((Rang)Enum.Parse(typeof(Rang), m.rang.ToString()), m.jelszo, m.nev, m.lakcim, m.dolgozoID);
+
+                    visszateresilista.Add(new Bûneset(v.bunesetID, (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras, v.lezaras, felelosornagy));
                 }
             }
             
@@ -200,7 +224,42 @@ namespace Adatkezelõ {
 
 		public List<Gyanúsított> Gyanúsítottkeresés(string azonosító){
 
-			return null;
+            List<Gyanúsított> visszateresilista = new List<Gyanúsított>();
+
+            bool IDkereses = false;     //ID-re keres (számmal kezdõdik) vagy a bizonyíték típusára keres (betûvel kezdõdik)
+
+            for (int i = 0; i < 10; i++)
+                if (azonosító.StartsWith(Convert.ToString(i))) IDkereses = true;
+
+            if (IDkereses) //ha ID alapú
+            {
+                Decimal d = Convert.ToDecimal(azonosító);
+
+                DatabaseElements DE = new DatabaseElements();
+
+                var eredmeny = from x in DE.Gyanusitottak
+                               where x.gyanusitottID == d
+                               select x;
+
+                foreach (var v in eredmeny)
+                    visszateresilista.Add(new Gyanúsított((GyanúsítottStátusz)Enum.Parse(typeof(GyanúsítottStátusz), v.statusz.ToString()), v.nev, v.lakcim, v.gyanusitottID));
+
+            }
+            else //ha megnevezés alapú
+            {
+                DatabaseElements DE = new DatabaseElements();
+
+                var eredmeny = from x in DE.Gyanusitottak
+                               where x.nev.Contains(azonosító)
+                               select x;
+
+                foreach (var v in eredmeny)
+                    visszateresilista.Add(new Gyanúsított((GyanúsítottStátusz)Enum.Parse(typeof(GyanúsítottStátusz), v.statusz.ToString()), v.nev, v.lakcim, v.gyanusitottID));
+            }
+
+            return visszateresilista;
+
+			
 		}
 
 	}//end Kereséskezelõ

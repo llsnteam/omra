@@ -57,18 +57,18 @@ namespace Adatkezelõ
 
             var bunesetek = from dolg in DE.FelvettDolgozok
                         where dolg.dolgozoID == id
-                        select new { dolg.Bunesetek.bunesetID, dolg.Bunesetek.leiras };
+                        select new { dolg.Bunesetek.bunesetID, dolg.Bunesetek.leiras, dolg.Bunesetek.felvetel, dolg.Bunesetek.allapot };
 
             if (dolgozo.GetBeosztás() == Rang.Ornagy)
             {
                 bunesetek = from bun in DE.Bunesetek
                                 where bun.felelos_ornagy == id
-                                select new { bun.bunesetID, bun.leiras };
+                                select new { bun.bunesetID, bun.leiras, bun.felvetel,bun.allapot };
             }
 
             foreach (var item in bunesetek)
             {
-                vissza.Add(new Feladat(item.leiras, dolgozo, dolgozo));   // LÉTREHOZÓ KELL ????
+                vissza.Add(new Feladat(item.leiras, dolgozo, item.felvetel,(FÁllapot)Enum.Parse(typeof(FÁllapot),item.allapot)));
             }
             return vissza;
         }

@@ -13,16 +13,10 @@ using Adatkezelõ;
 namespace Adatkezelõ {
 	public class Gyanúsított : Személy {
 
-        private string név;
-        private string bejelentettLakcím;
-        private string azonosító;
-		private GyanúsítottStátusz státusz;
+
+
+		protected GyanúsítottStátusz státusz;
         
-		/// 
-		/// <param name="státusz"></param>
-		/// <param name="név"></param>
-		/// <param name="lakcím"></param>
-		/// <param name="személyiazonosító"></param>
 		public Gyanúsított(GyanúsítottStátusz státusz, string név, string lakcím, decimal személyiazonosító)
             :base(személyiazonosító,lakcím,név)
         {
@@ -34,6 +28,11 @@ namespace Adatkezelõ {
 			return this.státusz;
 		}
 
+
+        public override string ToString()
+        {
+            return "ID: " + this.azonosító + " Név: " + this.név + " Státusz: " + this.státusz.ToString();
+        }
 	}//end Gyanúsított
 
 }//end namespace Adatkezelõ

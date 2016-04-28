@@ -12,38 +12,47 @@
 using Adatkezelõ;
 using System;
 using System.Collections.Generic;
+using Omra;
 namespace Adatkezelõ {
 	public class Bûneset 
     {
 
-		private string azonosító;
+		private decimal azonosító;
 
 		private BÁllapot állapot;
 
         private DateTime felvetel;
-        private DateTime lezaras;
+        private DateTime? lezaras;
 
         private string leiras;
+
+        private Dolgozó felelõsõrnagy;
+
+        private DatabaseElements DE = new DatabaseElements();
         
 		/// 
 		/// <param name="azonosító"></param>
-		public Bûneset(string azonosító, string leiras){   //felvételhez
+		public Bûneset(decimal azonosító, string leiras, Dolgozó felõrnagy){   //felvételhez
             this.azonosító = azonosító;
 
             this.állapot = BÁllapot.Folyamatban;
             this.felvetel = DateTime.Now;
             this.leiras = leiras;
+            this.felelõsõrnagy = felõrnagy;
 		}
 
-        public Bûneset(string azonosító, BÁllapot allapot, DateTime felvetel, string leiras)  //megjelenítéshez a keresésben
+        public Bûneset(decimal azonosító, BÁllapot allapot, DateTime felvetel, string leiras, DateTime? lezaras, Dolgozó felõrnagy)  //megjelenítéshez a keresésben
         {
             this.azonosító = azonosító;
             this.állapot = allapot;
             this.felvetel = felvetel;
             this.leiras = leiras;
+            this.lezaras = lezaras;
+            this.felelõsõrnagy = felõrnagy;
         }
 
-		public void Állapotmódosítás(){
+		public void Állapotmódosítás()
+        {
             if (állapot == BÁllapot.Folyamatban)
             {
                 állapot = BÁllapot.Lezárt;
@@ -52,14 +61,15 @@ namespace Adatkezelõ {
             if (állapot == BÁllapot.Lezárt)
             {
                 állapot = BÁllapot.Folyamatban;
-                //lezaras = null    //datetime nem nullázható -> mivel legyen jelölve?
+                lezaras = null;
             }
 		}
 
 		/// 
 		/// <param name="Bûneset"></param>
 		/// <param name="Bizonyíték"></param>
-		public void BizonyítékHozzáadása(Bûneset Bûneset, Bizonyíték Bizonyíték){
+		public void BizonyítékHozzáadása(Bûneset Bûneset, Bizonyíték Bizonyíték)
+        {
             
 		}
 
@@ -68,7 +78,7 @@ namespace Adatkezelõ {
             return this.állapot;
 		}
 
-		public string GetAzonosító{
+		public decimal GetAzonosító{
 			get
             {
 				return azonosító;
@@ -83,7 +93,7 @@ namespace Adatkezelõ {
             }
         }
 
-        public DateTime GetLezaras
+        public DateTime? GetLezaras
         {
             get
             {
@@ -99,10 +109,34 @@ namespace Adatkezelõ {
             }
         }
 
+        public Dolgozó GetFelelõs
+        {
+            get
+            {
+                return felelõsõrnagy;
+            }
+        }
+
 		/// 
 		/// <param name="Gyanúsított"></param>
-		public void GyanúsítottHozzáadása(Gyanúsított Gyanúsított){
-            
+		public void GyanúsítottHozzáadása(Gyanúsított Gyanúsított)
+        {
+            var ujgyan = new Gyanusitottak()
+            {
+                gyanusitottID = Gyanúsított.GetAzonosító(),
+                nev = Gyanúsított.GetNév(),
+                lakcim = Gyanúsított.GetBejelentettLakcím(),
+                statusz = Gyanúsított.GetStátusz().ToString()
+            };
+            var ujfelvgyan = new FelvettGyanusitottak()
+            {
+                bunesetID = azonosító,
+                gyanusitottID = Gyanúsított.GetAzonosító(),
+                felvetel_idopontja = DateTime.Now
+            };
+            DE.FelvettGyanusitottak.Add(ujfelvgyan);
+            DE.Gyanusitottak.Add(ujgyan);
+            //DE.SaveChanges();  ide valamiért ezt nem engedi berakni
 		}
 
         public override string ToString()

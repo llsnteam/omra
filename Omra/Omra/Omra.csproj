@@ -14,6 +14,7 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,7 +27,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -206,7 +206,6 @@
     <Compile Include="IKimutatáskezelő.cs" />
     <Compile Include="IÜzenetkezelő.cs" />
     <Compile Include="Kereséskezelő.cs" />
-    <Compile Include="Kimutatás.cs" />
     <Compile Include="Kimutatáskészítő.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -273,17 +272,22 @@
     <Resource Include="gomb4_over.png" />
     <Resource Include="gomb4_sima.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="valami\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Database.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Database_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
+    <Resource Include="kepek\0.jpg" />
+    <Resource Include="kepek\1.jpg" />
+    <Resource Include="kepek\2.jpg" />
+    <Resource Include="kepek\3.jpg" />
+    <Resource Include="kepek\4.jpg" />
+    <Resource Include="kepek\5.jpg" />
+    <Resource Include="kepek\6.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">

@@ -13,18 +13,58 @@ using Adatkezelõ;
 using Omra;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 namespace Adatkezelõ {
 	public class Bûnesetkezelõ : IBûnesetkezelõ, IGyanúsítottkezelõ, IBizonyítékkezelõ 
     {
+        DatabaseElements DE = new DatabaseElements();
         
+		public decimal AzonosítóGenerálás(Bûneset buneset)
+        {
+            if(buneset!=null)
+            {
+                var meglevoID = from x in DE.Bunesetek
+                               where x.bunesetID == buneset.GetAzonosító
+                               select x.bunesetID;
 
+                return meglevoID.First();
+            }
+            else
+            {
+                var utolsoID = from x in DE.Bunesetek
+                               where x.bunesetID == DE.Bunesetek.Max(y => y.bunesetID)
+                               select x.bunesetID;
 
-		private List<Bûneset> bûnesetek;
-        
-		public string AzonosítóGenerálás(){
-
-			return "";
+                return utolsoID.First() + 1;
+            }
 		}
+
+        public ObservableCollection<Gyanúsított> GyanúsítottakKigyûjtése(Bûneset bûneset)
+        {
+            ObservableCollection<Gyanúsított> gyanúsítottak = new ObservableCollection<Gyanúsított>();
+            var gyanlista = from x in DE.FelvettGyanusitottak
+                            where x.bunesetID == bûneset.GetAzonosító
+                            select x.Gyanusitottak;
+
+            foreach(var gyan in gyanlista)
+                gyanúsítottak.Add(new Gyanúsított((GyanúsítottStátusz)Enum.Parse(typeof(GyanúsítottStátusz),gyan.statusz),gyan.nev,gyan.lakcim,gyan.gyanusitottID));
+
+            return gyanúsítottak;
+        }
+
+        public ObservableCollection<Bizonyíték> BizonyítékokKigyûjtése(Bûneset bûneset)
+        {
+            ObservableCollection<Bizonyíték> bizonyíték = new ObservableCollection<Bizonyíték>();
+            var bizlista = from x in DE.FelvettBizonyitekok
+                            where x.bunesetID == bûneset.GetAzonosító
+                            select x.Bizonyitekok;
+
+            foreach (var biz in bizlista)
+                bizonyíték.Add(new Bizonyíték(biz.bizonyitekID, biz.megnevezes, biz.felvetel));
+
+            return bizonyíték;
+        }
 
 		/// 
 		/// <param name="bizonyíték">ez kérdéses</param>
@@ -35,33 +75,25 @@ namespace Adatkezelõ {
         
 		/// 
 		/// <param name="megnevezés"></param>
-		public List<Bizonyíték> BizonyítékKeresés(string megnevezés){
+		public List<Bizonyíték> BizonyítékKeresés(string megnevezés)
+        {
             //nem is kellene ide ? -> kereséskezelõ valósítja meg
 			return null;
 		}
 
 		/// 
 		/// <param name="bûneset"></param>
-		public void BûnesetÁllapotmódosítás(Bûneset bûneset){
+		public void BûnesetÁllapotmódosítás(Bûneset bûneset)
+        {
             bûneset.Állapotmódosítás();
             //---------------------Adatbázisban módosítani
 		}
 
 		/// 
-		/// <param name="azonosító"></param>
-		public Bûneset BûnesetKeresés(string azonosító){
-            //nem is kellene ide ? -> kereséskezelõ valósítja meg
-			return null;
-		}
-
-		public List<Bûneset> GetBûnesetek(){
-			return bûnesetek;
-		}
-
-		/// 
 		/// <param name="Gyanúsított"></param>
 		/// <param name="Bûneset"></param>
-		public void GyanúsítottHozzáadása(Gyanúsított Gyanúsított, Bûneset Bûneset){
+		public void GyanúsítottHozzáadása(Gyanúsított Gyanúsított, Bûneset Bûneset)
+        {
             Bûneset.GyanúsítottHozzáadása(Gyanúsított);
 		}
 
@@ -69,12 +101,10 @@ namespace Adatkezelõ {
 		/// <param name="megnevezés">Mint pl. kés, pisztoly stb.</param>
 		/// <param name="azonosító"></param>
 		public void ÚjBizonyíték(string megnevezés){
-            Decimal azonosító = Convert.ToDecimal(AzonosítóGenerálás());
+            Decimal azonosító = Convert.ToDecimal(AzonosítóGenerálás(null));
 
             //Bizonyíték b = new Bizonyíték(megnevezés, azonosító, DateTime.Now);
-
-            DatabaseElements DE = new DatabaseElements();
-
+            
             var ujbizonyitek = new Bizonyitekok()
             {
                 bizonyitekID = azonosító,
@@ -84,11 +114,6 @@ namespace Adatkezelõ {
 
             DE.Bizonyitekok.Add(ujbizonyitek);
             DE.SaveChanges();
-		}
-
-		public void ÚjBûneset(string leiras){
-            Bûneset b = new Bûneset(AzonosítóGenerálás(), leiras);
-            bûnesetek.Add(b); //------------------------------------- bûneset az adatbázisba
 		}
 
 		/// 
@@ -107,6 +132,10 @@ namespace Adatkezelõ {
             //----------------------------------------gyanúsított az adatbázisba
 		}
 
-	}//end Bûnesetkezelõ
+        public void ÚjBûneset(string leiras)
+        {
+
+        }
+    }//end Bûnesetkezelõ
 
 }//end namespace Adatkezelõ

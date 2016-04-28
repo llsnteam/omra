@@ -27,7 +27,7 @@ namespace Adatkezelõ {
 
 		/// 
 		/// <param name="üzenet"></param>
-		void ÜzenetTörlése(Üzenet üzenet);
+		bool ÜzenetTörlése(Üzenet üzenet);
 	}//end IÜzenetkezelõ
 
 }//end namespace Adatkezelõ

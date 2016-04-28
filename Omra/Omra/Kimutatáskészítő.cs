@@ -14,47 +14,109 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 namespace Adatkezelõ {
-	public class Kimutatáskészítõ
+	public class Kimutatáskészítõ : IKimutatáskezelõ
     {
-        private KimutatasTipus tipus;
-		private Kimutatás kimutatás;
+        private DateTime kezdet;
+        private DateTime vege;
         private List<StatAdat> adatok;
+        private List<Bûneset> relevánsBûnesetek;
 
         public List<StatAdat> GetAdatok()
         {
 			return this.adatok;
 		}
 
-        public KimutatasTipus GetKimutatásTípus()
+        public Kimutatáskészítõ(DateTime kezdet, DateTime vege)
         {
-            return this.tipus;
-        }
-
-        public Kimutatáskészítõ(DateTime kezdet, DateTime vege, KimutatasTipus tipus)
-        {
-            this.kimutatás = new Kimutatás();
-            kimutatás.ÚjKimutatás(vege,kezdet);
-            this.tipus = tipus;
             adatok = new List<StatAdat>();
+            ÚjKimutatás(vege,kezdet);
         }
 
         public void BûnesetKimutatás()
         {
-            List<Bûneset> bûnesetek = this.kimutatás.GetAdatok;
-
             //a bûnesetek állapot szerinti csoportosítása
-            var query1 = from x in bûnesetek
+            var query = from x in relevánsBûnesetek
                          group x by x.GetÁllapot() into groups
                          select new {Állapot = groups.Key, Darab = groups.Count() };
 
             //StatAdat osztály típusba mentés, a könnyebb kezelés érdekében
-            foreach (var akt in query1)
-	        {
+            foreach (var akt in query)
                 adatok.Add(new StatAdat() { Darab = akt.Darab, Csoport = akt.Állapot.ToString() });
-	        }
+        }
+
+        public void BizonyítékKimutatás()
+        {
+            List<string> bizonyitekok = new List<string>();
+
+            DatabaseElements DE = new DatabaseElements();
+
+            //Bizonyítékok nevének egy listába mentése
+            foreach (var akt in relevánsBûnesetek)
+            {
+                var q = from x in DE.FelvettBizonyitekok
+                        where x.bunesetID == akt.GetAzonosító
+                        select new { Nev = x.Bizonyitekok.megnevezes };
+
+                //Egy bûnesetnél több bizonyíték is lehet
+                foreach (var q_akt in q)
+                    bizonyitekok.Add(q_akt.Nev);
+            }
+
+            //A bizonyítékok csoportosítása
+            var query = bizonyitekok
+                                .GroupBy(x => x)
+                                .Select(g => new { Név = g.Key, Darab = g.Count() });
+
+            //StatAdat osztály típusba mentés, a könnyebb kezelés érdekében
+            foreach (var akt in query)
+                adatok.Add(new StatAdat() { Darab = akt.Darab, Csoport = akt.Név.ToString() });
+        }
+
+        public void GyanusítottKimutatás()
+        {
+            List<string> gyanusitottakNevei = new List<string>();
+
+            DatabaseElements DE = new DatabaseElements();
+
+            //Gyanusítottak nevének egy listába mentése
+            foreach (var akt in relevánsBûnesetek)
+            {
+                var q = from x in DE.FelvettGyanusitottak
+                        where x.bunesetID == akt.GetAzonosító
+                        select new { Nev = x.Gyanusitottak.nev };
+
+                //Egy bûnesetnél több gyanusított is lehet
+                foreach (var q_akt in q)
+                    gyanusitottakNevei.Add(q_akt.Nev);
+            }
+
+            //A gyanusítottak csoportosítása
+            var query = gyanusitottakNevei
+                                .GroupBy(x => x)
+                                .Select(g => new { Név = g.Key, Darab = g.Count() });
+
+            //StatAdat osztály típusba mentés, a könnyebb kezelés érdekében
+            foreach (var akt in query)
+                adatok.Add(new StatAdat() { Darab = akt.Darab, Csoport = akt.Név.ToString() });
+        }
+
+        public void ÚjKimutatás(DateTime vege, DateTime kezdet)
+        {
+            this.vege = vege;
+            this.kezdet = kezdet;
+            relevánsBûnesetek = new List<Bûneset>();
+
+            // Adatokat a listába gyûjtése
+            DatabaseElements DE = new DatabaseElements();
+
+            var eredmeny = from x in DE.Bunesetek
+                           where x.felvetel >= this.kezdet && x.felvetel <= this.vege
+                           select x;
+
+            foreach (var v in eredmeny)
+                relevánsBûnesetek.Add(new Bûneset(v.bunesetID, (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras, v.lezaras, null));
         }
     }//end Kimutatáskészítõ
-
 
      //Ez itt az adatok tárolását szolgálja
     public class StatAdat

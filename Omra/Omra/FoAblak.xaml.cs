@@ -65,13 +65,12 @@ namespace Omra
             }
             if (r == Rang.Adminisztrátor || r == Rang.Kapitány || r == Rang.Tiszt) // ha nem őrnagy lép be
             {
-                orn_bunmod.Visibility = hidden;
                 orn_felkio.Visibility = hidden;
             }
-            if(r == Rang.Adminisztrátor||r == Rang.Kapitány || r == Rang.Ornagy) // ha nem tiszt lép be
+            /*if(r == Rang.Adminisztrátor||r == Rang.Kapitány || r == Rang.Ornagy) // ha nem tiszt lép be
             {
                 tiszt_bunmod.Visibility = hidden;
-            }
+            }*/
         }
 
         private void AdatokBetoltese()  // controllok feltöltése az adott dolgozó adataival
@@ -105,7 +104,8 @@ namespace Omra
         private void UzenetTorles_Click(object sender, RoutedEventArgs e)
         {
             kivalasztottUzenet = (Üzenet)ListboxÜzenetek.SelectedItem;
-            uzenetK.ÜzenetTörlése(kivalasztottUzenet);
+            if (!uzenetK.ÜzenetTörlése(kivalasztottUzenet))
+                MessageBox.Show("Nincs törlendő üzenet!");
         }
 
         private void Kereses_Click(object sender, RoutedEventArgs e)
@@ -122,7 +122,7 @@ namespace Omra
 
         private void UjBun_Click(object sender, RoutedEventArgs e)
         {
-            BunesetAblak bunablak = new BunesetAblak(false);
+            BunesetAblak bunablak = new BunesetAblak();
             bunablak.ShowDialog();
         }
 
@@ -140,7 +140,7 @@ namespace Omra
 
         private void BunMod_Click(object sender, RoutedEventArgs e)
         {
-            BunesetAblak bunablak = new BunesetAblak(true);
+            BunesetAblak bunablak = new BunesetAblak();
             bunablak.ShowDialog();
         }
 
@@ -153,9 +153,10 @@ namespace Omra
 
         private void FeladatKival_Click(object sender, SelectionChangedEventArgs e)
         {
-            datum_fel_lbl.Content = (ListboxFeladatok.SelectedItem as Bűneset).GetFelvetel.ToString();
-            allapot_fel_lbl.Content = (ListboxFeladatok.SelectedItem as Bűneset).GetÁllapot().ToString();
-            szoveg_fel_txb.Text = (ListboxFeladatok.SelectedItem as Bűneset).GetLeiras;
+            string dateformat = (ListboxFeladatok.SelectedItem as Feladat).GetLétrehozás.Year + ". " + (ListboxFeladatok.SelectedItem as Feladat).GetLétrehozás.Month + ". " + (ListboxFeladatok.SelectedItem as Feladat).GetLétrehozás.Day + ".";
+            datum_fel_lbl.Content = dateformat; // csak azért, hogy normálisan jelenítse meg a dátumot
+            allapot_fel_lbl.Content = (ListboxFeladatok.SelectedItem as Feladat).GetÁllapot;
+            szoveg_fel_txb.Text = (ListboxFeladatok.SelectedItem as Feladat).GetLeírás;
         }
 
     }

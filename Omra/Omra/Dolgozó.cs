@@ -16,12 +16,6 @@ namespace Adatkezelõ {
 		private string jelszó;
 		private Rang beosztás;
         
-		/// 
-		/// <param name="Rang"></param>
-		/// <param name="jelszó"></param>
-		/// <param name="név"></param>
-		/// <param name="lakcím"></param>
-		/// <param name="személyiazonosító"></param>
 		public Dolgozó(Rang Rang, string jelszó, string név, string lakcím, decimal személyiazonosító)
             :base(személyiazonosító,lakcím,név)
         {
