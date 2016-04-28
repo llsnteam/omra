@@ -22,7 +22,7 @@ namespace Omra
     public enum KimutatasTipus { Bűneset, Gyanusított, Bizonyíték };
     public partial class KimutatásWindow : Window
     {
-        Kimutatáskészítő k;
+        IKimutatáskezelő kezelo;
         List<StatAdat> adatok;
 
         public KimutatásWindow()
@@ -44,31 +44,35 @@ namespace Omra
             //Új kimutatás rajzolása előtt, a canvas törlése
             this.grafikon.Children.Clear();
 
-            //Annak ellenőrzése, hogy lett-e választva dátum. A kimutatás típusa nem lehet null a comboboxból adódóan
-            if (date_tol.SelectedDate != null && date_ig.SelectedDate != null)
+            //Annak ellenőrzése, hogy lett-e választva dátum, illetve, hogy az intervallum eleje kisebb-e, mint a vége. A kimutatás típusa nem lehet null a comboboxból adódóan. 
+            if (date_tol.SelectedDate != null && date_ig.SelectedDate != null && (date_ig.SelectedDate >= date_tol.SelectedDate))
             {
-                k = new Kimutatáskészítő((DateTime)date_tol.SelectedDate, (DateTime)date_ig.SelectedDate);
+                kezelo = new Kimutatáskészítő((DateTime)date_tol.SelectedDate, (DateTime)date_ig.SelectedDate);
+                Keszites();
             }
             else
-                MessageBox.Show("Válasszon időintervallumot!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
+               MessageBox.Show("Válasszon megfelelő időintervallumot!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Error);         
+        }
 
+        private void Keszites()
+        {
             //Különböző típusú kimutatások
             switch ((KimutatasTipus)cmb_kimutatasTipus.SelectedItem)
             {
                 case KimutatasTipus.Bűneset:
-                    k.BűnesetKimutatás();
+                    (kezelo as Kimutatáskészítő).BűnesetKimutatás();
                     break;
                 case KimutatasTipus.Gyanusított:
-                    k.GyanusítottKimutatás();
+                    (kezelo as Kimutatáskészítő).GyanusítottKimutatás();
                     break;
                 case KimutatasTipus.Bizonyíték:
-                    k.BizonyítékKimutatás();
+                    (kezelo as Kimutatáskészítő).BizonyítékKimutatás();
                     break;
                 default:
                     break;
             }
 
-            this.adatok = k.GetAdatok();
+            this.adatok = (kezelo as Kimutatáskészítő).GetAdatok();
 
             Rajzol();
         }
