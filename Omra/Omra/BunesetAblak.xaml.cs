@@ -45,6 +45,7 @@ namespace Omra
             mod = true;
             kivBűneset = buneset;
             id = kivBűneset.GetAzonosító;
+            felelősŐrnagy = buneset.GetFelelős;
             gyanúsítottak = bunesetK.GyanúsítottakKigyűjtése(buneset);
             bizonyítékok = bunesetK.BizonyítékokKigyűjtése(buneset);
             Feltoltes(buneset.GetFelelős, buneset.GetLeiras, gyanúsítottak, bizonyítékok);
@@ -76,7 +77,7 @@ namespace Omra
 
         private void Mentes_Click(object sender, RoutedEventArgs e)
         {
-            if(felelősŐrnagy!=null)
+            if (felelősŐrnagy != null)
             {
                 if (mod)
                 {
@@ -103,6 +104,8 @@ namespace Omra
                 DE.SaveChanges();
                 this.DialogResult = true;
             }
+            else
+                MessageBox.Show("Rohadj meg!");
         }
 
         private void Vissza_Click(object sender, RoutedEventArgs e)
