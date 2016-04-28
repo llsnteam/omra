@@ -160,6 +160,8 @@ namespace Omra
                         GyanusitottAblak ga = new GyanusitottAblak((Gyanúsított)ListboxEredmeny.SelectedItem);
                         ga.ShowDialog();
                     }
+
+                    Button_Click(null, null);
                 }
             }
         }
