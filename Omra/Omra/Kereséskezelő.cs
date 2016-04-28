@@ -22,7 +22,7 @@ namespace Adatkezelõ {
 
             List<Bizonyíték> visszateresilista = new List<Bizonyíték>();
 
-            bool IDkereses = false;     //ID-re keres (számmal kezdõdik) vagy a bizonyíték típusára keres (betûvel kezdõdik)
+            bool IDkereses = false;     //ID-re keres (ha számmal kezdõdik) vagy a bizonyíték típusára keres (betûvel kezdõdik)
 
             for (int i = 0; i < 10; i++)
                 if (azonosító.StartsWith(Convert.ToString(i))) IDkereses = true;
@@ -33,7 +33,7 @@ namespace Adatkezelõ {
 
                 DatabaseElements DE = new DatabaseElements(); 
 
-                var eredmeny = from x in DE.Bizonyitekok
+                var eredmeny = from x in DE.Bizonyitekok    //megkeresi és feltölti a bizonyítékokat
                                where x.bizonyitekID == d
                                select x;
 
@@ -43,11 +43,12 @@ namespace Adatkezelõ {
             else //ha megnevezés alapú
             {
                 DatabaseElements DE = new DatabaseElements();
-                var eredmeny = from x in DE.Bizonyitekok
+
+                var eredmeny = from x in DE.Bizonyitekok    //megkeresi és feltölti a bizonyítékokat
                                where x.megnevezes.Contains(azonosító)
                                select x;
 
-                foreach (var v in eredmeny)
+                foreach (var v in eredmeny)    
                     visszateresilista.Add(new Bizonyíték(v.bizonyitekID, v.megnevezes, v.felvetel));
             }
 
@@ -59,7 +60,12 @@ namespace Adatkezelõ {
 
             List<Bûneset> visszateresilista = new List<Bûneset>();
 
-            if (azonosító != "")
+            bool IDkereses = false;     //ID-re keres (ha számmal kezdõdik) vagy a bizonyíték típusára keres (betûvel kezdõdik)
+
+            for (int i = 0; i < 10; i++)
+                if (azonosító.StartsWith(Convert.ToString(i))) IDkereses = true;
+
+            if (IDkereses)
             {
                 Decimal d = Convert.ToDecimal(azonosító);
 
@@ -88,6 +94,7 @@ namespace Adatkezelõ {
                 DatabaseElements DE = new DatabaseElements();
 
                 var eredmeny = from x in DE.Bunesetek
+                               where x.leiras.Contains(azonosító)
                                select x;
 
                 foreach (var v in eredmeny)

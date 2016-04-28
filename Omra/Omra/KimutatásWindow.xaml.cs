@@ -24,6 +24,9 @@ namespace Omra
     {
         IKimutatáskezelő kezelo;
         List<StatAdat> adatok;
+        private string osszesen;
+
+        public string GetOsszesen { get { return this.osszesen; } }
 
         public KimutatásWindow()
         {
@@ -75,6 +78,7 @@ namespace Omra
             this.adatok = (kezelo as Kimutatáskészítő).GetAdatok();
 
             Rajzol();
+            osszesen = String.Format("{0} db találat",this.adatok.Count());
         }
 
         private void Rajzol()

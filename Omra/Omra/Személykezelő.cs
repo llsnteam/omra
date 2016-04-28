@@ -109,8 +109,8 @@ namespace Adatkezelõ {
 
 		/// 
 		/// <param name="üzenet"></param>
-		public void ÜzenetTörlése(Üzenet üzenet){
-
+		public bool ÜzenetTörlése(Üzenet üzenet){
+            throw new System.NotImplementedException();
 		}
 
 
