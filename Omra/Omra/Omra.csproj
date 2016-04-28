@@ -206,7 +206,6 @@
     <Compile Include="IKimutatáskezelő.cs" />
     <Compile Include="IÜzenetkezelő.cs" />
     <Compile Include="Kereséskezelő.cs" />
-    <Compile Include="Kimutatás.cs" />
     <Compile Include="Kimutatáskészítő.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

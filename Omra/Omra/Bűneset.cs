@@ -38,13 +38,14 @@ namespace Adatkezelõ {
             this.felelõsõrnagy = felõrnagy;
 		}
 
-        public Bûneset(decimal azonosító, BÁllapot allapot, DateTime felvetel, string leiras, DateTime? lezaras)  //megjelenítéshez a keresésben
+        public Bûneset(decimal azonosító, BÁllapot allapot, DateTime felvetel, string leiras, DateTime? lezaras, Dolgozó felõrnagy)  //megjelenítéshez a keresésben
         {
             this.azonosító = azonosító;
             this.állapot = allapot;
             this.felvetel = felvetel;
             this.leiras = leiras;
             this.lezaras = lezaras;
+            this.felelõsõrnagy = felõrnagy;
         }
 
 		public void Állapotmódosítás()
