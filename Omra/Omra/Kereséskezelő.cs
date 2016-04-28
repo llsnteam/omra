@@ -71,8 +71,16 @@ namespace Adatkezelõ {
 
                 foreach (var v in eredmeny)
                 {
-                                       
-                    visszateresilista.Add(new Bûneset(v.bunesetID, (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras, v.lezaras));
+                    var ered = from x in DE.Dolgozok
+                                   where x.dolgozoID == v.felelos_ornagy
+                                   select x;
+
+                    Dolgozó felelosornagy = null;
+
+                    foreach (var m in ered)
+                        felelosornagy = new Dolgozó((Rang)Enum.Parse(typeof(Rang), m.rang.ToString()), m.jelszo, m.nev, m.lakcim, m.dolgozoID);
+
+                    visszateresilista.Add(new Bûneset(v.bunesetID, (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras, v.lezaras, felelosornagy));
                 }
             }
             else
@@ -84,7 +92,16 @@ namespace Adatkezelõ {
 
                 foreach (var v in eredmeny)
                 {
-                    visszateresilista.Add(new Bûneset(v.bunesetID, (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras, v.lezaras));
+                    var ered = from x in DE.Dolgozok
+                               where x.dolgozoID == v.felelos_ornagy
+                               select x;
+
+                    Dolgozó felelosornagy = null;
+
+                    foreach (var m in ered)
+                        felelosornagy = new Dolgozó((Rang)Enum.Parse(typeof(Rang), m.rang.ToString()), m.jelszo, m.nev, m.lakcim, m.dolgozoID);
+
+                    visszateresilista.Add(new Bûneset(v.bunesetID, (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras, v.lezaras, felelosornagy));
                 }
             }
             
