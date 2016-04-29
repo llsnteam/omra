@@ -22,6 +22,7 @@ namespace Omra
     public partial class MainWindow : Window
     {
         IDolgozókezelő dolgozokezelo = new Személykezelő();
+        NaplozoNamespace.Service1Client kliens = new NaplozoNamespace.Service1Client();
         public MainWindow()
         {
             InitializeComponent();
@@ -37,6 +38,7 @@ namespace Omra
                 FoAblak foablak_window = new FoAblak(dolg);
                 App.Current.MainWindow = foablak_window;
                 foablak_window.Show();
+                kliens.NaplobaIras("Bejelentkezés: " + felh.Text);
                 this.Close();
             }
             else
