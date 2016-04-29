@@ -28,10 +28,10 @@ namespace Omra
         public virtual DbSet<Bizonyitekok> Bizonyitekok { get; set; }
         public virtual DbSet<Bunesetek> Bunesetek { get; set; }
         public virtual DbSet<Dolgozok> Dolgozok { get; set; }
-        public virtual DbSet<Gyanusitottak> Gyanusitottak { get; set; }
-        public virtual DbSet<Uzenetek> Uzenetek { get; set; }
         public virtual DbSet<FelvettBizonyitekok> FelvettBizonyitekok { get; set; }
         public virtual DbSet<FelvettDolgozok> FelvettDolgozok { get; set; }
         public virtual DbSet<FelvettGyanusitottak> FelvettGyanusitottak { get; set; }
+        public virtual DbSet<Gyanusitottak> Gyanusitottak { get; set; }
+        public virtual DbSet<Uzenetek> Uzenetek { get; set; }
     }
 }
