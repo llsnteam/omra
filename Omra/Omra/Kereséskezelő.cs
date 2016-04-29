@@ -114,6 +114,7 @@ namespace Adatkezelõ {
             
 
             return visszateresilista;
+
 		}
 
 

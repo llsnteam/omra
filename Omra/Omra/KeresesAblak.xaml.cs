@@ -31,6 +31,7 @@ namespace Omra
         public KeresesAblak(KeresésTípus tipus) //specifikus keresés (pl. bűnesetnél gyanúsított hozzáadása -> nem engedjük, csak a gyanúsítottak listázását)
         {
             InitializeComponent();
+            Azon.Focus(); // hogy egyből lehessen írni azonosítót, ha a radiobutton-ök miatt úgysem vesztené el a focust az ablak a textboxról
 
             if (tipus == KeresésTípus.Bizonyíték)
             {
