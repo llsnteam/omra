@@ -106,6 +106,8 @@ namespace Omra
             kivalasztottUzenet = (Üzenet)ListboxÜzenetek.SelectedItem;
             if (!uzenetK.ÜzenetTörlése(kivalasztottUzenet))
                 MessageBox.Show("Nincs törlendő üzenet!");
+            else
+                AdatokBetoltese();
         }
 
         private void Kereses_Click(object sender, RoutedEventArgs e)
@@ -146,17 +148,35 @@ namespace Omra
 
         private void UzenetKival_Click(object sender, RoutedEventArgs e)
         {
-            kitol_uz_lbl.Content = (ListboxÜzenetek.SelectedItem as Üzenet).GetKüldő.ToString();
-            targy_uz_lbl.Content = (ListboxÜzenetek.SelectedItem as Üzenet).GetTárgy;
-            szoveg_uz_txb.Text = (ListboxÜzenetek.SelectedItem as Üzenet).GetTörzs;
+            if (ListboxÜzenetek.SelectedItem != null)
+            {
+                kitol_uz_lbl.Content = (ListboxÜzenetek.SelectedItem as Üzenet).GetKüldő.ToString();
+                targy_uz_lbl.Content = (ListboxÜzenetek.SelectedItem as Üzenet).GetTárgy;
+                szoveg_uz_txb.Text = (ListboxÜzenetek.SelectedItem as Üzenet).GetTörzs;
+            }
+            else // ha nincs választható elem a listboxban
+            {
+                kitol_uz_lbl.Content = "";
+                targy_uz_lbl.Content = "";
+                szoveg_uz_txb.Text = "";
+            }
         }
 
         private void FeladatKival_Click(object sender, SelectionChangedEventArgs e)
         {
-            string dateformat = (ListboxFeladatok.SelectedItem as Feladat).GetLétrehozás.Year + ". " + (ListboxFeladatok.SelectedItem as Feladat).GetLétrehozás.Month + ". " + (ListboxFeladatok.SelectedItem as Feladat).GetLétrehozás.Day + ".";
-            datum_fel_lbl.Content = dateformat; // csak azért, hogy normálisan jelenítse meg a dátumot
-            allapot_fel_lbl.Content = (ListboxFeladatok.SelectedItem as Feladat).GetÁllapot;
-            szoveg_fel_txb.Text = (ListboxFeladatok.SelectedItem as Feladat).GetLeírás;
+            if (ListboxFeladatok.SelectedItem != null)
+            {
+                string dateformat = (ListboxFeladatok.SelectedItem as Feladat).GetLétrehozás.Year + ". " + (ListboxFeladatok.SelectedItem as Feladat).GetLétrehozás.Month + ". " + (ListboxFeladatok.SelectedItem as Feladat).GetLétrehozás.Day + ".";
+                datum_fel_lbl.Content = dateformat; // csak azért, hogy normálisan jelenítse meg a dátumot
+                allapot_fel_lbl.Content = (ListboxFeladatok.SelectedItem as Feladat).GetÁllapot;
+                szoveg_fel_txb.Text = (ListboxFeladatok.SelectedItem as Feladat).GetLeírás;
+            }
+            else // ha nincs választható elem a listboxban
+            {
+                datum_fel_lbl.Content = "";
+                allapot_fel_lbl.Content = "";
+                szoveg_fel_txb.Text = "";
+            }
         }
 
     }
