@@ -90,6 +90,7 @@ namespace Adatkezelõ {
             
 
             return visszateresilista;
+
 		}
 
 
