@@ -109,16 +109,21 @@ namespace Adatkezelõ {
 		public void ÚjBizonyíték(string megnevezés){
             decimal azonosító = Convert.ToDecimal(AzonosítóGenerálás(null));
 
-            //Bizonyíték b = new Bizonyíték(megnevezés, azonosító, DateTime.Now);
-            
-            var ujbizonyitek = new Bizonyitekok()
+            var bizony = DE.Bizonyitekok.Single(x => x.bizonyitekID == azonosító);
+            if (bizony != null)
             {
-                bizonyitekID = azonosító,
-                megnevezes = megnevezés,
-                felvetel = DateTime.Now
-            };
-
-            DE.Bizonyitekok.Add(ujbizonyitek);
+                bizony.megnevezes = megnevezés;
+            }
+            else
+            {
+                var ujbizonyitek = new Bizonyitekok()
+                {
+                    bizonyitekID = azonosító,
+                    megnevezes = megnevezés,
+                    felvetel = DateTime.Now
+                };
+                DE.Bizonyitekok.Add(ujbizonyitek);
+            }
             DE.SaveChanges();
 		}
 
