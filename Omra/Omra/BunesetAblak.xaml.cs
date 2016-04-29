@@ -86,7 +86,7 @@ namespace Omra
                 if (mod)
                 {
                     var modositott = DE.Bunesetek.Single(x => x.bunesetID == id);
-                    modositott.allapot = BÁllapot.Folyamatban.ToString();
+                    modositott.allapot = (bool)allapot_cbx.IsChecked ? BÁllapot.Folyamatban.ToString() : BÁllapot.Lezárt.ToString(); // ha az Folyamatban checkbox be van pipálva, akkor Folyamatban állapotot ad vissza, különben Lezártat
                     modositott.felelos_ornagy = felelősŐrnagy.GetAzonosító();
                     modositott.felvetel = kivBűneset.GetFelvetel;
                     modositott.leiras = leiras_txb.Text;
@@ -97,7 +97,7 @@ namespace Omra
                     var ujbun = new Bunesetek()
                     {
                         bunesetID = id,
-                        allapot = BÁllapot.Folyamatban.ToString(),
+                        allapot = (bool)allapot_cbx.IsChecked ? BÁllapot.Folyamatban.ToString() : BÁllapot.Lezárt.ToString(),
                         felelos_ornagy = felelősŐrnagy.GetAzonosító(),
                         felvetel = DateTime.Now,
                         leiras = leiras_txb.Text,
@@ -122,6 +122,7 @@ namespace Omra
             KeresesAblak keresablak = new KeresesAblak(KeresésTípus.Gyanúsított);
             if (keresablak.ShowDialog() == true)
             {
+                bunesetK.GyanúsítottHozzáadása((Gyanúsított)keresablak.feltoltendo, kivBűneset);
                 gyanúsítottak.Add((Gyanúsított)keresablak.feltoltendo);
             }
         }
@@ -131,6 +132,7 @@ namespace Omra
             KeresesAblak keresablak = new KeresesAblak(KeresésTípus.Bizonyíték);
             if (keresablak.ShowDialog() == true)
             {
+                kivBűneset.BizonyítékHozzáadása((Bizonyíték)keresablak.feltoltendo);
                 bizonyítékok.Add((Bizonyíték)keresablak.feltoltendo);
             }
         }
@@ -140,6 +142,9 @@ namespace Omra
             GyanusitottAblak gyanablak = new GyanusitottAblak(new Bűneset(id,leiras_txb.Text,felelősŐrnagy));
             if (gyanablak.ShowDialog() == true)
             {
+                Gyanúsított újgyan = gyanablak.ÚjGyanúsítottVissza();
+                bunesetK.ÚjGyanúsított(újgyan.GetStátusz(), újgyan.GetBejelentettLakcím(), újgyan.GetAzonosító(), újgyan.GetNév());
+                bunesetK.GyanúsítottHozzáadása(újgyan, kivBűneset);
                 gyanúsítottak.Add(gyanablak.ÚjGyanúsítottVissza());
             }
         }
@@ -147,7 +152,10 @@ namespace Omra
         private void UjBiz_Click(object sender, RoutedEventArgs e)
         {
             BizonyitekWindow bizablak = new BizonyitekWindow();
-            bizablak.ShowDialog();
+            if(bizablak.ShowDialog()==true)
+            {
+
+            }
         }
 
     }

@@ -69,23 +69,16 @@ namespace Adatkezelõ {
 		/// 
 		/// <param name="bizonyíték">ez kérdéses</param>
 		/// <param name="bûneset"></param>
-		public void BizonyítékHozzáadása(Bizonyíték bizonyíték, Bûneset bûneset){
-            bûneset.BizonyítékHozzáadása(bûneset, bizonyíték);
+		public void BizonyítékHozzáadása(Bizonyíték bizonyíték, Bûneset bûneset)
+        {
+            bûneset.BizonyítékHozzáadása(bizonyíték);
 		}
         
 		/// 
-		/// <param name="megnevezés"></param>
-		public List<Bizonyíték> BizonyítékKeresés(string megnevezés)
-        {
-            //nem is kellene ide ? -> kereséskezelõ valósítja meg
-			return null;
-		}
-
-		/// 
 		/// <param name="bûneset"></param>
-		public void BûnesetÁllapotmódosítás(Bûneset bûneset)
+		public BÁllapot BûnesetÁllapotmódosítás(Bûneset bûneset)
         {
-            bûneset.Állapotmódosítás();
+            return bûneset.Állapotmódosítás();
             //---------------------Adatbázisban módosítani
 		}
 
@@ -101,7 +94,7 @@ namespace Adatkezelõ {
 		/// <param name="megnevezés">Mint pl. kés, pisztoly stb.</param>
 		/// <param name="azonosító"></param>
 		public void ÚjBizonyíték(string megnevezés){
-            Decimal azonosító = Convert.ToDecimal(AzonosítóGenerálás(null));
+            decimal azonosító = Convert.ToDecimal(AzonosítóGenerálás(null));
 
             //Bizonyíték b = new Bizonyíték(megnevezés, azonosító, DateTime.Now);
             
@@ -116,9 +109,17 @@ namespace Adatkezelõ {
             DE.SaveChanges();
 		}
 
+        /// 
+        /// <param name="bizonyíték"></param>
+        public void BizonyítékMódosítása(Bizonyíték bizonyíték)
+        {
+
+        }
+
 		/// 
 		/// <param name="gyanúsított"></param>
-		public void GyanúsítottMódosítása(Gyanúsított gyanúsított){
+		public void GyanúsítottMódosítása(Gyanúsított gyanúsított)
+        {
             
 		}
 
@@ -127,9 +128,17 @@ namespace Adatkezelõ {
 		/// <param name="lakcím"></param>
 		/// <param name="személyiAzonosító"></param>
 		/// <param name="név"></param>
-		public void ÚjGyanúsított(GyanúsítottStátusz gyanúsítottStátusz, string lakcím, decimal személyiAzonosító, string név){
-            Gyanúsított gy = new Gyanúsított(gyanúsítottStátusz, név, lakcím, személyiAzonosító);
-            //----------------------------------------gyanúsított az adatbázisba
+		public void ÚjGyanúsított(GyanúsítottStátusz gyanúsítottStátusz, string lakcím, decimal személyiAzonosító, string név)
+        {
+            var ujgyan = new Gyanusitottak()
+            {
+                gyanusitottID = személyiAzonosító,
+                nev = név,
+                lakcim = lakcím,
+                statusz = gyanúsítottStátusz.ToString()
+            };
+            DE.Gyanusitottak.Add(ujgyan);
+            DE.SaveChanges();
 		}
 
         public void ÚjBûneset(string leiras)

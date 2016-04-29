@@ -52,26 +52,24 @@ namespace Adatkezelõ {
             this.felelõsõrnagy = felõrnagy;
         }
 
-		public void Állapotmódosítás()
+		public BÁllapot Állapotmódosítás() // adatbázisban módosít
         {
-            if (állapot == BÁllapot.Folyamatban)
-            {
-                állapot = BÁllapot.Lezárt;
-                this.lezaras = DateTime.Now;
-            }
-            if (állapot == BÁllapot.Lezárt)
-            {
-                állapot = BÁllapot.Folyamatban;
-                lezaras = null;
-            }
+            return állapot;
 		}
 
 		/// 
 		/// <param name="Bûneset"></param>
 		/// <param name="Bizonyíték"></param>
-		public void BizonyítékHozzáadása(Bûneset Bûneset, Bizonyíték Bizonyíték)
+		public void BizonyítékHozzáadása(Bizonyíték Bizonyíték)
         {
-            
+            var ujfelvbiz = new FelvettBizonyitekok()
+            {
+                bunesetID = azonosító,
+                bizonyitekID = Bizonyíték.GetAzonosító,
+                felvetel_idopontja = DateTime.Now
+            };
+            DE.FelvettBizonyitekok.Add(ujfelvbiz);
+            DE.SaveChanges();
 		}
 
 		public BÁllapot GetÁllapot(){
@@ -122,21 +120,12 @@ namespace Adatkezelõ {
 		/// <param name="Gyanúsított"></param>
 		public void GyanúsítottHozzáadása(Gyanúsított Gyanúsított)
         {
-            var ujgyan = new Gyanusitottak()
-            {
-                gyanusitottID = Gyanúsított.GetAzonosító(),
-                nev = Gyanúsított.GetNév(),
-                lakcim = Gyanúsított.GetBejelentettLakcím(),
-                statusz = Gyanúsított.GetStátusz().ToString()
-            };
-
             var ujfelvgyan = new FelvettGyanusitottak()
             {
                 bunesetID = azonosító,
                 gyanusitottID = Gyanúsított.GetAzonosító(),
                 felvetel_idopontja = DateTime.Now
             };
-            DE.Gyanusitottak.Add(ujgyan);
             DE.FelvettGyanusitottak.Add(ujfelvgyan);
             DE.SaveChanges();
 		}

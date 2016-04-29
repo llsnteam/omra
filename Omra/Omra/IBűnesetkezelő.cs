@@ -14,7 +14,7 @@ namespace Adatkezelõ {
 
 		/// 
 		/// <param name="Bûneset"></param>
-		void BûnesetÁllapotmódosítás(Bûneset Bûneset);
+		BÁllapot BûnesetÁllapotmódosítás(Bûneset Bûneset);
 
 		/// 
 		/// <param name="Gyanúsított"></param>

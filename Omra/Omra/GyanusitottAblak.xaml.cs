@@ -81,7 +81,7 @@ namespace Omra
 
         private void Mentes_Click(object sender, RoutedEventArgs e)
         {
-            gyKezelo.GyanúsítottHozzáadása(new Gyanúsított((GyanúsítottStátusz)statusz_cbx.SelectedItem, nev_txt.Text, lakcim_txt.Text, id),bűneset);
+            gyKezelo.ÚjGyanúsított((GyanúsítottStátusz)Enum.Parse(typeof(GyanúsítottStátusz), statusz_cbx.SelectedItem.ToString()), lakcim_txt.Text, id, nev_txt.Text);
             this.DialogResult = true;
         }
 

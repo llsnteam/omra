@@ -282,6 +282,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
+    <Resource Include="kepek\logo.png" />
     <Resource Include="kepek\0.jpg" />
     <Resource Include="kepek\1.jpg" />
     <Resource Include="kepek\2.jpg" />

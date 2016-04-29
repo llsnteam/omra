@@ -23,10 +23,6 @@ namespace Adatkezelõ {
 		void DolgozóMódosítása(Dolgozó dolgozó);
 
 		/// 
-		/// <param name="Dolgozó"></param>
-		void DolgozóTörlése(Dolgozó Dolgozó);
-
-		/// 
 		/// <param name="jelszó"></param>
 		/// <param name="beosztás"></param>
 		/// <param name="név"></param>

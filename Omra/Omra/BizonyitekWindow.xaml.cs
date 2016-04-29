@@ -34,6 +34,7 @@ namespace Omra
         {
             bKezelő = new Bűnesetkezelő();
             bKezelő.ÚjBizonyíték(megnevezes_txb.Text);
+            this.DialogResult = true;
         }
     }
 }
