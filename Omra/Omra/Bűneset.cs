@@ -52,25 +52,25 @@ namespace Adatkezelõ {
             this.felelõsõrnagy = felõrnagy;
         }
 
-		public BÁllapot Állapotmódosítás() // adatbázisban módosít
+        public BÁllapot Állapotmódosítás() // adatbázisban módosít
         {
             return állapot;
-		}
+        }
 
 		/// 
 		/// <param name="Bûneset"></param>
 		/// <param name="Bizonyíték"></param>
-		public void BizonyítékHozzáadása(Bizonyíték Bizonyíték)
-        {
-            var ujfelvbiz = new FelvettBizonyitekok()
-            {
-                bunesetID = azonosító,
-                bizonyitekID = Bizonyíték.GetAzonosító,
-                felvetel_idopontja = DateTime.Now
-            };
-            DE.FelvettBizonyitekok.Add(ujfelvbiz);
-            DE.SaveChanges();
-		}
+        //public void BizonyítékHozzáadása(Bizonyíték Bizonyíték)
+        //{
+           
+        //}
+
+        /// 
+        /// <param name="Gyanúsított"></param>
+        //public void GyanúsítottHozzáadása(Gyanúsított Gyanúsított)
+        //{
+
+        //}
 
 		public BÁllapot GetÁllapot(){
 
@@ -115,20 +115,6 @@ namespace Adatkezelõ {
                 return felelõsõrnagy;
             }
         }
-
-		/// 
-		/// <param name="Gyanúsított"></param>
-		public void GyanúsítottHozzáadása(Gyanúsított Gyanúsított)
-        {
-            var ujfelvgyan = new FelvettGyanusitottak()
-            {
-                bunesetID = azonosító,
-                gyanusitottID = Gyanúsított.GetAzonosító(),
-                felvetel_idopontja = DateTime.Now
-            };
-            DE.FelvettGyanusitottak.Add(ujfelvgyan);
-            DE.SaveChanges();
-		}
 
         public override string ToString()
         {

@@ -71,7 +71,14 @@ namespace Adatkezelõ {
 		/// <param name="bûneset"></param>
 		public void BizonyítékHozzáadása(Bizonyíték bizonyíték, Bûneset bûneset)
         {
-            bûneset.BizonyítékHozzáadása(bizonyíték);
+            var ujfelvbiz = new FelvettBizonyitekok()
+            {
+                bunesetID = bûneset.GetAzonosító,
+                bizonyitekID = bizonyíték.GetAzonosító,
+                felvetel_idopontja = DateTime.Now
+            };
+            DE.FelvettBizonyitekok.Add(ujfelvbiz);
+            DE.SaveChanges();
 		}
         
 		/// 
@@ -79,7 +86,6 @@ namespace Adatkezelõ {
 		public BÁllapot BûnesetÁllapotmódosítás(Bûneset bûneset) // a bûneset módosítáas utáni mentésnél 
         {
             return bûneset.Állapotmódosítás();
-            //---------------------Adatbázisban módosítani
 		}
 
 		/// 
@@ -87,7 +93,14 @@ namespace Adatkezelõ {
 		/// <param name="Bûneset"></param>
 		public void GyanúsítottHozzáadása(Gyanúsított Gyanúsított, Bûneset Bûneset)
         {
-            Bûneset.GyanúsítottHozzáadása(Gyanúsított);
+            var ujfelvgyan = new FelvettGyanusitottak()
+            {
+                bunesetID = Bûneset.GetAzonosító,
+                gyanusitottID = Gyanúsított.GetAzonosító(),
+                felvetel_idopontja = DateTime.Now
+            };
+            DE.FelvettGyanusitottak.Add(ujfelvgyan);
+            DE.SaveChanges();
 		}
 
 		/// 
@@ -113,14 +126,20 @@ namespace Adatkezelõ {
         /// <param name="bizonyíték"></param>
         public void BizonyítékMódosítása(Bizonyíték bizonyíték)
         {
-
+            var modositott = DE.Bizonyitekok.Single(x => x.bizonyitekID == bizonyíték.GetAzonosító);
+            modositott.megnevezes = bizonyíték.GetMegnevezés();
+            DE.SaveChanges();
         }
 
 		/// 
 		/// <param name="gyanúsított"></param>
 		public void GyanúsítottMódosítása(Gyanúsított gyanúsított)
         {
-            
+            var modositott = DE.Gyanusitottak.Single(x => x.gyanusitottID == gyanúsított.GetAzonosító());
+            modositott.lakcim = gyanúsított.GetBejelentettLakcím();
+            modositott.statusz = gyanúsított.GetStátusz().ToString();
+            modositott.nev = gyanúsított.GetNév();
+            DE.SaveChanges();
 		}
 
 		/// 
@@ -141,10 +160,28 @@ namespace Adatkezelõ {
             DE.SaveChanges();
 		}
 
-        public void ÚjBûneset(string leiras)
+        public void ÚjBûneset(decimal azon,string allapot, DateTime felvetel, string leiras, decimal felOrnagyId)
         {
+            var ujbun = new Bunesetek() 
+            { 
+                allapot=allapot, bunesetID=azon,
+                felelos_ornagy=felOrnagyId, 
+                felvetel=felvetel, 
+                leiras=leiras 
+            };
+            DE.Bunesetek.Add(ujbun);
+            DE.SaveChanges();
+        }
+
+        public void BûnesetMódosítás(Bûneset kivalasztott,decimal felOrnagyID, string leiras, string allapot)
+        {
+            var modositott = DE.Bunesetek.Single(x => x.bunesetID == kivalasztott.GetAzonosító);
+            modositott.felelos_ornagy = felOrnagyID;
+            modositott.leiras = leiras;
+            modositott.allapot = allapot;
 
         }
+
     }//end Bûnesetkezelõ
 
 }//end namespace Adatkezelõ

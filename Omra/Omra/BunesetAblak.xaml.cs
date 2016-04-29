@@ -83,29 +83,15 @@ namespace Omra
         {
             if (felelősŐrnagy != null)
             {
+                string allapot = (bool)allapot_cbx.IsChecked ? BÁllapot.Folyamatban.ToString() : BÁllapot.Lezárt.ToString();
                 if (mod)
                 {
-                    var modositott = DE.Bunesetek.Single(x => x.bunesetID == id);
-                    modositott.allapot = (bool)allapot_cbx.IsChecked ? BÁllapot.Folyamatban.ToString() : BÁllapot.Lezárt.ToString(); // ha az Folyamatban checkbox be van pipálva, akkor Folyamatban állapotot ad vissza, különben Lezártat
-                    modositott.felelos_ornagy = felelősŐrnagy.GetAzonosító();
-                    modositott.felvetel = kivBűneset.GetFelvetel;
-                    modositott.leiras = leiras_txb.Text;
-                    modositott.lezaras = null;
+                    bunesetK.BűnesetMódosítás(kivBűneset, felelősŐrnagy.GetAzonosító(), leiras_txb.Text, allapot);
                 }
                 else
-                {
-                    var ujbun = new Bunesetek()
-                    {
-                        bunesetID = id,
-                        allapot = (bool)allapot_cbx.IsChecked ? BÁllapot.Folyamatban.ToString() : BÁllapot.Lezárt.ToString(),
-                        felelos_ornagy = felelősŐrnagy.GetAzonosító(),
-                        felvetel = DateTime.Now,
-                        leiras = leiras_txb.Text,
-                        lezaras = null
-                    };
-                    DE.Bunesetek.Add(ujbun);
+                {                    
+                    bunesetK.ÚjBűneset(id, allapot, DateTime.Now, leiras_txb.Text, felelősŐrnagy.GetAzonosító());
                 }
-                DE.SaveChanges();
                 this.DialogResult = true;
             }
             else
@@ -132,7 +118,7 @@ namespace Omra
             KeresesAblak keresablak = new KeresesAblak(KeresésTípus.Bizonyíték);
             if (keresablak.ShowDialog() == true)
             {
-                kivBűneset.BizonyítékHozzáadása((Bizonyíték)keresablak.feltoltendo);
+                bunesetK.BizonyítékHozzáadása((Bizonyíték)keresablak.feltoltendo,kivBűneset);
                 bizonyítékok.Add((Bizonyíték)keresablak.feltoltendo);
             }
         }
