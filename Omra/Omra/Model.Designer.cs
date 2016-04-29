@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\GABI\Egyéb\Iskola\!!!!!!!EGYETEM!!!!!!!\2015 - 2016 II\Szoftvertechnológia II\Projekt\omra-master\Omra\omra\Omra\Omra\DatabaseModel.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\GABI\Egyéb\Iskola\!!!!!!!EGYETEM!!!!!!!\2015 - 2016 II\Szoftvertechnológia II\Projekt\omra-master\Omra\omra\Omra\Omra\Model.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

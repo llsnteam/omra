@@ -12,6 +12,7 @@
 using Adatkezelõ;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Omra;
 namespace Adatkezelõ {
 	public class Bûneset 
@@ -128,15 +129,16 @@ namespace Adatkezelõ {
                 lakcim = Gyanúsított.GetBejelentettLakcím(),
                 statusz = Gyanúsított.GetStátusz().ToString()
             };
+
             var ujfelvgyan = new FelvettGyanusitottak()
             {
                 bunesetID = azonosító,
                 gyanusitottID = Gyanúsított.GetAzonosító(),
                 felvetel_idopontja = DateTime.Now
             };
-            DE.FelvettGyanusitottak.Add(ujfelvgyan);
             DE.Gyanusitottak.Add(ujgyan);
-            //DE.SaveChanges();  ide valamiért ezt nem engedi berakni
+            DE.FelvettGyanusitottak.Add(ujfelvgyan);
+            DE.SaveChanges();
 		}
 
         public override string ToString()

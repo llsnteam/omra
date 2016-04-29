@@ -36,7 +36,7 @@ namespace Omra
             id = bunesetK.AzonosítóGenerálás(null);
             gyanúsítottak = new ObservableCollection<Gyanúsított>();
             bizonyítékok = new ObservableCollection<Bizonyíték>();
-            Feltoltes(new Dolgozó(Rang.Ornagy, "", "", "", 0), "", gyanúsítottak, bizonyítékok);
+            Feltoltes(new Dolgozó(Rang.Ornagy, "", "", "", 0), "", gyanúsítottak, bizonyítékok,BÁllapot.Folyamatban);
         }
 
         public BunesetAblak(Bűneset buneset) //módosítással meghívás
@@ -48,15 +48,19 @@ namespace Omra
             felelősŐrnagy = buneset.GetFelelős;
             gyanúsítottak = bunesetK.GyanúsítottakKigyűjtése(buneset);
             bizonyítékok = bunesetK.BizonyítékokKigyűjtése(buneset);
-            Feltoltes(buneset.GetFelelős, buneset.GetLeiras, gyanúsítottak, bizonyítékok);
+            Feltoltes(buneset.GetFelelős, buneset.GetLeiras, gyanúsítottak, bizonyítékok,buneset.GetÁllapot());
         }
 
-        private void Feltoltes(Dolgozó felelosOrnagy, string leírás, ObservableCollection<Gyanúsított> gyan, ObservableCollection<Bizonyíték> biz)
+        private void Feltoltes(Dolgozó felelosOrnagy, string leírás, ObservableCollection<Gyanúsított> gyan, ObservableCollection<Bizonyíték> biz, BÁllapot allapot)
         {
             felorn_txb.Text = felelosOrnagy.GetNév();
             leiras_txb.Text = leírás;
             ListboxGyanúsítottak.ItemsSource = gyan;
             ListboxBizonyítékok.ItemsSource = biz;
+            if (allapot == BÁllapot.Folyamatban)
+                allapot_cbx.IsChecked = true;
+            else
+                allapot_cbx.IsChecked = false;
         }
 
         private void FelelosOrnagyKereses_Click(object sender, RoutedEventArgs e)
