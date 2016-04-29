@@ -18,11 +18,6 @@ namespace Adatkezelõ {
 		/// <param name="bûneset"></param>
 		void GyanúsítottHozzáadása(Gyanúsított gyanúsított, Bûneset bûneset);
 
-		/// 
-		/// <param name="gyanúsított"></param>
-		void GyanúsítottMódosítása(Gyanúsított gyanúsított);
-
-		/// 
 		/// <param name="gyanúsítottStátusz"></param>
 		/// <param name="lakcím"></param>
 		/// <param name="személyiAzonosító"></param>

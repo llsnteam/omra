@@ -132,31 +132,30 @@ namespace Adatkezelõ {
         }
 
 		/// 
-		/// <param name="gyanúsított"></param>
-		public void GyanúsítottMódosítása(Gyanúsított gyanúsított)
-        {
-            var modositott = DE.Gyanusitottak.Single(x => x.gyanusitottID == gyanúsított.GetAzonosító());
-            modositott.lakcim = gyanúsított.GetBejelentettLakcím();
-            modositott.statusz = gyanúsított.GetStátusz().ToString();
-            modositott.nev = gyanúsított.GetNév();
-            DE.SaveChanges();
-		}
-
-		/// 
 		/// <param name="gyanúsítottStátusz"></param>
 		/// <param name="lakcím"></param>
-		/// <param name="személyiAzonosító"></param>
+		/// <param name="id"></param>
 		/// <param name="név"></param>
-		public void ÚjGyanúsított(GyanúsítottStátusz gyanúsítottStátusz, string lakcím, decimal személyiAzonosító, string név)
+		public void ÚjGyanúsított(GyanúsítottStátusz gyanúsítottStátusz, string lakcím, decimal id, string név)
         {
-            var ujgyan = new Gyanusitottak()
+            var gyanu=DE.Gyanusitottak.Single(x=>x.gyanusitottID==id);
+            if (gyanu != null)     // azaz már létezik
             {
-                gyanusitottID = személyiAzonosító,
-                nev = név,
-                lakcim = lakcím,
-                statusz = gyanúsítottStátusz.ToString()
-            };
-            DE.Gyanusitottak.Add(ujgyan);
+                gyanu.lakcim = lakcím;
+                gyanu.statusz = gyanúsítottStátusz.ToString();
+                gyanu.nev = név;
+            }
+            else
+            {
+                var ujgyan = new Gyanusitottak()
+                {
+                    gyanusitottID = id,
+                    nev = név,
+                    lakcim = lakcím,
+                    statusz = gyanúsítottStátusz.ToString()
+                };
+                DE.Gyanusitottak.Add(ujgyan);
+            }
             DE.SaveChanges();
 		}
 
