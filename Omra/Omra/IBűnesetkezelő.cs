@@ -9,6 +9,7 @@
 
 
 
+using System;
 namespace Adatkezelõ {
 	public interface IBûnesetkezelõ {
 
@@ -21,7 +22,7 @@ namespace Adatkezelõ {
 		/// <param name="Bûneset"></param>
 		void GyanúsítottHozzáadása(Gyanúsított Gyanúsított, Bûneset Bûneset);
 
-		void ÚjBûneset(string leiras);
+		void ÚjBûneset(decimal azon,string allapot, DateTime felvetel, string leiras, decimal felOrnagyId);
 	}//end IBûnesetkezelõ
 
 }//end namespace Adatkezelõ
