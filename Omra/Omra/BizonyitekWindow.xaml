@@ -3,16 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="BizonyitekWindow" Height="204" Width="300">
     <Grid>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="108"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="123,14,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="108"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="123,42,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Width="108"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="123,70,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Label" HorizontalAlignment="Left" Margin="10,94,0,0" VerticalAlignment="Top" Width="108"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="123,98,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Mentés" HorizontalAlignment="Left" Margin="51,142,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Vissza" HorizontalAlignment="Left" Margin="144,142,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Megnevezés:" HorizontalAlignment="Left" Margin="10,23,0,0" VerticalAlignment="Top" Width="108"/>
+        <TextBox x:Name="megnevezes_txb" HorizontalAlignment="Left" Height="23" Margin="123,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Mentés" HorizontalAlignment="Left" Margin="51,142,0,0" VerticalAlignment="Top" Width="75" Click="Mentes_Click"/>
+        <Button Content="Vissza" HorizontalAlignment="Left" Margin="144,142,0,0" VerticalAlignment="Top" Width="75" Click="Vissza_Click"/>
+        <DatePicker x:Name="datepicker" HorizontalAlignment="Left" Margin="123,66,0,0" VerticalAlignment="Top" Width="120" Height="26" IsEnabled="False"/>
+        <Label Content="Fevétel dátuma:" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top" Width="108"/>
 
     </Grid>
 </Window>

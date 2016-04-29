@@ -13,61 +13,104 @@ using Adatkezelõ;
 using Omra;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 namespace Adatkezelõ {
 	public class Bûnesetkezelõ : IBûnesetkezelõ, IGyanúsítottkezelõ, IBizonyítékkezelõ 
     {
+        DatabaseElements DE = new DatabaseElements();
         
-        
-		public string AzonosítóGenerálás(){
+		public decimal AzonosítóGenerálás(Bûneset buneset)
+        {
+            if(buneset!=null)
+            {
+                var meglevoID = from x in DE.Bunesetek
+                               where x.bunesetID == buneset.GetAzonosító
+                               select x.bunesetID;
 
-			return "";
+                return meglevoID.First();
+            }
+            else
+            {
+                var utolsoID = from x in DE.Bunesetek
+                               where x.bunesetID == DE.Bunesetek.Max(y => y.bunesetID)
+                               select x.bunesetID;
+
+                return utolsoID.First() + 1;
+            }
 		}
+
+        public ObservableCollection<Gyanúsított> GyanúsítottakKigyûjtése(Bûneset bûneset)
+        {
+            ObservableCollection<Gyanúsított> gyanúsítottak = new ObservableCollection<Gyanúsított>();
+            var gyanlista = from x in DE.FelvettGyanusitottak
+                            where x.bunesetID == bûneset.GetAzonosító
+                            select x.Gyanusitottak;
+
+            foreach(var gyan in gyanlista)
+                gyanúsítottak.Add(new Gyanúsított((GyanúsítottStátusz)Enum.Parse(typeof(GyanúsítottStátusz),gyan.statusz),gyan.nev,gyan.lakcim,gyan.gyanusitottID));
+
+            return gyanúsítottak;
+        }
+
+        public ObservableCollection<Bizonyíték> BizonyítékokKigyûjtése(Bûneset bûneset)
+        {
+            ObservableCollection<Bizonyíték> bizonyíték = new ObservableCollection<Bizonyíték>();
+            var bizlista = from x in DE.FelvettBizonyitekok
+                            where x.bunesetID == bûneset.GetAzonosító
+                            select x.Bizonyitekok;
+
+            foreach (var biz in bizlista)
+                bizonyíték.Add(new Bizonyíték(biz.bizonyitekID, biz.megnevezes, biz.felvetel));
+
+            return bizonyíték;
+        }
 
 		/// 
 		/// <param name="bizonyíték">ez kérdéses</param>
 		/// <param name="bûneset"></param>
-		public void BizonyítékHozzáadása(Bizonyíték bizonyíték, Bûneset bûneset){
-            bûneset.BizonyítékHozzáadása(bûneset, bizonyíték);
+		public void BizonyítékHozzáadása(Bizonyíték bizonyíték, Bûneset bûneset)
+        {
+            var ujfelvbiz = new FelvettBizonyitekok()
+            {
+                bunesetID = bûneset.GetAzonosító,
+                bizonyitekID = bizonyíték.GetAzonosító,
+                felvetel_idopontja = DateTime.Now
+            };
+            DE.FelvettBizonyitekok.Add(ujfelvbiz);
+            DE.SaveChanges();
 		}
         
 		/// 
-		/// <param name="megnevezés"></param>
-		public List<Bizonyíték> BizonyítékKeresés(string megnevezés){
-            //nem is kellene ide ? -> kereséskezelõ valósítja meg
-			return null;
-		}
-
-		/// 
 		/// <param name="bûneset"></param>
-		public void BûnesetÁllapotmódosítás(Bûneset bûneset){
-            bûneset.Állapotmódosítás();
-            //---------------------Adatbázisban módosítani
-		}
-
-		/// 
-		/// <param name="azonosító"></param>
-		public Bûneset BûnesetKeresés(string azonosító){
-            //nem is kellene ide ? -> kereséskezelõ valósítja meg
-			return null;
+		public BÁllapot BûnesetÁllapotmódosítás(Bûneset bûneset) // a bûneset módosítáas utáni mentésnél 
+        {
+            return bûneset.Állapotmódosítás();
 		}
 
 		/// 
 		/// <param name="Gyanúsított"></param>
 		/// <param name="Bûneset"></param>
-		public void GyanúsítottHozzáadása(Gyanúsított Gyanúsított, Bûneset Bûneset){
-            Bûneset.GyanúsítottHozzáadása(Gyanúsított);
+		public void GyanúsítottHozzáadása(Gyanúsított Gyanúsított, Bûneset Bûneset)
+        {
+            var ujfelvgyan = new FelvettGyanusitottak()
+            {
+                bunesetID = Bûneset.GetAzonosító,
+                gyanusitottID = Gyanúsított.GetAzonosító(),
+                felvetel_idopontja = DateTime.Now
+            };
+            DE.FelvettGyanusitottak.Add(ujfelvgyan);
+            DE.SaveChanges();
 		}
 
 		/// 
 		/// <param name="megnevezés">Mint pl. kés, pisztoly stb.</param>
 		/// <param name="azonosító"></param>
 		public void ÚjBizonyíték(string megnevezés){
-            Decimal azonosító = Convert.ToDecimal(AzonosítóGenerálás());
+            decimal azonosító = Convert.ToDecimal(AzonosítóGenerálás(null));
 
             //Bizonyíték b = new Bizonyíték(megnevezés, azonosító, DateTime.Now);
-
-            DatabaseElements DE = new DatabaseElements();
-
+            
             var ujbizonyitek = new Bizonyitekok()
             {
                 bizonyitekID = azonosító,
@@ -79,15 +122,24 @@ namespace Adatkezelõ {
             DE.SaveChanges();
 		}
 
-		public void ÚjBûneset(string leiras){
-            Bûneset b = new Bûneset(AzonosítóGenerálás(), leiras);
-            //------------------------------------- bûneset az adatbázisba
-		}
+        /// 
+        /// <param name="bizonyíték"></param>
+        public void BizonyítékMódosítása(Bizonyíték bizonyíték)
+        {
+            var modositott = DE.Bizonyitekok.Single(x => x.bizonyitekID == bizonyíték.GetAzonosító);
+            modositott.megnevezes = bizonyíték.GetMegnevezés();
+            DE.SaveChanges();
+        }
 
 		/// 
 		/// <param name="gyanúsított"></param>
-		public void GyanúsítottMódosítása(Gyanúsított gyanúsított){
-            
+		public void GyanúsítottMódosítása(Gyanúsított gyanúsított)
+        {
+            var modositott = DE.Gyanusitottak.Single(x => x.gyanusitottID == gyanúsított.GetAzonosító());
+            modositott.lakcim = gyanúsított.GetBejelentettLakcím();
+            modositott.statusz = gyanúsított.GetStátusz().ToString();
+            modositott.nev = gyanúsított.GetNév();
+            DE.SaveChanges();
 		}
 
 		/// 
@@ -95,11 +147,41 @@ namespace Adatkezelõ {
 		/// <param name="lakcím"></param>
 		/// <param name="személyiAzonosító"></param>
 		/// <param name="név"></param>
-		public void ÚjGyanúsított(GyanúsítottStátusz gyanúsítottStátusz, string lakcím, decimal személyiAzonosító, string név){
-            Gyanúsított gy = new Gyanúsított(gyanúsítottStátusz, név, lakcím, személyiAzonosító);
-            //----------------------------------------gyanúsított az adatbázisba
+		public void ÚjGyanúsított(GyanúsítottStátusz gyanúsítottStátusz, string lakcím, decimal személyiAzonosító, string név)
+        {
+            var ujgyan = new Gyanusitottak()
+            {
+                gyanusitottID = személyiAzonosító,
+                nev = név,
+                lakcim = lakcím,
+                statusz = gyanúsítottStátusz.ToString()
+            };
+            DE.Gyanusitottak.Add(ujgyan);
+            DE.SaveChanges();
 		}
 
-	}//end Bûnesetkezelõ
+        public void ÚjBûneset(decimal azon,string allapot, DateTime felvetel, string leiras, decimal felOrnagyId)
+        {
+            var ujbun = new Bunesetek() 
+            { 
+                allapot=allapot, bunesetID=azon,
+                felelos_ornagy=felOrnagyId, 
+                felvetel=felvetel, 
+                leiras=leiras 
+            };
+            DE.Bunesetek.Add(ujbun);
+            DE.SaveChanges();
+        }
+
+        public void BûnesetMódosítás(Bûneset kivalasztott,decimal felOrnagyID, string leiras, string allapot)
+        {
+            var modositott = DE.Bunesetek.Single(x => x.bunesetID == kivalasztott.GetAzonosító);
+            modositott.felelos_ornagy = felOrnagyID;
+            modositott.leiras = leiras;
+            modositott.allapot = allapot;
+
+        }
+
+    }//end Bûnesetkezelõ
 
 }//end namespace Adatkezelõ

@@ -18,14 +18,35 @@ namespace Omra
     /// </summary>
     public partial class BizonyitekWindow : Window
     {
-        public BizonyitekWindow()
+        IBizonyítékkezelő bKezelő;
+        public BizonyitekWindow() // új jön létre
         {
             InitializeComponent();
+            Feltoltes("", DateTime.Now);
         }
 
         public BizonyitekWindow(Bizonyíték bizonyitek) //módosítás
         {
             InitializeComponent();
+            Feltoltes(bizonyitek.GetMegnevezés(), bizonyitek.Felvetel());
+        }
+
+        private void Feltoltes(string megnevezes, DateTime felvetel)
+        {
+            megnevezes_txb.Text = megnevezes;
+            datepicker.SelectedDate = felvetel;
+        }
+
+        private void Mentes_Click(object sender, RoutedEventArgs e)
+        {
+            bKezelő = new Bűnesetkezelő();
+            bKezelő.ÚjBizonyíték(megnevezes_txb.Text);
+            this.DialogResult = true;
+        }
+
+        private void Vissza_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

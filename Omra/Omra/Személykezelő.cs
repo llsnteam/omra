@@ -17,7 +17,7 @@ using System.Diagnostics;
 using System;
 
 namespace Adatkezelõ {
-	public class Személykezelõ : IÜzenetkezelõ, IDolgozókezelõ, IGyanúsítottkezelõ
+	public class Személykezelõ : IDolgozókezelõ
     {
         DatabaseElements DE = new DatabaseElements();
 
@@ -53,30 +53,7 @@ namespace Adatkezelõ {
         {
             
 		}
-
-		/// 
-		/// <param name="Dolgozó"></param>
-		public void DolgozóTörlése(Dolgozó Dolgozó)
-        {
-            
-            //------------------------------------------- Adatbázisból törli
-		}
-
-		/// 
-		/// <param name="Gyanúsított"></param>
-		/// <param name="Bûneset"></param>
-		public void GyanúsítottHozzáadása(Gyanúsított Gyanúsított, Bûneset Bûneset){
-            Bûneset.GyanúsítottHozzáadása(Gyanúsított);
-            //---------------------------------Adatbázisban a bûnesetet módosítani
-		}
-
-		/// 
-		/// <param name="gyanúsított"></param>
-		public void GyanúsítottMódosítása(Gyanúsított gyanúsított)
-        {
-            
-		}
-
+        
 		/// 
 		/// <param name="jelszó"></param>
 		/// <param name="beosztás"></param>
@@ -86,43 +63,7 @@ namespace Adatkezelõ {
 		public void ÚjDolgozó(string jelszó, Rang beosztás, string név, decimal azonosító, string lakcím){
 
 		}
-
-		/// 
-		/// <param name="gyanúsítottStátusz"></param>
-		/// <param name="lakcím"></param>
-		/// <param name="személyiAzonosító"></param>
-		/// <param name="név"></param>
-		public void ÚjGyanúsított(GyanúsítottStátusz gyanúsítottStátusz, string lakcím, decimal személyiAzonosító, string név){
-
-		}
-
-		/// 
-		/// <param name="üzenet"></param>
-		public void ÜzenetKüldése(Üzenet üzenet){
-
-		}
-
-		public Üzenet ÜzenetMegtekintése(){
-
-			return null;
-		}
-
-		/// 
-		/// <param name="üzenet"></param>
-		public void ÜzenetTörlése(Üzenet üzenet){
-
-		}
-
-
-        public void ÜzenetKüldése(string törzs, string tárgy, Dolgozó küldõ, Dolgozó címzett)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public List<Üzenet> ÜzenetMegtekintése(Dolgozó Dolgozó)
-        {
-            throw new System.NotImplementedException();
-        }
+        
     }//end Személykezelõ
 
 }//end namespace Adatkezelõ

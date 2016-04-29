@@ -13,7 +13,7 @@ using System;
 namespace Adatkezelõ {
 	public class Bizonyíték {
 
-		private string azonosító;
+		private decimal azonosító;
 		/// <summary>
 		/// pl. kés, pisztoly stb.
 		/// </summary>
@@ -24,13 +24,14 @@ namespace Adatkezelõ {
 		/// 
 		/// <param name="megnevezés"></param>
 		/// <param name="azonosító"></param>
-		public Bizonyíték(string megnevezés, string azonosító, DateTime felvetel){
+        public Bizonyíték(decimal azonosító, string megnevezés, DateTime felvetel)
+        {
             this.megnevezés = megnevezés;
             this.azonosító = azonosító;
             this.felvetel = felvetel;
 		}
 
-		public string GetAzonosító{
+		public decimal GetAzonosító{
 			get{
 				return azonosító;
 			}

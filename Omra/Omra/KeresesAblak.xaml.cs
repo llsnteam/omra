@@ -31,6 +31,7 @@ namespace Omra
         public KeresesAblak(KeresésTípus tipus) //specifikus keresés (pl. bűnesetnél gyanúsított hozzáadása -> nem engedjük, csak a gyanúsítottak listázását)
         {
             InitializeComponent();
+            Azon.Focus(); // hogy egyből lehessen írni azonosítót, ha a radiobutton-ök miatt úgysem vesztené el a focust az ablak a textboxról
 
             if (tipus == KeresésTípus.Bizonyíték)
             {
@@ -145,7 +146,7 @@ namespace Omra
 
                     else if (RadioBuneset.IsChecked == true) //ha bűneset
                     {
-                        BunesetAblak ba = new BunesetAblak(true, (Bűneset)ListboxEredmeny.SelectedItem);
+                        BunesetAblak ba = new BunesetAblak((Bűneset)ListboxEredmeny.SelectedItem);
                         ba.ShowDialog();
                     }
 
@@ -157,9 +158,11 @@ namespace Omra
 
                     else if (RadioGyanusitott.IsChecked == true) //ha gyanusított
                     {
-                        GyanusitottAblak ga = new GyanusitottAblak((Gyanúsított)ListboxEredmeny.SelectedItem);
+                        GyanusitottAblak ga = new GyanusitottAblak(null,(Gyanúsított)ListboxEredmeny.SelectedItem);
                         ga.ShowDialog();
                     }
+
+                    Button_Click(null, null);
                 }
             }
         }

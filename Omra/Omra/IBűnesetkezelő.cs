@@ -9,19 +9,20 @@
 
 
 
+using System;
 namespace Adatkezelõ {
 	public interface IBûnesetkezelõ {
 
 		/// 
 		/// <param name="Bûneset"></param>
-		void BûnesetÁllapotmódosítás(Bûneset Bûneset);
+		BÁllapot BûnesetÁllapotmódosítás(Bûneset Bûneset);
 
 		/// 
 		/// <param name="Gyanúsított"></param>
 		/// <param name="Bûneset"></param>
 		void GyanúsítottHozzáadása(Gyanúsított Gyanúsított, Bûneset Bûneset);
 
-		void ÚjBûneset(string leiras);
+		void ÚjBûneset(decimal azon,string allapot, DateTime felvetel, string leiras, decimal felOrnagyId);
 	}//end IBûnesetkezelõ
 
 }//end namespace Adatkezelõ
