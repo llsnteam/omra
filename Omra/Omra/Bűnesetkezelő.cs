@@ -76,7 +76,7 @@ namespace Adatkezelõ {
         
 		/// 
 		/// <param name="bûneset"></param>
-		public BÁllapot BûnesetÁllapotmódosítás(Bûneset bûneset)
+		public BÁllapot BûnesetÁllapotmódosítás(Bûneset bûneset) // a bûneset módosítáas utáni mentésnél 
         {
             return bûneset.Állapotmódosítás();
             //---------------------Adatbázisban módosítani
