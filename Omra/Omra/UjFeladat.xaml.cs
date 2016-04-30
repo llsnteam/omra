@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Adatkezelő;
 
 namespace Omra
 {
@@ -19,9 +20,59 @@ namespace Omra
     /// </summary>
     public partial class UjFeladat : Window
     {
+        DatabaseElements DE = new DatabaseElements();
+        IFeladatkezelő feladatK = new Feladatkezelő();
+        Dolgozó kivdolg;
+        Bűneset kivbun;
+
         public UjFeladat()
         {
             InitializeComponent();
         }
+
+        private void TisztKereses_Click(object sender, RoutedEventArgs e)
+        {
+            KeresesAblak keresablak = new KeresesAblak(KeresésTípus.Dolgozó);
+            if (keresablak.ShowDialog() == true)
+            {
+                if (kivdolg.GetBeosztás() == Rang.Tiszt)
+                {
+                    kivdolg = (Dolgozó)keresablak.feltoltendo;
+                    tiszt_cbx.Text = kivdolg.GetNév();
+                }
+                else
+                {
+                    MessageBox.Show("Ez a felhasználó nem rendelkezik a szükséges beosztással!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    kivdolg = null;
+                }
+            }
+        }
+
+        private void FeladatKereses_Click(object sender, RoutedEventArgs e)
+        {
+            KeresesAblak keresablak = new KeresesAblak(KeresésTípus.Bűneset);
+            if (keresablak.ShowDialog() == true)
+            {
+                kivbun = (Bűneset)keresablak.feltoltendo;
+                feladat_cbx.Text = kivbun.GetAzonosító.ToString();
+            }
+        }
+
+        private void Mentes_Click(object sender, RoutedEventArgs e)
+        {
+            feladatK.FeladatMentés(kivdolg, kivbun);
+            this.DialogResult = true;
+        }
+
+        private void Vissza_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        public string FeladatNévIDNaplózáshoz()
+        {
+            return kivdolg.GetNév() + ";" + kivbun.GetAzonosító;
+        }
+
     }
 }

@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Omra.KeresesAblak"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="KeresesAblak" Height="439" Width="451">
+        Title="Keresés" Height="450.94" Width="451">
     <Grid Background="{StaticResource hatter}">
         <TextBox Name="Azon" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <ListBox Name="ListboxEredmeny" HorizontalAlignment="Left" Height="388" Margin="135,10,0,0" VerticalAlignment="Top" Width="298"/>

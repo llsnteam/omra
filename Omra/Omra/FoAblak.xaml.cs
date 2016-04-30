@@ -124,13 +124,19 @@ namespace Omra
         private void UjFelh_Click(object sender, RoutedEventArgs e)
         {
             DolgozoAblak dolgozoablak = new DolgozoAblak();
-            dolgozoablak.ShowDialog();
+            if(dolgozoablak.ShowDialog()==true)
+            {
+                kliens.NaplobaIras("Új felhasználó felvéve: " + dolgozoablak.DologozóNévNaplózáshoz());
+            }
         }
 
         private void UjBun_Click(object sender, RoutedEventArgs e)
         {
             BunesetAblak bunablak = new BunesetAblak();
-            bunablak.ShowDialog();
+            if(bunablak.ShowDialog()==true)
+            {
+                kliens.NaplobaIras("Új bűneset felvéve: " + bunablak.BűnesetIDNaplózáshoz());
+            }
         }
 
         private void Kimut_Click(object sender, RoutedEventArgs e)
@@ -142,13 +148,20 @@ namespace Omra
         private void FelKio_Click(object sender, RoutedEventArgs e)
         {
             UjFeladat ujfeladatablak = new UjFeladat();
-            ujfeladatablak.ShowDialog();
+            if(ujfeladatablak.ShowDialog()==true)
+            {
+                string[] adatok = ujfeladatablak.FeladatNévIDNaplózáshoz().Split(';'); // 0. elem a név, 1. elem az ID
+                kliens.NaplobaIras(adatok[0] + " tiszthez felvételre került a(z) " + adatok[1] + " id-vel rendelkető feladat.");
+            }
         }
 
         private void BunMod_Click(object sender, RoutedEventArgs e)
         {
             BunesetAblak bunablak = new BunesetAblak();
-            bunablak.ShowDialog();
+            if(bunablak.ShowDialog()==true)
+            {
+                kliens.NaplobaIras("A(z) " + bunablak.BűnesetIDNaplózáshoz() + " id-vel rendelkező bűneset módosítva lett.");
+            }
         }
 
         private void UzenetKival_Click(object sender, RoutedEventArgs e)

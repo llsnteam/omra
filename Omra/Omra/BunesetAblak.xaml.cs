@@ -70,9 +70,11 @@ namespace Omra
             KeresesAblak keresablak = new KeresesAblak(KeresésTípus.Dolgozó);
             if (keresablak.ShowDialog() == true)
             {
-                felelősŐrnagy = (Dolgozó)keresablak.feltoltendo;
                 if (felelősŐrnagy.GetBeosztás() == Rang.Ornagy)
+                {
+                    felelősŐrnagy = (Dolgozó)keresablak.feltoltendo;
                     felorn_txb.Text = felelősŐrnagy.GetNév();
+                }
                 else
                 {
                     MessageBox.Show("Ez a felhasználó nem rendelkezik a szükséges beosztással!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -148,6 +150,11 @@ namespace Omra
 
                 kliens.NaplobaIras("Új bizonyíték felvétele és bűnesethez rendelése.");
             }
+        }
+
+        public decimal BűnesetIDNaplózáshoz()
+        {
+            return id;
         }
 
     }

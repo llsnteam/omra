@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Omra.GyanusitottAblak"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="GyanusitottAblak" Height="357" Width="308">
+        Title="Gyanúsított" Height="357" Width="308">
     <Grid Background="{StaticResource hatter}">
         <Image x:Name="kep_img" HorizontalAlignment="Left" Height="131" Margin="76,10,0,0" VerticalAlignment="Top" Width="131"/>
 

@@ -13,6 +13,7 @@
                             <Image Name="Normal" Source="gomb4_sima.png"/>
                             <Image Name="On" Source="gomb4_over.png" Visibility="Hidden"/>
                             <Image Name="Press" Source="gomb4_click.png" Visibility="Hidden"/>
+                            <Image IsEnabled="False" Source="gomb4_sima.png" Opacity="0.5"/>
                             <ContentPresenter x:Name="ContentArea"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
