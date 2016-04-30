@@ -9,9 +9,9 @@
         <RadioButton Name="RadioBuneset" Content="Bűneset" HorizontalAlignment="Left" Margin="10,58,0,0" VerticalAlignment="Top" GroupName="radiobuttons" Checked="Radio_Checked"/>
         <RadioButton Name="RadioBizonyitek" Content="Bizonyíték" HorizontalAlignment="Left" Margin="10,78,0,0" VerticalAlignment="Top" GroupName="radiobuttons" Checked="Radio_Checked"/>
         <RadioButton Name="RadioGyanusitott" Content="Gyanúsított" HorizontalAlignment="Left" Margin="10,98,0,0" VerticalAlignment="Top" GroupName="radiobuttons" Checked="Radio_Checked"/>
-        <Button Content="Vissza" HorizontalAlignment="Left" Margin="10,378,0,0" VerticalAlignment="Top" Width="111" Click="Button_Click_1"/>
-        <Button Content="Keres" HorizontalAlignment="Left" Margin="15,128,0,0" VerticalAlignment="Top" Width="106" Click="Button_Click"/>
-        <Button Content="Kiválaszt" HorizontalAlignment="Left" Margin="8,353,0,0" VerticalAlignment="Top" Width="113" RenderTransformOrigin="0.16,-0.4" Click="Button_Click_2"/>
+        <Button Content="Vissza" HorizontalAlignment="Left" Margin="10,378,0,0" VerticalAlignment="Top" Width="111" Click="Button_Click_1" Style="{StaticResource BigButton}"/>
+        <Button Content="Keres" HorizontalAlignment="Left" Margin="15,128,0,0" VerticalAlignment="Top" Width="106" Click="Button_Click" Style="{StaticResource BigButton}"/>
+        <Button Content="Kiválaszt" HorizontalAlignment="Left" Margin="8,353,0,0" VerticalAlignment="Top" Width="113" RenderTransformOrigin="0.16,-0.4" Click="Button_Click_2" Style="{StaticResource BigButton}"/>
 
     </Grid>
 </Window>
