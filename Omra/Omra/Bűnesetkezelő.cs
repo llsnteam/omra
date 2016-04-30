@@ -126,16 +126,7 @@ namespace Adatkezelõ {
             }
             DE.SaveChanges();
 		}
-
-        /// 
-        /// <param name="bizonyíték"></param>
-        public void BizonyítékMódosítása(Bizonyíték bizonyíték)
-        {
-            var modositott = DE.Bizonyitekok.Single(x => x.bizonyitekID == bizonyíték.GetAzonosító);
-            modositott.megnevezes = bizonyíték.GetMegnevezés();
-            DE.SaveChanges();
-        }
-
+        
 		/// 
 		/// <param name="gyanúsítottStátusz"></param>
 		/// <param name="lakcím"></param>

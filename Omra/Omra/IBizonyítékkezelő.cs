@@ -16,11 +16,7 @@ namespace Adatkezelõ {
 		/// <param name="bizonyíték">ez kérdéses</param>
 		/// <param name="bûneset"></param>
 		void BizonyítékHozzáadása(Bizonyíték bizonyíték, Bûneset bûneset);
-
-        /// 
-        /// <param name="bizonyíték"></param>
-        void BizonyítékMódosítása(Bizonyíték bizonyíték);
-
+        
 		/// 
 		/// <param name="megnevezés">Mint pl. kés, pisztoly stb.</param>
 		void ÚjBizonyíték(string megnevezés);
