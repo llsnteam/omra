@@ -104,7 +104,7 @@ namespace Omra
 
         string filepath;
 
-        private void btnLoad_Click(object sender, RoutedEventArgs e) //ez feltölti a képet az openfiledialogból kiválasztott képpel
+        private void btnLoad_Click(object sender, RoutedEventArgs e) //ez feltölti az Image-t az openfiledialogból kiválasztott képpel
         {
             OpenFileDialog open = new OpenFileDialog();
             open.Multiselect = false;
@@ -119,7 +119,7 @@ namespace Omra
             }
         }
 
-        private static String GetDestinationPath(string filename, string foldername)
+        private static String GetDestinationPath(string filename, string foldername) //segédmetódus
         {
             String appStartPath = System.IO.Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
 
@@ -134,7 +134,7 @@ namespace Omra
 
             File.Copy(filepath, destinationPath, true);
             Uri u = new Uri(System.IO.Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + "/kepek/7.jpg");
-            MessageBox.Show(u.ToString());
+            
             kep_img.Source = new BitmapImage(u);
         }
     }
