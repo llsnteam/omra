@@ -26,6 +26,13 @@ namespace Omra
         public KeresesAblak() 
         {
             InitializeComponent();
+
+            if (FoAblak.aktDolgozo.GetBeosztás() == Rang.Adminisztrátor)
+            {
+                RadioBizonyitek.IsEnabled = false;
+                RadioBuneset.IsEnabled = false;
+                RadioGyanusitott.IsEnabled = false;
+            }
         }
 
         public KeresesAblak(KeresésTípus tipus) //specifikus keresés (pl. bűnesetnél gyanúsított hozzáadása -> nem engedjük, csak a gyanúsítottak listázását)
@@ -140,31 +147,45 @@ namespace Omra
                 {
                     if (RadioBizonyitek.IsChecked == true) //ha bizonyíték
                     {
-                        BizonyitekWindow bw = new BizonyitekWindow((Bizonyíték)ListboxEredmeny.SelectedItem);
-                        bw.ShowDialog();
+                        if (FoAblak.aktDolgozo.GetBeosztás() == Rang.Tiszt) //csak tiszt módosíthat bizonyítékot
+                        {
+                            BizonyitekWindow bw = new BizonyitekWindow((Bizonyíték)ListboxEredmeny.SelectedItem);
+                            bw.ShowDialog();
+                        }
                     }
 
                     else if (RadioBuneset.IsChecked == true) //ha bűneset
                     {
-                        BunesetAblak ba = new BunesetAblak((Bűneset)ListboxEredmeny.SelectedItem);
-                        ba.ShowDialog();
+                            BunesetAblak ba = new BunesetAblak((Bűneset)ListboxEredmeny.SelectedItem);
+                            ba.ShowDialog();
                     }
 
                     else if (RadioDolgozo.IsChecked == true) //ha dolgozó
                     {
-                        DolgozoAblak da = new DolgozoAblak((Dolgozó)ListboxEredmeny.SelectedItem);
-                        da.ShowDialog();
+                        if (FoAblak.aktDolgozo.GetBeosztás() == Rang.Adminisztrátor)
+                        {
+                            DolgozoAblak da = new DolgozoAblak((Dolgozó)ListboxEredmeny.SelectedItem);
+                            da.ShowDialog();
+                        }
                     }
 
                     else if (RadioGyanusitott.IsChecked == true) //ha gyanusított
                     {
-                        GyanusitottAblak ga = new GyanusitottAblak(null,(Gyanúsított)ListboxEredmeny.SelectedItem);
-                        ga.ShowDialog();
+                        if (FoAblak.aktDolgozo.GetBeosztás() == Rang.Tiszt)
+                        {
+                            GyanusitottAblak ga = new GyanusitottAblak(null, (Gyanúsított)ListboxEredmeny.SelectedItem);
+                            ga.ShowDialog();
+                        }
                     }
 
                     Button_Click(null, null);
                 }
             }
+        }
+
+        private void Radio_Checked(object sender, RoutedEventArgs e)
+        {
+            ListboxEredmeny.ItemsSource = null;
         }
     }
 }

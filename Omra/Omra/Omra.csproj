@@ -139,6 +139,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="NaploAblak.xaml.cs">
+      <DependentUpon>NaploAblak.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Rang.cs" />
     <Compile Include="Service References\NaplozoNamespace\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -219,6 +222,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="NaploAblak.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UjFeladat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

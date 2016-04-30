@@ -21,7 +21,7 @@ namespace Omra
     
     public partial class FoAblak : Window
     {
-        Dolgozó aktDolgozo;
+        public static Dolgozó aktDolgozo;
         IÜzenetkezelő uzenetK;
         Üzenet kivalasztottUzenet;
         IFeladatkezelő feladatK;
@@ -186,9 +186,8 @@ namespace Omra
 
         private void Log_Click(object sender, RoutedEventArgs e)
         {
-            BunesetAblak bunablak = new BunesetAblak();
-            bunablak.ShowDialog();
+            NaploAblak na = new NaploAblak();
+            na.ShowDialog();
         }
-
     }
 }
