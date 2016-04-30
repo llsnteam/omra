@@ -26,6 +26,8 @@ namespace Omra
         Üzenet kivalasztottUzenet;
         IFeladatkezelő feladatK;
         Feladat kivalasztottFeladat;
+
+        private NaplozoNamespace.Service1Client kliens = new NaplozoNamespace.Service1Client();
         
         public FoAblak(Dolgozó d)
         {
@@ -57,6 +59,7 @@ namespace Omra
             if (r == Rang.Kapitány || r == Rang.Ornagy || r == Rang.Tiszt) // ha nem admin lép be
             {
                 admin_ujfelh.Visibility = hidden;
+                admin_log.Visibility = hidden;
             }
             if (r == Rang.Adminisztrátor || r == Rang.Ornagy || r == Rang.Tiszt) // ha nem kapitány lép be
             {
@@ -89,6 +92,7 @@ namespace Omra
             MainWindow mw = new MainWindow();
             App.Current.MainWindow = mw;
             mw.Show();
+            kliens.NaplobaIras("Kijelentkezés: " + aktDolgozo.GetNév());
             this.Close();
         }
 
@@ -98,6 +102,7 @@ namespace Omra
             if(ujuzenetablak.ShowDialog()==true)
             {
                 uzenetK.ÜzenetKüldése(ujuzenetablak.Tartalom, ujuzenetablak.Targy, aktDolgozo, ujuzenetablak.Cimzett);
+                kliens.NaplobaIras("Új üzenet elküldve. Feladó: " + aktDolgozo.GetNév() + ", Címzett: " + ujuzenetablak.Cimzett.GetNév());
             }
         }
 
@@ -177,6 +182,12 @@ namespace Omra
                 allapot_fel_lbl.Content = "";
                 szoveg_fel_txb.Text = "";
             }
+        }
+
+        private void Log_Click(object sender, RoutedEventArgs e)
+        {
+            BunesetAblak bunablak = new BunesetAblak();
+            bunablak.ShowDialog();
         }
 
     }
