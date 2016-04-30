@@ -2,16 +2,16 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="KeresesAblak" Height="439" Width="451">
-    <Grid>
+    <Grid Background="{StaticResource hatter}">
         <TextBox Name="Azon" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <ListBox Name="ListboxEredmeny" HorizontalAlignment="Left" Height="388" Margin="135,10,0,0" VerticalAlignment="Top" Width="298"/>
         <RadioButton Name="RadioDolgozo" Content="Dolgozó" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" GroupName="radiobuttons"/>
         <RadioButton Name="RadioBuneset" Content="Bűneset" HorizontalAlignment="Left" Margin="10,58,0,0" VerticalAlignment="Top" GroupName="radiobuttons"/>
         <RadioButton Name="RadioBizonyitek" Content="Bizonyíték" HorizontalAlignment="Left" Margin="10,78,0,0" VerticalAlignment="Top" GroupName="radiobuttons"/>
         <RadioButton Name="RadioGyanusitott" Content="Gyanúsított" HorizontalAlignment="Left" Margin="10,98,0,0" VerticalAlignment="Top" GroupName="radiobuttons"/>
-        <Button Content="Vissza" HorizontalAlignment="Left" Margin="10,378,0,0" VerticalAlignment="Top" Width="111" Click="Button_Click_1"/>
-        <Button Content="Keres" HorizontalAlignment="Left" Margin="15,128,0,0" VerticalAlignment="Top" Width="106" Click="Button_Click"/>
-        <Button Content="Kiválaszt" HorizontalAlignment="Left" Margin="8,353,0,0" VerticalAlignment="Top" Width="113" RenderTransformOrigin="0.16,-0.4" Click="Button_Click_2"/>
+        <Button Content="Vissza" HorizontalAlignment="Left" Margin="10,378,0,0" VerticalAlignment="Top" Width="111" Click="Button_Click_1" Style="{StaticResource BigButton}"/>
+        <Button Content="Keres" HorizontalAlignment="Left" Margin="15,128,0,0" VerticalAlignment="Top" Width="106" Click="Button_Click" Style="{StaticResource BigButton}"/>
+        <Button Content="Kiválaszt" HorizontalAlignment="Left" Margin="8,353,0,0" VerticalAlignment="Top" Width="113" RenderTransformOrigin="0.16,-0.4" Click="Button_Click_2" Style="{StaticResource BigButton}"/>
 
     </Grid>
 </Window>

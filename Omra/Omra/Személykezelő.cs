@@ -20,7 +20,7 @@ namespace Adatkezelõ {
 	public class Személykezelõ : IDolgozókezelõ
     {
         DatabaseElements DE = new DatabaseElements();
-
+        
 		/// 
 		/// <param name="azonosító"></param>
 		/// <param name="jelszó"></param>
@@ -30,7 +30,7 @@ namespace Adatkezelõ {
             var talalat = from x in DE.Dolgozok  // kikeresi a megadott felhasználót
                             where x.nev == felhasználónév && x.jelszo == jelszó
                             select x;
-
+            
             if (talalat.Count() != 0)
             {
                 Dolgozok uj = talalat.First();

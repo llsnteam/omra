@@ -129,13 +129,16 @@ namespace Omra
 
         private void btnSave_Click(object sender, RoutedEventArgs e) //a kiválasztott képet elmenti
         {
-            string name = System.IO.Path.GetFileName(filepath);
-            string destinationPath = GetDestinationPath("7.jpg", "kepek");  //itt a "7.jpg" helyett id + ".jpg" kell
+            if (filepath != null)
+            {
+                string name = System.IO.Path.GetFileName(filepath);
+                string destinationPath = GetDestinationPath(id + ".jpg", "kepek");  //itt a "7.jpg" helyett id + ".jpg" kell
 
-            File.Copy(filepath, destinationPath, true);
-            Uri u = new Uri(System.IO.Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + "/kepek/7.jpg");
-            
-            // kep_img.Source = new BitmapImage(u);
+                File.Copy(filepath, destinationPath, true);
+                Uri u = new Uri(System.IO.Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + "/kepek/" + id + ".jpg");
+
+                kep_img.Source = new BitmapImage(u);
+            }
         }
     }
 }
