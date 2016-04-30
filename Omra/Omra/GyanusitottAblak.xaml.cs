@@ -135,7 +135,7 @@ namespace Omra
             File.Copy(filepath, destinationPath, true);
             Uri u = new Uri(System.IO.Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + "/kepek/7.jpg");
             
-            kep_img.Source = new BitmapImage(u);
+            // kep_img.Source = new BitmapImage(u);
         }
     }
 }
