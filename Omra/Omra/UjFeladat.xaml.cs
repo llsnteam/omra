@@ -54,7 +54,7 @@ namespace Omra
             if (keresablak.ShowDialog() == true)
             {
                 kivbun = (Bűneset)keresablak.feltoltendo;
-                feladat_cbx.Text = kivbun.GetAzonosító.ToString() + " : " +  kivbun.GetLeiras.Substring(0, 20);
+                feladat_cbx.Text = kivbun.GetAzonosító.ToString() + " : " +  kivbun.GetLeiras.Substring(0, kivbun.GetLeiras.Length > 20 ? 20 : kivbun.GetLeiras.Length);
             }
         }
 

@@ -95,7 +95,17 @@ namespace Omra
                 string name = System.IO.Path.GetFileName(filepath);
                 string destinationPath = GetDestinationPath(id + ".jpg", "../../kepek");
 
-                File.Copy(filepath, destinationPath, true);
+                try
+                {
+                    File.Copy(filepath, destinationPath, true);
+                }
+                catch (IOException ee)
+                {
+                    MessageBox.Show("Hiba történt, részletek a naplóban");
+                    NaplozoNamespace.Service1Client kliens = new NaplozoNamespace.Service1Client();
+                    kliens.NaplobaIras(ee.ToString());
+                }
+                
                 Uri u = new Uri(System.IO.Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + "../../../kepek/" + id + ".jpg");
 
                 kep_img.Source = new BitmapImage(u);
