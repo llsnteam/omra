@@ -74,8 +74,14 @@ namespace Adatkezelõ {
                 return false;
 
             decimal id = üzenet.GetUzenetID;
-            var aktUzenet = DE.Uzenetek.Single(x => x.uzenetID == id);
-            DE.Uzenetek.Remove(aktUzenet);
+
+            var aktUzenet = from x in DE.Uzenetek
+                            where x.uzenetID == id
+                            select x;
+
+            foreach(var u in aktUzenet)
+                DE.Uzenetek.Remove(u);
+
             DE.SaveChanges();
             return true;
 		}

@@ -203,11 +203,6 @@ namespace Omra
             na.ShowDialog();
         }
 
-        private void szoveg_fel_txb_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void szoveg_fel_txb_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             e.Handled = true;
