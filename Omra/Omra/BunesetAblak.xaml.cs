@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Adatkezelő;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace Omra
 {
@@ -48,8 +49,28 @@ namespace Omra
             kivBűneset = buneset;
             id = kivBűneset.GetAzonosító;
             felelősŐrnagy = buneset.GetFelelős;
-            gyanúsítottak = bunesetK.GyanúsítottakKigyűjtése(buneset);
-            bizonyítékok = bunesetK.BizonyítékokKigyűjtése(buneset);
+
+            //
+            //
+            // Párhuzamosság
+            // Itt 2 task, majd waitAll
+            // Meg a bűnesetkezelőn belül is lockolva van + új databaseElement
+            Task<ObservableCollection<Gyanúsított>> t1 = new Task<ObservableCollection<Gyanúsított>>(() => bunesetK.GyanúsítottakKigyűjtése(buneset));
+            t1.Start();
+            t1.ContinueWith(task => { 
+                gyanúsítottak = task.Result; 
+            },
+                TaskContinuationOptions.OnlyOnRanToCompletion);
+
+            Task<ObservableCollection<Bizonyíték>> t2 = new Task<ObservableCollection<Bizonyíték>>(() => bunesetK.BizonyítékokKigyűjtése(buneset));
+            t2.Start();
+            t2.ContinueWith(task =>
+            {
+                bizonyítékok = task.Result;
+            },
+                TaskContinuationOptions.OnlyOnRanToCompletion);
+
+            Task.WaitAll(t1,t2);
             Feltoltes(buneset.GetFelelős, buneset.GetLeiras, gyanúsítottak, bizonyítékok,buneset.GetÁllapot());
 
             if (FoAblak.aktDolgozo.GetBeosztás() != Rang.Kapitány)  //Csak kapitány zárhatja le -Laczkó
@@ -60,7 +81,7 @@ namespace Omra
         {
             felorn_txb.Text = felelosOrnagy.GetNév();
             leiras_txb.Text = leírás;
-            ListboxGyanúsítottak.ItemsSource = gyan;
+            ListboxGyanúsítottak.ItemsSource = this.gyanúsítottak;
             ListboxBizonyítékok.ItemsSource = biz;
             if (allapot == BÁllapot.Folyamatban)
                 allapot_cbx.IsChecked = true;
