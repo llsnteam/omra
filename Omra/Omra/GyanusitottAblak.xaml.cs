@@ -72,8 +72,14 @@ namespace Omra
 
         private void Feltoltes(string nev, string lakcim, GyanúsítottStátusz statusz)
         {
-            if (id <= 6) // csak azért kell, mert egyelőre csak 6-os az utolsó elnevezésű kép és hogy ne essen szét a program
+            try
+            {
                 keplink = BitmapFrame.Create(new Uri("../../kepek/" + id + ".jpg", UriKind.Relative));
+            }
+            catch(FileNotFoundException e)
+            {
+                keplink = BitmapFrame.Create(new Uri("../../kepek/default.jpg", UriKind.Relative));
+            }
             kep_img.Source = keplink;
             statusz_cbx.ItemsSource = Enum.GetValues(typeof(GyanúsítottStátusz));
             nev_txt.Text = nev;
@@ -84,6 +90,16 @@ namespace Omra
         private void Mentes_Click(object sender, RoutedEventArgs e)
         {
             gyKezelo.ÚjGyanúsított((GyanúsítottStátusz)Enum.Parse(typeof(GyanúsítottStátusz), statusz_cbx.SelectedItem.ToString()), lakcim_txt.Text, id, nev_txt.Text);
+            if (filepath != null)
+            {
+                string name = System.IO.Path.GetFileName(filepath);
+                string destinationPath = GetDestinationPath(id + ".jpg", "kepek");  //itt a "7.jpg" helyett id + ".jpg" kell
+
+                File.Copy(filepath, destinationPath, true);
+                Uri u = new Uri(System.IO.Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + "/kepek/" + id + ".jpg");
+
+                kep_img.Source = new BitmapImage(u);
+            }
             this.DialogResult = true;
         }
 
@@ -125,20 +141,6 @@ namespace Omra
 
             appStartPath = String.Format(appStartPath + "\\{0}\\" + filename, foldername);
             return appStartPath;
-        }
-
-        private void btnSave_Click(object sender, RoutedEventArgs e) //a kiválasztott képet elmenti
-        {
-            if (filepath != null)
-            {
-                string name = System.IO.Path.GetFileName(filepath);
-                string destinationPath = GetDestinationPath(id + ".jpg", "kepek");  //itt a "7.jpg" helyett id + ".jpg" kell
-
-                File.Copy(filepath, destinationPath, true);
-                Uri u = new Uri(System.IO.Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + "/kepek/" + id + ".jpg");
-
-                kep_img.Source = new BitmapImage(u);
-            }
         }
     }
 }

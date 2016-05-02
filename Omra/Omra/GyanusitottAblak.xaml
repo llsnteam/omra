@@ -14,8 +14,7 @@
         <Button Click="Mentes_Click" Content="Mentés" HorizontalAlignment="Left" Margin="23,246,0,0" VerticalAlignment="Top" Width="105" RenderTransformOrigin="0.16,0" Style="{StaticResource BigButton}"/>
         <Button Click="Vissza_Click" Content="Vissza" HorizontalAlignment="Left" Margin="150,246,0,0" VerticalAlignment="Top" Width="102" IsCancel="True" Style="{StaticResource BigButton}"/>
         <ComboBox x:Name="statusz_cbx" HorizontalAlignment="Left" Margin="121,211,0,0" VerticalAlignment="Top" Width="157"/>
-        <Button Name="btnLoad" Content="Kép betöltés" HorizontalAlignment="Left" Margin="23,286,0,0" VerticalAlignment="Top" Width="105" Click="btnLoad_Click" RenderTransformOrigin="-0.133,0.35" Style="{StaticResource BigButton}"/>
-        <Button Name="btnSave" Content="Kép mentés" HorizontalAlignment="Left" Margin="150,286,0,0" VerticalAlignment="Top" Width="102" Click="btnSave_Click" Style="{StaticResource BigButton}"/>
+        <Button Name="btnLoad" Content="Kép betöltés" HorizontalAlignment="Left" Margin="86,286,0,0" VerticalAlignment="Top" Width="105" Click="btnLoad_Click" RenderTransformOrigin="-0.133,0.35" Style="{StaticResource BigButton}"/>
 
     </Grid>
 </Window>

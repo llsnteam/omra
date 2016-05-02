@@ -134,9 +134,12 @@ namespace Adatkezelõ {
 		/// <param name="név"></param>
 		public void ÚjGyanúsított(GyanúsítottStátusz gyanúsítottStátusz, string lakcím, decimal id, string név)
         {
-            var gyanu=DE.Gyanusitottak.Single(x=>x.gyanusitottID==id);
-            if (gyanu != null)     // azaz már létezik és csak módosít egy meglévõt
+            var gyanusitott = from x in DE.Gyanusitottak
+                              where x.gyanusitottID == id
+                              select x;
+            if (gyanusitott.Count() != 0)     // azaz már létezik és csak módosít egy meglévõt
             {
+                Gyanusitottak gyanu = gyanusitott.First();
                 gyanu.lakcim = lakcím;
                 gyanu.statusz = gyanúsítottStátusz.ToString();
                 gyanu.nev = név;
