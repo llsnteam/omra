@@ -35,9 +35,12 @@ namespace Omra
 
         private void UjUzenet_Click(object sender, RoutedEventArgs e)
         {
-            targy = targy_txb.Text;
-            tartalom = tartalom_txb.Text;
-            this.DialogResult = true;
+            if (cimzett != null)
+            {
+                targy = targy_txb.Text;
+                tartalom = tartalom_txb.Text;
+                this.DialogResult = true;
+            }
         }
 
         private void CimzettKeres_Click(object sender, RoutedEventArgs e)
