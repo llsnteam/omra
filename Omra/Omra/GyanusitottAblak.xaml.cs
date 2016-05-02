@@ -93,10 +93,10 @@ namespace Omra
             if (filepath != null)
             {
                 string name = System.IO.Path.GetFileName(filepath);
-                string destinationPath = GetDestinationPath(id + ".jpg", "kepek");  //itt a "7.jpg" helyett id + ".jpg" kell
+                string destinationPath = GetDestinationPath(id + ".jpg", "../../kepek");
 
                 File.Copy(filepath, destinationPath, true);
-                Uri u = new Uri(System.IO.Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + "/kepek/" + id + ".jpg");
+                Uri u = new Uri(System.IO.Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + "../../../kepek/" + id + ".jpg");
 
                 kep_img.Source = new BitmapImage(u);
             }
