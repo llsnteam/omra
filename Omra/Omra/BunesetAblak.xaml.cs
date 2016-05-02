@@ -140,7 +140,7 @@ namespace Omra
             BizonyitekWindow bizablak = new BizonyitekWindow();
             if(bizablak.ShowDialog()==true)
             {
-
+                
             }
         }
 
