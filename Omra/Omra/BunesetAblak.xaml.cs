@@ -128,6 +128,7 @@ namespace Omra
 
         private void Vissza_Click(object sender, RoutedEventArgs e)
         {
+            //csak teszt semmi értelmes
             this.Close();
         }
 
