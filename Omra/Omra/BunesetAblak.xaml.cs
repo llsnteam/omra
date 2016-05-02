@@ -70,9 +70,9 @@ namespace Omra
             KeresesAblak keresablak = new KeresesAblak(KeresésTípus.Dolgozó);
             if (keresablak.ShowDialog() == true)
             {
+                felelősŐrnagy = (Dolgozó)keresablak.feltoltendo;
                 if (felelősŐrnagy.GetBeosztás() == Rang.Ornagy)
                 {
-                    felelősŐrnagy = (Dolgozó)keresablak.feltoltendo;
                     felorn_txb.Text = felelősŐrnagy.GetNév();
                 }
                 else
