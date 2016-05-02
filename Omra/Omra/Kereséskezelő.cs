@@ -65,50 +65,122 @@ namespace Adatkezelõ {
             for (int i = 0; i < 10; i++)
                 if (azonosító.StartsWith(Convert.ToString(i))) IDkereses = true;
 
-            if (IDkereses)
+            if (FoAblak.aktDolgozo.GetBeosztás() == Rang.Tiszt) //Ha tiszt, akkor végignézi a felvett táblát is
             {
-                Decimal d = Convert.ToDecimal(azonosító);
-
-                DatabaseElements DE = new DatabaseElements();
-
-                var eredmeny = from x in DE.Bunesetek
-                               where x.bunesetID == d
-                               select x;
-
-                foreach (var v in eredmeny)
+                if (IDkereses)
                 {
-                    var ered = from x in DE.Dolgozok
+                    Decimal d = Convert.ToDecimal(azonosító);
+
+                    DatabaseElements DE = new DatabaseElements();
+
+                    var eredmeny = from x in DE.Bunesetek
+                                   where x.bunesetID == d
+                                   select x;
+
+                    foreach (var v in eredmeny)
+                    {
+                        var ered = from x in DE.Dolgozok
                                    where x.dolgozoID == v.felelos_ornagy
                                    select x;
 
-                    Dolgozó felelosornagy = null;
+                        Dolgozó felelosornagy = null;
 
-                    foreach (var m in ered)
-                        felelosornagy = new Dolgozó((Rang)Enum.Parse(typeof(Rang), m.rang.ToString()), m.jelszo, m.nev, m.lakcim, m.dolgozoID);
+                        foreach (var m in ered)
+                            felelosornagy = new Dolgozó((Rang)Enum.Parse(typeof(Rang), m.rang.ToString()), m.jelszo, m.nev, m.lakcim, m.dolgozoID);
 
-                    visszateresilista.Add(new Bûneset(v.bunesetID, (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras, v.lezaras, felelosornagy));
+                        visszateresilista.Add(new Bûneset(v.bunesetID, (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras, v.lezaras, felelosornagy));
+                    }
                 }
+                else
+                {
+                    DatabaseElements DE = new DatabaseElements();
+
+                    var eredmeny = from x in DE.Bunesetek
+                                   where x.leiras.Contains(azonosító)
+                                   select x;
+
+                    foreach (var v in eredmeny)
+                    {
+                        var ered = from x in DE.Dolgozok
+                                   where x.dolgozoID == v.felelos_ornagy
+                                   select x;
+
+                        Dolgozó felelosornagy = null;
+
+                        foreach (var m in ered)
+                            felelosornagy = new Dolgozó((Rang)Enum.Parse(typeof(Rang), m.rang.ToString()), m.jelszo, m.nev, m.lakcim, m.dolgozoID);
+
+                        visszateresilista.Add(new Bûneset(v.bunesetID, (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras, v.lezaras, felelosornagy));
+                    }
+                }
+
+
+                List<Bûneset> bunesetek = new List<Bûneset>();
+
+                DatabaseElements dee = new DatabaseElements();
+
+                var felvettek = from x in dee.FelvettDolgozok
+                                select x;
+
+                foreach (Bûneset b in visszateresilista)
+                {
+                    foreach (var v in felvettek)
+
+                        if (b.GetAzonosító == v.bunesetID && FoAblak.aktDolgozo.GetAzonosító() == v.dolgozoID)
+                        {
+                            bunesetek.Add(b);
+                            break;
+                        }
+                }
+                visszateresilista = bunesetek;
             }
             else
             {
-                DatabaseElements DE = new DatabaseElements();
-
-                var eredmeny = from x in DE.Bunesetek
-                               where x.leiras.Contains(azonosító)
-                               select x;
-
-                foreach (var v in eredmeny)
+                if (IDkereses)
                 {
-                    var ered = from x in DE.Dolgozok
-                               where x.dolgozoID == v.felelos_ornagy
-                               select x;
+                    Decimal d = Convert.ToDecimal(azonosító);
 
-                    Dolgozó felelosornagy = null;
+                    DatabaseElements DE = new DatabaseElements();
 
-                    foreach (var m in ered)
-                        felelosornagy = new Dolgozó((Rang)Enum.Parse(typeof(Rang), m.rang.ToString()), m.jelszo, m.nev, m.lakcim, m.dolgozoID);
+                    var eredmeny = from x in DE.Bunesetek
+                                   where x.bunesetID == d
+                                   select x;
 
-                    visszateresilista.Add(new Bûneset(v.bunesetID, (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras, v.lezaras, felelosornagy));
+                    foreach (var v in eredmeny)
+                    {
+                        var ered = from x in DE.Dolgozok
+                                   where x.dolgozoID == v.felelos_ornagy
+                                   select x;
+
+                        Dolgozó felelosornagy = null;
+
+                        foreach (var m in ered)
+                            felelosornagy = new Dolgozó((Rang)Enum.Parse(typeof(Rang), m.rang.ToString()), m.jelszo, m.nev, m.lakcim, m.dolgozoID);
+
+                        visszateresilista.Add(new Bûneset(v.bunesetID, (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras, v.lezaras, felelosornagy));
+                    }
+                }
+                else
+                {
+                    DatabaseElements DE = new DatabaseElements();
+
+                    var eredmeny = from x in DE.Bunesetek
+                                   where x.leiras.Contains(azonosító)
+                                   select x;
+
+                    foreach (var v in eredmeny)
+                    {
+                        var ered = from x in DE.Dolgozok
+                                   where x.dolgozoID == v.felelos_ornagy
+                                   select x;
+
+                        Dolgozó felelosornagy = null;
+
+                        foreach (var m in ered)
+                            felelosornagy = new Dolgozó((Rang)Enum.Parse(typeof(Rang), m.rang.ToString()), m.jelszo, m.nev, m.lakcim, m.dolgozoID);
+
+                        visszateresilista.Add(new Bûneset(v.bunesetID, (BÁllapot)Enum.Parse(typeof(BÁllapot), v.allapot), v.felvetel, v.leiras, v.lezaras, felelosornagy));
+                    }
                 }
             }
             
@@ -157,68 +229,7 @@ namespace Adatkezelõ {
 
 
 		public List<object> Keresés(string azonosító, KeresésTípus típus){
-
-            //List<object> visszateresilista = new List<object>();
-
-            //if (azonosító == "")
-            //{
-            //    if (típus == KeresésTípus.Bizonyíték)
-            //    {
-            //        bool IDkereses = false;     //ID-re keres (számmal kezdõdik) vagy a bizonyíték típusára keres (betûvel kezdõdik)
-            //        for (int i = 0; i < 10; i++)
-            //            if (azonosító.StartsWith(Convert.ToString(i))) IDkereses = true;
-
-            //        if (IDkereses)
-            //        {
-            //            DatabaseElements DE = new DatabaseElements();
-
-
-            //        }
-            //        else
-            //        {
-
-            //        }
-            //    }
-
-            //    if (típus == KeresésTípus.Bûneset)
-            //    {
-
-            //    }
-
-            //    if (típus == KeresésTípus.Dolgozó)
-            //    {
-
-            //    }
-
-            //    if (típus == KeresésTípus.Gyanúsított)
-            //    {
-
-            //    }
-            //}
-
-            //else
-            //{
-            //    if (típus == KeresésTípus.Bizonyíték)
-            //    {
-
-            //    }
-
-            //    if (típus == KeresésTípus.Bûneset)
-            //    {
-
-            //    }
-
-            //    if (típus == KeresésTípus.Dolgozó)
-            //    {
-
-            //    }
-
-            //    if (típus == KeresésTípus.Gyanúsított)
-            //    {
-
-            //    }
-            //}
-            //return visszateresilista;
+            //NINCS HASZNÁLVA
             return new List<object>();
 		}
 

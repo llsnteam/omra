@@ -85,8 +85,23 @@ namespace Omra
 
                 List<Bűneset> eredmeny = kezelo.Bűnesetkeresés(Azon.Text);
 
-                ListboxEredmeny.ItemsSource = null;
-                ListboxEredmeny.ItemsSource = eredmeny; 
+                if (FoAblak.aktDolgozo.GetBeosztás() == Rang.Ornagy)
+                {
+                    List<Bűneset> OrnagyEredmeny = new List<Bűneset>();
+                    foreach (Bűneset b in eredmeny)
+                    {
+                        if (FoAblak.aktDolgozo.GetAzonosító() == b.GetFelelős.GetAzonosító())
+                            OrnagyEredmeny.Add(b);
+                        ListboxEredmeny.ItemsSource = null;
+                        ListboxEredmeny.ItemsSource = OrnagyEredmeny; 
+                    }
+                }
+                else
+                {
+                    ListboxEredmeny.ItemsSource = null;
+                    ListboxEredmeny.ItemsSource = eredmeny; 
+                }
+
             }
 
 
@@ -162,7 +177,7 @@ namespace Omra
 
                     else if (RadioDolgozo.IsChecked == true) //ha dolgozó
                     {
-                        if (FoAblak.aktDolgozo.GetBeosztás() == Rang.Adminisztrátor)
+                        if (FoAblak.aktDolgozo.GetBeosztás() == Rang.Adminisztrátor) //csak admin módosíthat dolgozót
                         {
                             DolgozoAblak da = new DolgozoAblak((Dolgozó)ListboxEredmeny.SelectedItem);
                             da.ShowDialog();
@@ -171,7 +186,7 @@ namespace Omra
 
                     else if (RadioGyanusitott.IsChecked == true) //ha gyanusított
                     {
-                        if (FoAblak.aktDolgozo.GetBeosztás() == Rang.Tiszt)
+                        if (FoAblak.aktDolgozo.GetBeosztás() == Rang.Tiszt || FoAblak.aktDolgozo.GetBeosztás() == Rang.Ornagy) //csak tiszt módosíthat gyanúsítottat
                         {
                             GyanusitottAblak ga = new GyanusitottAblak(null, (Gyanúsított)ListboxEredmeny.SelectedItem);
                             ga.ShowDialog();
