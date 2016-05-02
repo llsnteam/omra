@@ -19,38 +19,25 @@ namespace Adatkezelõ
     {
 
         DatabaseElements DE = new DatabaseElements();
+        private Dolgozó célszemély;
+        private Bûneset buneset;
 
-		/// 
-		/// <param name="feladat"></param>
-		public void FeladatÁllapotMódosítás(Feladat feladat)
+        public Dolgozó GetCélszemély { get { return célszemély; } }
+        public Bûneset Buneset { get { return buneset; } }
+
+        public void FeladatMentés(Dolgozó célszemély, Bûneset bûneset)
         {
-            decimal id = feladat.GetFeladatID;
-            var aktFeladat = from x in DE.Bunesetek
-                             where x.bunesetID == id
-                             select x;
-            Bunesetek kiválasztott = aktFeladat.First();
-            if (kiválasztott.allapot == "Folyamatban")
+            var ujfelvdolg = new FelvettDolgozok()
             {
-                kiválasztott.allapot = "Lezárt";
-            }
-            else
-            {
-                kiválasztott.allapot = "Folyamatban";
-            }
-		}
+                bunesetID = bûneset.GetAzonosító,
+                dolgozoID = célszemély.GetAzonosító(),
+                felvetel_idopontja = DateTime.Now
+            };
+            DE.FelvettDolgozok.Add(ujfelvdolg);
+            DE.SaveChanges();
+        }
 
-		/// 
-		/// <param name="célszemély"></param>
-		/// <param name="létrehozta"></param>
-		/// <param name="leírás"></param>
-		public void ÚjFeladat(Dolgozó célszemély, Dolgozó létrehozta, string leírás)
-        {
-            decimal utolsoFeladat = DE.Bunesetek.Last().bunesetID;
-            decimal felelosId = létrehozta.GetAzonosító();
-            var ujFeladat = new Bunesetek() { bunesetID=utolsoFeladat+1, allapot="Folyamatban", felvetel=DateTime.Now, leiras= leírás, felelos_ornagy=felelosId};   // DOLGOZOK ????
-		}
-
-        List<Feladat> IFeladatkezelõ.FeladatokLekérdezése(Dolgozó dolgozo)
+        public List<Feladat> FeladatokLekérdezése(Dolgozó dolgozo)
         {
             decimal id = dolgozo.GetAzonosító();    // linq nem szereti ha ott kérem el
             List<Feladat> vissza = new List<Feladat>();

@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Omra.FoAblak"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Height="312.397" Width="680">
+        Title="Főoldal" Height="312.397" Width="680">
     <Grid Background="{StaticResource hatter}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="137*"/>
@@ -14,6 +14,7 @@
         <Button x:Name="admin_ujfelh" Click="UjFelh_Click" Grid.Column="0" Content="Új felhasználó" HorizontalAlignment="Left" Margin="6,105,0,0" VerticalAlignment="Top" Width="121" Style="{StaticResource BigButton}" Height="31"/>
         <Button x:Name="kap_ujbun" Click="UjBun_Click" Grid.Column="0" Content="Új bűneset" HorizontalAlignment="Left" Margin="6,105,0,0" VerticalAlignment="Top" Width="121" Style="{StaticResource BigButton}" Height="31"/>
         <Button x:Name="orn_felkio" Click="FelKio_Click" Grid.Column="0" Content="Feladat kiosztás" HorizontalAlignment="Left" Margin="6,105,0,0" VerticalAlignment="Top" Width="121" Style="{StaticResource BigButton}" Height="31"/>
+        <Button x:Name="admin_log" Click="Log_Click" Grid.Column="0" Content="Log fájl" HorizontalAlignment="Left" Margin="6,139,0,0" VerticalAlignment="Top" Width="121" Style="{StaticResource BigButton}" Height="31"/>
         <Button x:Name="kap_kimut" Click="Kimut_Click" Grid.Column="0" Content="Új kimutatás" HorizontalAlignment="Left" Margin="6,139,0,0" VerticalAlignment="Top" Width="121" Style="{StaticResource BigButton}" Height="31"/>
         <Button Click="Logout_Click" Grid.Column="0" Content="Logout" HorizontalAlignment="Left" Margin="6,241,0,0" VerticalAlignment="Top" Width="107" Style="{StaticResource BigButton}" Height="31"/>
         <Grid x:Name="gr_feladat" Grid.Column="1">

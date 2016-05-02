@@ -110,7 +110,7 @@ namespace Adatkezelõ {
             decimal azonosító = Convert.ToDecimal(AzonosítóGenerálás(null));
 
             var bizony = DE.Bizonyitekok.Single(x => x.bizonyitekID == azonosító);
-            if (bizony != null)
+            if (bizony != null)  // már létezik és csak módosít egy meglévõt
             {
                 bizony.megnevezes = megnevezés;
             }
@@ -126,16 +126,7 @@ namespace Adatkezelõ {
             }
             DE.SaveChanges();
 		}
-
-        /// 
-        /// <param name="bizonyíték"></param>
-        public void BizonyítékMódosítása(Bizonyíték bizonyíték)
-        {
-            var modositott = DE.Bizonyitekok.Single(x => x.bizonyitekID == bizonyíték.GetAzonosító);
-            modositott.megnevezes = bizonyíték.GetMegnevezés();
-            DE.SaveChanges();
-        }
-
+        
 		/// 
 		/// <param name="gyanúsítottStátusz"></param>
 		/// <param name="lakcím"></param>
@@ -144,7 +135,7 @@ namespace Adatkezelõ {
 		public void ÚjGyanúsított(GyanúsítottStátusz gyanúsítottStátusz, string lakcím, decimal id, string név)
         {
             var gyanu=DE.Gyanusitottak.Single(x=>x.gyanusitottID==id);
-            if (gyanu != null)     // azaz már létezik
+            if (gyanu != null)     // azaz már létezik és csak módosít egy meglévõt
             {
                 gyanu.lakcim = lakcím;
                 gyanu.statusz = gyanúsítottStátusz.ToString();

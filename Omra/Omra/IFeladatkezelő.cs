@@ -13,20 +13,16 @@ using Adatkezelõ;
 using System.Collections.Generic;
 namespace Adatkezelõ {
 	public interface IFeladatkezelõ {
-
-		/// 
-		/// <param name="feladat"></param>
-		void FeladatÁllapotMódosítás(Feladat feladat);
-
+        
 		/// 
 		/// <param name="Dolgozó"></param>
 		List<Feladat> FeladatokLekérdezése(Dolgozó dolgozo);
 
-		/// 
-		/// <param name="célszemély"></param>
-		/// <param name="létrehozta"></param>
-		/// <param name="leírás"></param>
-		void ÚjFeladat(Dolgozó célszemély, Dolgozó létrehozta, string leírás);
+        /// 
+        /// <param name="Dolgozó"></param>
+        /// <param name="Bûneset"></param>
+        void FeladatMentés(Dolgozó célszemély, Bûneset bûneset);
+
 	}//end IFeladatkezelõ
 
 }//end namespace Adatkezelõ

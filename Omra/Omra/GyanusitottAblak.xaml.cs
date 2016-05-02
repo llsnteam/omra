@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Adatkezelő;
 using System.Diagnostics;
+using Microsoft.Win32;
+using System.IO;
 
 namespace Omra
 {
@@ -68,7 +70,7 @@ namespace Omra
             Feltoltes(gyanusitott.GetNév(), gyanusitott.GetBejelentettLakcím(), gyanusitott.GetStátusz());
         }
 
-        private void Feltoltes(string nev,string lakcim,GyanúsítottStátusz statusz)
+        private void Feltoltes(string nev, string lakcim, GyanúsítottStátusz statusz)
         {
             if (id <= 6) // csak azért kell, mert egyelőre csak 6-os az utolsó elnevezésű kép és hogy ne essen szét a program
                 keplink = BitmapFrame.Create(new Uri("../../kepek/" + id + ".jpg", UriKind.Relative));
@@ -93,6 +95,50 @@ namespace Omra
         private void Vissza_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+
+        /// <summary>
+        /// ///////////////////////////////////////////////////////////////////////////
+        /// </summary>
+
+        string filepath;
+
+        private void btnLoad_Click(object sender, RoutedEventArgs e) //ez feltölti az Image-t az openfiledialogból kiválasztott képpel
+        {
+            OpenFileDialog open = new OpenFileDialog();
+            open.Multiselect = false;
+            open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
+            bool? result = open.ShowDialog();
+
+            if (result == true)
+            {
+                filepath = open.FileName;
+                ImageSource imgsource = new BitmapImage(new Uri(filepath));
+                kep_img.Source = imgsource;
+            }
+        }
+
+        private static String GetDestinationPath(string filename, string foldername) //segédmetódus
+        {
+            String appStartPath = System.IO.Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
+
+            appStartPath = String.Format(appStartPath + "\\{0}\\" + filename, foldername);
+            return appStartPath;
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e) //a kiválasztott képet elmenti
+        {
+            if (filepath != null)
+            {
+                string name = System.IO.Path.GetFileName(filepath);
+                string destinationPath = GetDestinationPath(id + ".jpg", "kepek");  //itt a "7.jpg" helyett id + ".jpg" kell
+
+                File.Copy(filepath, destinationPath, true);
+                Uri u = new Uri(System.IO.Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) + "/kepek/" + id + ".jpg");
+
+                kep_img.Source = new BitmapImage(u);
+            }
         }
     }
 }

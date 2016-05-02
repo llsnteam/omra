@@ -30,6 +30,8 @@ namespace Omra
         private Dolgozó felelősŐrnagy;
         private Bűneset kivBűneset;
 
+        private NaplozoNamespace.Service1Client kliens = new NaplozoNamespace.Service1Client();
+
         public BunesetAblak() // új létrehozása
         {
             InitializeComponent();
@@ -70,7 +72,9 @@ namespace Omra
             {
                 felelősŐrnagy = (Dolgozó)keresablak.feltoltendo;
                 if (felelősŐrnagy.GetBeosztás() == Rang.Ornagy)
+                {
                     felorn_txb.Text = felelősŐrnagy.GetNév();
+                }
                 else
                 {
                     MessageBox.Show("Ez a felhasználó nem rendelkezik a szükséges beosztással!", "Hiba!", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -110,6 +114,7 @@ namespace Omra
             {
                 bunesetK.GyanúsítottHozzáadása((Gyanúsított)keresablak.feltoltendo, kivBűneset);
                 gyanúsítottak.Add((Gyanúsított)keresablak.feltoltendo);
+                kliens.NaplobaIras("Meglévő gyanúsított bűnesethez rendelése.");
             }
         }
 
@@ -120,6 +125,7 @@ namespace Omra
             {
                 bunesetK.BizonyítékHozzáadása((Bizonyíték)keresablak.feltoltendo,kivBűneset);
                 bizonyítékok.Add((Bizonyíték)keresablak.feltoltendo);
+                kliens.NaplobaIras("Meglévő bizonyíték bűnesethez rendelése.");
             }
         }
 
@@ -132,6 +138,7 @@ namespace Omra
                 bunesetK.ÚjGyanúsított(újgyan.GetStátusz(), újgyan.GetBejelentettLakcím(), újgyan.GetAzonosító(), újgyan.GetNév());
                 bunesetK.GyanúsítottHozzáadása(újgyan, kivBűneset);
                 gyanúsítottak.Add(gyanablak.ÚjGyanúsítottVissza());
+                kliens.NaplobaIras("Új gyanúsított felvétele és bűnesethez rendelése.");
             }
         }
 
@@ -140,8 +147,14 @@ namespace Omra
             BizonyitekWindow bizablak = new BizonyitekWindow();
             if(bizablak.ShowDialog()==true)
             {
-                
+
+                kliens.NaplobaIras("Új bizonyíték felvétele és bűnesethez rendelése.");
             }
+        }
+
+        public decimal BűnesetIDNaplózáshoz()
+        {
+            return id;
         }
 
     }

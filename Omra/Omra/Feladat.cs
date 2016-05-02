@@ -20,7 +20,6 @@ namespace Adatkezelõ {
 		private Dolgozó célszemély;
 		private string leírás;
 		private FÁllapot állapot;
-        private decimal feladatID;
         /// <summary>
         /// Amikor a bûneset létre lett hozva
         /// </summary>
@@ -51,12 +50,6 @@ namespace Adatkezelõ {
             get { return leírás; }
             set { leírás = value; }
 		}
-        
-        public decimal GetFeladatID
-        {
-            get { return feladatID; }
-            set { feladatID = value; }
-        }
 
         public DateTime GetLétrehozás
         {

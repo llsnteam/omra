@@ -26,6 +26,13 @@ namespace Omra
         public KeresesAblak() 
         {
             InitializeComponent();
+
+            if (FoAblak.aktDolgozo.GetBeosztás() == Rang.Adminisztrátor)
+            {
+                RadioBizonyitek.IsEnabled = false;
+                RadioBuneset.IsEnabled = false;
+                RadioGyanusitott.IsEnabled = false;
+            }
         }
 
         public KeresesAblak(KeresésTípus tipus) //specifikus keresés (pl. bűnesetnél gyanúsított hozzáadása -> nem engedjük, csak a gyanúsítottak listázását)
@@ -78,8 +85,23 @@ namespace Omra
 
                 List<Bűneset> eredmeny = kezelo.Bűnesetkeresés(Azon.Text);
 
-                ListboxEredmeny.ItemsSource = null;
-                ListboxEredmeny.ItemsSource = eredmeny; 
+                if (FoAblak.aktDolgozo.GetBeosztás() == Rang.Ornagy)
+                {
+                    List<Bűneset> OrnagyEredmeny = new List<Bűneset>();
+                    foreach (Bűneset b in eredmeny)
+                    {
+                        if (FoAblak.aktDolgozo.GetAzonosító() == b.GetFelelős.GetAzonosító())
+                            OrnagyEredmeny.Add(b);
+                        ListboxEredmeny.ItemsSource = null;
+                        ListboxEredmeny.ItemsSource = OrnagyEredmeny; 
+                    }
+                }
+                else
+                {
+                    ListboxEredmeny.ItemsSource = null;
+                    ListboxEredmeny.ItemsSource = eredmeny; 
+                }
+
             }
 
 
@@ -140,31 +162,45 @@ namespace Omra
                 {
                     if (RadioBizonyitek.IsChecked == true) //ha bizonyíték
                     {
-                        BizonyitekWindow bw = new BizonyitekWindow((Bizonyíték)ListboxEredmeny.SelectedItem);
-                        bw.ShowDialog();
+                        if (FoAblak.aktDolgozo.GetBeosztás() == Rang.Tiszt) //csak tiszt módosíthat bizonyítékot
+                        {
+                            BizonyitekWindow bw = new BizonyitekWindow((Bizonyíték)ListboxEredmeny.SelectedItem);
+                            bw.ShowDialog();
+                        }
                     }
 
                     else if (RadioBuneset.IsChecked == true) //ha bűneset
                     {
-                        BunesetAblak ba = new BunesetAblak((Bűneset)ListboxEredmeny.SelectedItem);
-                        ba.ShowDialog();
+                            BunesetAblak ba = new BunesetAblak((Bűneset)ListboxEredmeny.SelectedItem);
+                            ba.ShowDialog();
                     }
 
                     else if (RadioDolgozo.IsChecked == true) //ha dolgozó
                     {
-                        DolgozoAblak da = new DolgozoAblak((Dolgozó)ListboxEredmeny.SelectedItem);
-                        da.ShowDialog();
+                        if (FoAblak.aktDolgozo.GetBeosztás() == Rang.Adminisztrátor) //csak admin módosíthat dolgozót
+                        {
+                            DolgozoAblak da = new DolgozoAblak((Dolgozó)ListboxEredmeny.SelectedItem);
+                            da.ShowDialog();
+                        }
                     }
 
                     else if (RadioGyanusitott.IsChecked == true) //ha gyanusított
                     {
-                        GyanusitottAblak ga = new GyanusitottAblak(null,(Gyanúsított)ListboxEredmeny.SelectedItem);
-                        ga.ShowDialog();
+                        if (FoAblak.aktDolgozo.GetBeosztás() == Rang.Tiszt || FoAblak.aktDolgozo.GetBeosztás() == Rang.Ornagy) //csak tiszt módosíthat gyanúsítottat
+                        {
+                            GyanusitottAblak ga = new GyanusitottAblak(null, (Gyanúsított)ListboxEredmeny.SelectedItem);
+                            ga.ShowDialog();
+                        }
                     }
 
                     Button_Click(null, null);
                 }
             }
+        }
+
+        private void Radio_Checked(object sender, RoutedEventArgs e)
+        {
+            ListboxEredmeny.ItemsSource = null;
         }
     }
 }

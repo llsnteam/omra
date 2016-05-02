@@ -64,6 +64,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -138,7 +139,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="NaploAblak.xaml.cs">
+      <DependentUpon>NaploAblak.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Rang.cs" />
+    <Compile Include="Service References\NaplozoNamespace\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Személy.cs" />
     <Compile Include="Személykezelő.cs" />
     <Compile Include="UjFeladat.xaml.cs">
@@ -213,6 +222,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="NaploAblak.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UjFeladat.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -263,6 +276,13 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\NaplozoNamespace\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\NaplozoNamespace\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\NaplozoNamespace\Service1.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -273,7 +293,9 @@
     <Resource Include="gomb4_over.png" />
     <Resource Include="gomb4_sima.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Database.mdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -282,6 +304,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>Database.mdf</DependentUpon>
     </Content>
+    <None Include="Service References\NaplozoNamespace\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\NaplozoNamespace\configuration.svcinfo" />
+    <None Include="Service References\NaplozoNamespace\configuration91.svcinfo" />
+    <None Include="Service References\NaplozoNamespace\item.disco" />
     <Resource Include="kepek\logo.png" />
     <Resource Include="kepek\0.jpg" />
     <Resource Include="kepek\1.jpg" />
@@ -316,6 +345,9 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\NaplozoNamespace\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

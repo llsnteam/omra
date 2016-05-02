@@ -78,6 +78,11 @@ namespace Omra
             this.DialogResult = true;
         }
 
+        public string DologozóNévNaplózáshoz()
+        {
+            return nev_txb.Text;
+        }
+
         private void Vissza_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

@@ -21,11 +21,13 @@ namespace Omra
     
     public partial class FoAblak : Window
     {
-        Dolgozó aktDolgozo;
+        public static Dolgozó aktDolgozo;
         IÜzenetkezelő uzenetK;
         Üzenet kivalasztottUzenet;
         IFeladatkezelő feladatK;
         Feladat kivalasztottFeladat;
+
+        private NaplozoNamespace.Service1Client kliens = new NaplozoNamespace.Service1Client();
         
         public FoAblak(Dolgozó d)
         {
@@ -57,6 +59,7 @@ namespace Omra
             if (r == Rang.Kapitány || r == Rang.Ornagy || r == Rang.Tiszt) // ha nem admin lép be
             {
                 admin_ujfelh.Visibility = hidden;
+                admin_log.Visibility = hidden;
             }
             if (r == Rang.Adminisztrátor || r == Rang.Ornagy || r == Rang.Tiszt) // ha nem kapitány lép be
             {
@@ -89,6 +92,7 @@ namespace Omra
             MainWindow mw = new MainWindow();
             App.Current.MainWindow = mw;
             mw.Show();
+            kliens.NaplobaIras("Kijelentkezés: " + aktDolgozo.GetNév());
             this.Close();
         }
 
@@ -98,6 +102,7 @@ namespace Omra
             if(ujuzenetablak.ShowDialog()==true)
             {
                 uzenetK.ÜzenetKüldése(ujuzenetablak.Tartalom, ujuzenetablak.Targy, aktDolgozo, ujuzenetablak.Cimzett);
+                kliens.NaplobaIras("Új üzenet elküldve. Feladó: " + aktDolgozo.GetNév() + ", Címzett: " + ujuzenetablak.Cimzett.GetNév());
             }
         }
 
@@ -119,13 +124,19 @@ namespace Omra
         private void UjFelh_Click(object sender, RoutedEventArgs e)
         {
             DolgozoAblak dolgozoablak = new DolgozoAblak();
-            dolgozoablak.ShowDialog();
+            if(dolgozoablak.ShowDialog()==true)
+            {
+                kliens.NaplobaIras("Új felhasználó felvéve: " + dolgozoablak.DologozóNévNaplózáshoz());
+            }
         }
 
         private void UjBun_Click(object sender, RoutedEventArgs e)
         {
             BunesetAblak bunablak = new BunesetAblak();
-            bunablak.ShowDialog();
+            if(bunablak.ShowDialog()==true)
+            {
+                kliens.NaplobaIras("Új bűneset felvéve: " + bunablak.BűnesetIDNaplózáshoz());
+            }
         }
 
         private void Kimut_Click(object sender, RoutedEventArgs e)
@@ -137,13 +148,20 @@ namespace Omra
         private void FelKio_Click(object sender, RoutedEventArgs e)
         {
             UjFeladat ujfeladatablak = new UjFeladat();
-            ujfeladatablak.ShowDialog();
+            if(ujfeladatablak.ShowDialog()==true)
+            {
+                string[] adatok = ujfeladatablak.FeladatNévIDNaplózáshoz().Split(';'); // 0. elem a név, 1. elem az ID
+                kliens.NaplobaIras(adatok[0] + " tiszthez felvételre került a(z) " + adatok[1] + " id-vel rendelkető feladat.");
+            }
         }
 
         private void BunMod_Click(object sender, RoutedEventArgs e)
         {
             BunesetAblak bunablak = new BunesetAblak();
-            bunablak.ShowDialog();
+            if(bunablak.ShowDialog()==true)
+            {
+                kliens.NaplobaIras("A(z) " + bunablak.BűnesetIDNaplózáshoz() + " id-vel rendelkező bűneset módosítva lett.");
+            }
         }
 
         private void UzenetKival_Click(object sender, RoutedEventArgs e)
@@ -179,5 +197,10 @@ namespace Omra
             }
         }
 
+        private void Log_Click(object sender, RoutedEventArgs e)
+        {
+            NaploAblak na = new NaploAblak();
+            na.ShowDialog();
+        }
     }
 }
