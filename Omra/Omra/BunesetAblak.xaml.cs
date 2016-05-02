@@ -117,7 +117,7 @@ namespace Omra
             {
                 bunesetK.GyanúsítottHozzáadása((Gyanúsított)keresablak.feltoltendo, kivBűneset);
                 gyanúsítottak.Add((Gyanúsított)keresablak.feltoltendo);
-                kliens.NaplobaIras("Meglévő gyanúsított bűnesethez rendelése.");
+                kliens.NaplobaIras("Meglévő gyanúsított (" + (keresablak.feltoltendo as Gyanúsított).GetNév() + ") bűnesethez (" + id + ") rendelése.");
             }
         }
 
@@ -128,7 +128,7 @@ namespace Omra
             {
                 bunesetK.BizonyítékHozzáadása((Bizonyíték)keresablak.feltoltendo,kivBűneset);
                 bizonyítékok.Add((Bizonyíték)keresablak.feltoltendo);
-                kliens.NaplobaIras("Meglévő bizonyíték bűnesethez rendelése.");
+                kliens.NaplobaIras("Meglévő bizonyíték (" + (keresablak.feltoltendo as Bizonyíték).GetAzonosító + ") bűnesethez (" + id + ") rendelése.");
             }
         }
 
@@ -141,7 +141,7 @@ namespace Omra
                 bunesetK.ÚjGyanúsított(újgyan.GetStátusz(), újgyan.GetBejelentettLakcím(), újgyan.GetAzonosító(), újgyan.GetNév());
                 bunesetK.GyanúsítottHozzáadása(újgyan, kivBűneset);
                 gyanúsítottak.Add(gyanablak.ÚjGyanúsítottVissza());
-                kliens.NaplobaIras("Új gyanúsított felvétele és bűnesethez rendelése.");
+                kliens.NaplobaIras("Új gyanúsított (" + gyanablak.ÚjGyanúsítottVissza().GetNév() + ") felvétele és bűnesethez (" + id + ") rendelése.");
             }
         }
 
@@ -150,8 +150,7 @@ namespace Omra
             BizonyitekWindow bizablak = new BizonyitekWindow();
             if(bizablak.ShowDialog()==true)
             {
-
-                kliens.NaplobaIras("Új bizonyíték felvétele és bűnesethez rendelése.");
+                kliens.NaplobaIras("Új bizonyíték (" + bizablak.BizonyitekMegnevezesNaplozashoz() + ") felvétele és bűnesethez (" + id + ") rendelése.");
             }
         }
 
