@@ -51,5 +51,10 @@ namespace Omra
         {
             this.Close();
         }
+
+        public string BizonyitekMegnevezesNaplozashoz()
+        {
+            return AktBizonyitek.GetMegnevezés();
+        }
     }
 }

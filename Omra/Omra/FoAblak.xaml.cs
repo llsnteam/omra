@@ -151,7 +151,7 @@ namespace Omra
             if(ujfeladatablak.ShowDialog()==true)
             {
                 string[] adatok = ujfeladatablak.FeladatNévIDNaplózáshoz().Split(';'); // 0. elem a név, 1. elem az ID
-                kliens.NaplobaIras(adatok[0] + " tiszthez felvételre került a(z) " + adatok[1] + " id-vel rendelkető feladat.");
+                kliens.NaplobaIras(adatok[0] + " tiszthez felvételre került a(z) " + adatok[1] + " id-vel rendelkező feladat.");
             }
         }
 
