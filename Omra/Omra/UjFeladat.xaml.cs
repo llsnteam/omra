@@ -35,9 +35,9 @@ namespace Omra
             KeresesAblak keresablak = new KeresesAblak(KeresésTípus.Dolgozó);
             if (keresablak.ShowDialog() == true)
             {
+                kivdolg = (Dolgozó)keresablak.feltoltendo;
                 if (kivdolg.GetBeosztás() == Rang.Tiszt)
                 {
-                    kivdolg = (Dolgozó)keresablak.feltoltendo;
                     tiszt_cbx.Text = kivdolg.GetNév();
                 }
                 else
@@ -54,7 +54,7 @@ namespace Omra
             if (keresablak.ShowDialog() == true)
             {
                 kivbun = (Bűneset)keresablak.feltoltendo;
-                feladat_cbx.Text = kivbun.GetAzonosító.ToString();
+                feladat_cbx.Text = kivbun.GetAzonosító.ToString() + " : " +  kivbun.GetLeiras.Substring(0, 20);
             }
         }
 

@@ -51,6 +51,9 @@ namespace Omra
             gyanúsítottak = bunesetK.GyanúsítottakKigyűjtése(buneset);
             bizonyítékok = bunesetK.BizonyítékokKigyűjtése(buneset);
             Feltoltes(buneset.GetFelelős, buneset.GetLeiras, gyanúsítottak, bizonyítékok,buneset.GetÁllapot());
+
+            if (FoAblak.aktDolgozo.GetBeosztás() != Rang.Kapitány)  //Csak kapitány zárhatja le -Laczkó
+                allapot_cbx.IsEnabled = false;
         }
 
         private void Feltoltes(Dolgozó felelosOrnagy, string leírás, ObservableCollection<Gyanúsított> gyan, ObservableCollection<Bizonyíték> biz, BÁllapot allapot)
@@ -70,9 +73,9 @@ namespace Omra
             KeresesAblak keresablak = new KeresesAblak(KeresésTípus.Dolgozó);
             if (keresablak.ShowDialog() == true)
             {
+                felelősŐrnagy = (Dolgozó)keresablak.feltoltendo;
                 if (felelősŐrnagy.GetBeosztás() == Rang.Ornagy)
                 {
-                    felelősŐrnagy = (Dolgozó)keresablak.feltoltendo;
                     felorn_txb.Text = felelősŐrnagy.GetNév();
                 }
                 else

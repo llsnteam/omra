@@ -24,7 +24,7 @@
             <Label Content="Feladat szövege:" HorizontalAlignment="Left" Height="27" Margin="10,171,0,0" VerticalAlignment="Top" Width="99"/>
             <Label x:Name="datum_fel_lbl" Content="" HorizontalAlignment="Left" Margin="109,107,0,0" VerticalAlignment="Top" Width="160"/>
             <Label x:Name="allapot_fel_lbl" Content="" HorizontalAlignment="Left" Margin="63,140,0,0" VerticalAlignment="Top" Width="206"/>
-            <TextBox x:Name="szoveg_fel_txb" HorizontalAlignment="Left" Height="68" Margin="10,203,0,0" IsEnabled="False" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="259"/>
+            <TextBox x:Name="szoveg_fel_txb" HorizontalAlignment="Left" Height="68" Margin="10,203,0,0" IsEnabled="True" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="259" PreviewKeyDown="szoveg_fel_txb_PreviewKeyDown"/>
         </Grid>
         <ListBox SelectionChanged="UzenetKival_Click" Name="ListboxÜzenetek" HorizontalAlignment="Left" Height="92" Margin="13,10,0,0" VerticalAlignment="Top" Width="233" Grid.Column="2"/>
         <Label Content="Kitől:" Grid.Column="2" HorizontalAlignment="Left" Height="28" Margin="13,107,0,0" VerticalAlignment="Top" Width="39"/>
@@ -32,7 +32,7 @@
         <Label Content="Üzenet szövege:" Grid.Column="2" HorizontalAlignment="Left" Height="27" Margin="13,171,0,0" VerticalAlignment="Top" Width="101"/>
         <Label x:Name="kitol_uz_lbl" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="57,108,0,0" VerticalAlignment="Top" Width="189"/>
         <Label x:Name="targy_uz_lbl" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="62,142,0,0" VerticalAlignment="Top" Width="184"/>
-        <TextBox x:Name="szoveg_uz_txb" IsEnabled="False" Grid.Column="2" HorizontalAlignment="Left" Height="68" Margin="13,203,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="233"/>
+        <TextBox x:Name="szoveg_uz_txb" IsEnabled="True" Grid.Column="2" HorizontalAlignment="Left" Height="68" Margin="13,203,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="233" PreviewKeyDown="szoveg_fel_txb_PreviewKeyDown"/>
 
     </Grid>
 </Window>
