@@ -43,7 +43,7 @@ namespace Adatkezelõ {
 
 		/// 
 		/// <param name="Dolgozó"></param>
-		public List<Üzenet> ÜzenetMegtekintése(Dolgozó dolgozo)  // kilistázza a beérklezett üzeneteket
+		public List<Üzenet> ÜzenetMegtekintése(Dolgozó dolgozo)  // kilistázza a beérkezett üzeneteket
         {
             decimal id = dolgozo.GetAzonosító();    // linq nem szereti ha ott kérem el
             List<Üzenet> vissza = new List<Üzenet>();
@@ -52,7 +52,7 @@ namespace Adatkezelõ {
                            select x;
             foreach (var item in uzenetek)
             {
-                vissza.Add(new Üzenet(item.szoveg,item.targy,KitolJott(item.felado),dolgozo));
+                vissza.Add(new Üzenet(item.szoveg, item.targy, KitolJott(item.felado), dolgozo) {GetUzenetID=item.uzenetID });
             }
             return vissza;
 		}
@@ -74,14 +74,10 @@ namespace Adatkezelõ {
                 return false;
 
             decimal id = üzenet.GetUzenetID;
-
             var aktUzenet = from x in DE.Uzenetek
                             where x.uzenetID == id
                             select x;
-
-            foreach(var u in aktUzenet)
-                DE.Uzenetek.Remove(u);
-
+            DE.Uzenetek.Remove(aktUzenet.First());
             DE.SaveChanges();
             return true;
 		}
