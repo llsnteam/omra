@@ -13,13 +13,14 @@ namespace Adatkezelõ {
 	public interface IBizonyítékkezelõ {
 
 		/// 
-		/// <param name="bizonyíték">ez kérdéses</param>
+		/// <param name="bizonyíték"></param>
 		/// <param name="bûneset"></param>
 		void BizonyítékHozzáadása(Bizonyíték bizonyíték, Bûneset bûneset);
         
 		/// 
 		/// <param name="megnevezés">Mint pl. kés, pisztoly stb.</param>
-		void ÚjBizonyíték(Bizonyíték biz);
+		void ÚjBizonyíték(string megnevezés, decimal id);
+
 	}//end IBizonyítékkezelõ
 
 }//end namespace Adatkezelõ

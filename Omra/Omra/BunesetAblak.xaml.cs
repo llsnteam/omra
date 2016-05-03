@@ -35,7 +35,8 @@ namespace Omra
         public BunesetAblak() // új létrehozása
         {
             InitializeComponent();
-            id = bunesetK.AzonosítóGenerálás(null);
+            Bűneset idhez = null; // csak azért kell, hogy az azonosítógenerálásnál el tudja dönteni, hogy melyik metódust hívja meg null értékkel, mert két fajta bemeneti paramétere is lehet
+            id = bunesetK.AzonosítóGenerálás(idhez);
             gyanúsítottak = new ObservableCollection<Gyanúsított>();
             bizonyítékok = new ObservableCollection<Bizonyíték>();
             Feltoltes(new Dolgozó(Rang.Ornagy, "", "", "", 0), "", gyanúsítottak, bizonyítékok,BÁllapot.Folyamatban);
@@ -150,6 +151,10 @@ namespace Omra
             BizonyitekWindow bizablak = new BizonyitekWindow();
             if(bizablak.ShowDialog()==true)
             {
+                /*Bizonyíték újbiz = bizablak.ÚjGyanúsítottVissza();
+                bunesetK.ÚjGyanúsított(újgyan.GetStátusz(), újgyan.GetBejelentettLakcím(), újgyan.GetAzonosító(), újgyan.GetNév());
+                bunesetK.GyanúsítottHozzáadása(újgyan, kivBűneset);
+                gyanúsítottak.Add(gyanablak.ÚjGyanúsítottVissza());*/
                 kliens.NaplobaIras("Új bizonyíték (" + bizablak.BizonyitekMegnevezesNaplozashoz() + ") felvétele és bűnesethez (" + id + ") rendelése.");
             }
         }

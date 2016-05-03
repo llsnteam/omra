@@ -18,7 +18,7 @@ namespace Omra
     /// </summary>
     public partial class BizonyitekWindow : Window
     {
-        IBizonyítékkezelő bKezelő;
+        IBizonyítékkezelő bKezelő = new Bűnesetkezelő();
         public Bizonyíték AktBizonyitek { get; set; }
 
         public BizonyitekWindow() // új jön létre
@@ -31,7 +31,7 @@ namespace Omra
         {
             InitializeComponent();
             AktBizonyitek = bizonyitek;
-            Feltoltes(bizonyitek.Megnevezés, bizonyitek.Felvetel());
+            Feltoltes(bizonyitek.GetMegnevezés(), bizonyitek.Felvetel());
         }
 
         private void Feltoltes(string megnevezes, DateTime felvetel)
@@ -43,8 +43,10 @@ namespace Omra
         private void Mentes_Click(object sender, RoutedEventArgs e)
         {
             bKezelő = new Bűnesetkezelő();
-            AktBizonyitek.Megnevezés = megnevezes_txb.Text;
-            bKezelő.ÚjBizonyíték(AktBizonyitek);
+            if (AktBizonyitek == null)
+                bKezelő.ÚjBizonyíték(megnevezes_txb.Text, -1);
+            else
+                bKezelő.ÚjBizonyíték(megnevezes_txb.Text, AktBizonyitek.GetAzonosító);
             this.DialogResult = true;
         }
 
@@ -55,7 +57,7 @@ namespace Omra
 
         public string BizonyitekMegnevezesNaplozashoz()
         {
-            return AktBizonyitek.Megnevezés;
+            return megnevezes_txb.Text;
         }
     }
 }
