@@ -19,7 +19,7 @@ namespace Adatkezelõ {
         
 		/// 
 		/// <param name="megnevezés">Mint pl. kés, pisztoly stb.</param>
-		void ÚjBizonyíték(string megnevezés, decimal id);
+		decimal ÚjBizonyíték(string megnevezés, decimal id);
 
 	}//end IBizonyítékkezelõ
 

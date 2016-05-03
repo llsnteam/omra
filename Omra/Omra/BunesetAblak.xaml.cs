@@ -151,10 +151,9 @@ namespace Omra
             BizonyitekWindow bizablak = new BizonyitekWindow();
             if(bizablak.ShowDialog()==true)
             {
-                /*Bizonyíték újbiz = bizablak.ÚjGyanúsítottVissza();
-                bunesetK.ÚjGyanúsított(újgyan.GetStátusz(), újgyan.GetBejelentettLakcím(), újgyan.GetAzonosító(), újgyan.GetNév());
-                bunesetK.GyanúsítottHozzáadása(újgyan, kivBűneset);
-                gyanúsítottak.Add(gyanablak.ÚjGyanúsítottVissza());*/
+                Bizonyíték újbiz = bizablak.ÚjBizonyítékVissza();
+                bunesetK.BizonyítékHozzáadása(újbiz, kivBűneset);
+                bizonyítékok.Add(bizablak.ÚjBizonyítékVissza());
                 kliens.NaplobaIras("Új bizonyíték (" + bizablak.BizonyitekMegnevezesNaplozashoz() + ") felvétele és bűnesethez (" + id + ") rendelése.");
             }
         }
