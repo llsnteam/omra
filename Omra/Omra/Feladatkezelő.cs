@@ -19,7 +19,7 @@ namespace Adatkezelõ
     {
 
         DatabaseElements DE = new DatabaseElements();
-
+        
         public void FeladatMentés(Dolgozó célszemély, Bûneset bûneset)
         {
             var ujfelvdolg = new FelvettDolgozok()
