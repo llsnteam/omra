@@ -20,6 +20,7 @@ namespace Omra
     {
         IBizonyítékkezelő bKezelő = new Bűnesetkezelő();
         public Bizonyíték AktBizonyitek { get; set; }
+        private decimal id;
 
         public BizonyitekWindow() // új jön létre
         {
@@ -44,9 +45,9 @@ namespace Omra
         {
             bKezelő = new Bűnesetkezelő();
             if (AktBizonyitek == null)
-                bKezelő.ÚjBizonyíték(megnevezes_txb.Text, -1);
+                id = bKezelő.ÚjBizonyíték(megnevezes_txb.Text, -1);
             else
-                bKezelő.ÚjBizonyíték(megnevezes_txb.Text, AktBizonyitek.GetAzonosító);
+                id = bKezelő.ÚjBizonyíték(megnevezes_txb.Text, AktBizonyitek.GetAzonosító);
             this.DialogResult = true;
         }
 
@@ -58,6 +59,11 @@ namespace Omra
         public string BizonyitekMegnevezesNaplozashoz()
         {
             return megnevezes_txb.Text;
+        }
+
+        public Bizonyíték ÚjBizonyítékVissza()
+        {
+            return new Bizonyíték(id, megnevezes_txb.Text, (DateTime)datepicker.SelectedDate);
         }
     }
 }

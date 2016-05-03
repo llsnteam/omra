@@ -126,8 +126,9 @@ namespace Adatkezelõ {
 		/// 
 		/// <param name="megnevezés">Mint pl. kés, pisztoly stb.</param>
 		/// <param name="azonosító"></param>
-		public void ÚjBizonyíték(string megnevezés, decimal id){
-
+		public decimal ÚjBizonyíték(string megnevezés, decimal id) // visszaadja az id-t, hogy azt le lehessen kezelni a bunesetkwindow-ban
+        {
+            decimal azonosító = 0;
             if (id != -1)  // már létezik és csak módosít egy meglévõt
             {
                 var bizony = DE.Bizonyitekok.Single(x => x.bizonyitekID == id);
@@ -136,7 +137,7 @@ namespace Adatkezelõ {
             else
             {
                 Bizonyíték idhez = null; // csak azért kell, hogy a metódus ki tudja választani, hogy a null alapján melyik bemeneti paramétert szándékozunk meghívni
-                decimal azonosító = AzonosítóGenerálás(idhez);
+                azonosító = AzonosítóGenerálás(idhez);
                 var ujbizonyitek = new Bizonyitekok()
                 {
                     bizonyitekID = azonosító,
@@ -146,6 +147,7 @@ namespace Adatkezelõ {
                 DE.Bizonyitekok.Add(ujbizonyitek);
             }
             DE.SaveChanges();
+            return azonosító;
 		}
         
 		/// 
@@ -198,7 +200,7 @@ namespace Adatkezelõ {
             modositott.felelos_ornagy = felOrnagyID;
             modositott.leiras = leiras;
             modositott.allapot = allapot;
-
+            DE.SaveChanges();
         }
 
     }//end Bûnesetkezelõ
