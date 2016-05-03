@@ -13,13 +13,15 @@ using System.Windows.Shapes;
 using Adatkezelő;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Omra
 {
     /// <summary>
     /// Interaction logic for BunesetAblak.xaml
     /// </summary>
-    public partial class BunesetAblak : Window
+    public partial class BunesetAblak : Window,INotifyPropertyChanged
     {
         private bool mod; // azt jelzi, hogy módosítási céllal lett-e meghívva ez az osztály, vagy új elem felvétellel
         private decimal id;
@@ -30,6 +32,18 @@ namespace Omra
         private Kereséskezelő keresesK = new Kereséskezelő();
         private Dolgozó felelősŐrnagy;
         private Bűneset kivBűneset;
+
+        public ObservableCollection<Gyanúsított> Gyanúsítottak
+        {
+            get { return gyanúsítottak; }
+            set { gyanúsítottak = value; OPC("Gyanúsítottak"); }
+        }
+
+        public ObservableCollection<Bizonyíték> Bizonyítékok
+        {
+            get { return bizonyítékok; }
+            set {  bizonyítékok = value; OPC("Bizonyítékok"); }
+        }
 
         private NaplozoNamespace.Service1Client kliens = new NaplozoNamespace.Service1Client();
 
@@ -70,7 +84,7 @@ namespace Omra
             },
                 TaskContinuationOptions.OnlyOnRanToCompletion);
 
-            Task.WaitAll(t1,t2);
+            //Task.WaitAll(t1,t2);
             Feltoltes(buneset.GetFelelős, buneset.GetLeiras, gyanúsítottak, bizonyítékok,buneset.GetÁllapot());
 
             if (FoAblak.aktDolgozo.GetBeosztás() != Rang.Kapitány)  //Csak kapitány zárhatja le -Laczkó
@@ -82,7 +96,7 @@ namespace Omra
             felorn_txb.Text = felelosOrnagy.GetNév();
             leiras_txb.Text = leírás;
             ListboxGyanúsítottak.ItemsSource = this.gyanúsítottak;
-            ListboxBizonyítékok.ItemsSource = biz;
+            ListboxBizonyítékok.ItemsSource = this.bizonyítékok;
             if (allapot == BÁllapot.Folyamatban)
                 allapot_cbx.IsChecked = true;
             else
@@ -128,7 +142,6 @@ namespace Omra
 
         private void Vissza_Click(object sender, RoutedEventArgs e)
         {
-            //csak teszt semmi értelmes
             this.Close();
         }
 
@@ -182,5 +195,12 @@ namespace Omra
             return id;
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OPC( string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

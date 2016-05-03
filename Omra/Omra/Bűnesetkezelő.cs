@@ -19,7 +19,6 @@ namespace Adatkezelõ {
 	public class Bûnesetkezelõ : IBûnesetkezelõ, IGyanúsítottkezelõ, IBizonyítékkezelõ 
     {
         DatabaseElements DE = new DatabaseElements();
-        private object lockObject = new Object();
 		public decimal AzonosítóGenerálás(Bûneset buneset)
         {
             if(buneset!=null)
@@ -42,33 +41,25 @@ namespace Adatkezelõ {
 
         public ObservableCollection<Gyanúsított> GyanúsítottakKigyûjtése(Bûneset bûneset)
         {
-            //párhuzamosítás miatt
-            DatabaseElements DE2 = new DatabaseElements();
-
             ObservableCollection<Gyanúsított> gyanúsítottak = new ObservableCollection<Gyanúsított>();
-            lock (lockObject)
-            {
                 var gyanlista = from x in DE2.FelvettGyanusitottak
                                 where x.bunesetID == bûneset.GetAzonosító
                                 select x.Gyanusitottak;
 
                 foreach (var gyan in gyanlista)
                     gyanúsítottak.Add(new Gyanúsított((GyanúsítottStátusz)Enum.Parse(typeof(GyanúsítottStátusz), gyan.statusz), gyan.nev, gyan.lakcim, gyan.gyanusitottID));
-            }
             return gyanúsítottak;
         }
 
         public ObservableCollection<Bizonyíték> BizonyítékokKigyûjtése(Bûneset bûneset)
         {
             ObservableCollection<Bizonyíték> bizonyíték = new ObservableCollection<Bizonyíték>();
-            lock (lockObject) {
             var bizlista = from x in DE.FelvettBizonyitekok
                             where x.bunesetID == bûneset.GetAzonosító
                             select x.Bizonyitekok;
 
             foreach (var biz in bizlista)
                 bizonyíték.Add(new Bizonyíték(biz.bizonyitekID, biz.megnevezes, biz.felvetel));
-                }
             return bizonyíték;
         }
 
