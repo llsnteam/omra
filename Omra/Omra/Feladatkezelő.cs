@@ -19,12 +19,7 @@ namespace Adatkezelõ
     {
 
         DatabaseElements DE = new DatabaseElements();
-        private Dolgozó célszemély;
-        private Bûneset buneset;
-
-        public Dolgozó GetCélszemély { get { return célszemély; } }
-        public Bûneset Buneset { get { return buneset; } }
-
+        
         public void FeladatMentés(Dolgozó célszemély, Bûneset bûneset)
         {
             var ujfelvdolg = new FelvettDolgozok()
