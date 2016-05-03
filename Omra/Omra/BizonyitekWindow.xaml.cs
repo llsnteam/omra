@@ -31,7 +31,7 @@ namespace Omra
         {
             InitializeComponent();
             AktBizonyitek = bizonyitek;
-            Feltoltes(bizonyitek.GetMegnevezés(), bizonyitek.Felvetel());
+            Feltoltes(bizonyitek.Megnevezés, bizonyitek.Felvetel());
         }
 
         private void Feltoltes(string megnevezes, DateTime felvetel)
