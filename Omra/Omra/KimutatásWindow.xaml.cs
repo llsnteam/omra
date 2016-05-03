@@ -82,8 +82,11 @@ namespace Omra
 
         private void Rajzol()
         {
-            Tengelyek();
-            Oszlopok();
+            Task t1 = new Task(() => Tengelyek());
+            t1.Start(TaskScheduler.FromCurrentSynchronizationContext());
+            Task t2 = new Task(() => Oszlopok());
+            t2.Start(TaskScheduler.FromCurrentSynchronizationContext());
+            Task.WaitAll(t1, t2);
         }
 
         private void Oszlopok()
@@ -114,6 +117,8 @@ namespace Omra
                 oszlop.Stroke = Brushes.WhiteSmoke;
 
                 elozoOszlopSzele += egyOszlopSzelessege;
+
+                this.grafikon.Children.Add(oszlop);
 
                 //Csoportnevek kiírása
                 Label csoportnev = new Label();
