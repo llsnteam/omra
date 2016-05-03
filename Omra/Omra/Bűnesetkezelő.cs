@@ -40,6 +40,26 @@ namespace Adatkezelõ {
             }
 		}
 
+        public decimal AzonosítóGenerálás(Bizonyíték bizonyitek)
+        {
+            if (bizonyitek != null)
+            {
+                var meglevoID = from x in DE.Bizonyitekok
+                                where x.bizonyitekID == bizonyitek.GetAzonosító
+                                select x.bizonyitekID;
+
+                return meglevoID.First();
+            }
+            else
+            {
+                var utolsoID = from x in DE.Bizonyitekok
+                               where x.bizonyitekID == DE.Bizonyitekok.Max(y => y.bizonyitekID)
+                               select x.bizonyitekID;
+
+                return utolsoID.First() + 1;
+            }
+        }
+
         public ObservableCollection<Gyanúsított> GyanúsítottakKigyûjtése(Bûneset bûneset)
         {
             ObservableCollection<Gyanúsított> gyanúsítottak = new ObservableCollection<Gyanúsított>();
@@ -108,14 +128,15 @@ namespace Adatkezelõ {
 		/// <param name="azonosító"></param>
 		public void ÚjBizonyíték(string megnevezés, decimal id){
 
-            var bizony = DE.Bizonyitekok.Single(x => x.bizonyitekID == id);
-            if (bizony != null)  // már létezik és csak módosít egy meglévõt
+            if (id != -1)  // már létezik és csak módosít egy meglévõt
             {
+                var bizony = DE.Bizonyitekok.Single(x => x.bizonyitekID == id);
                 bizony.megnevezes = megnevezés;
             }
             else
             {
-                decimal azonosító = Convert.ToDecimal(AzonosítóGenerálás(null));
+                Bizonyíték idhez = null; // csak azért kell, hogy a metódus ki tudja választani, hogy a null alapján melyik bemeneti paramétert szándékozunk meghívni
+                decimal azonosító = AzonosítóGenerálás(idhez);
                 var ujbizonyitek = new Bizonyitekok()
                 {
                     bizonyitekID = azonosító,
