@@ -19,6 +19,7 @@ namespace Adatkezelõ {
 	public class Bûnesetkezelõ : IBûnesetkezelõ, IGyanúsítottkezelõ, IBizonyítékkezelõ 
     {
         DatabaseElements DE = new DatabaseElements();
+        public bool Hozzaadhato { get; set; }
         
 		public decimal AzonosítóGenerálás(Bûneset buneset)
         {
@@ -91,14 +92,33 @@ namespace Adatkezelõ {
 		/// <param name="bûneset"></param>
 		public void BizonyítékHozzáadása(Bizonyíték bizonyíték, Bûneset bûneset)
         {
-            var ujfelvbiz = new FelvettBizonyitekok()
+            var adottbuneset = from x in DE.FelvettBizonyitekok
+                          where x.bunesetID == bûneset.GetAzonosító
+                          select x;
+            if (adottbuneset.Count() != 0)
             {
-                bunesetID = bûneset.GetAzonosító,
-                bizonyitekID = bizonyíték.GetAzonosító,
-                felvetel_idopontja = DateTime.Now
-            };
-            DE.FelvettBizonyitekok.Add(ujfelvbiz);
-            DE.SaveChanges();
+                var biz = from x in adottbuneset
+                          where x.bizonyitekID == bizonyíték.GetAzonosító
+                          select x;
+                if (biz.Count() != 0)
+                {
+                    Hozzaadhato= false;    // azaz már létezk ilyen bizonyíték és nem kell hozzáadni megint
+                    return;
+                }
+                else
+                {
+                    var ujfelvbiz = new FelvettBizonyitekok()
+                    {
+                        bunesetID = bûneset.GetAzonosító,
+                        bizonyitekID = bizonyíték.GetAzonosító,
+                        felvetel_idopontja = DateTime.Now
+                    };
+                    DE.FelvettBizonyitekok.Add(ujfelvbiz);
+                    DE.SaveChanges();
+                    Hozzaadhato = true;
+                }
+            }
+            
 		}
         
 		/// 
@@ -113,14 +133,33 @@ namespace Adatkezelõ {
 		/// <param name="Bûneset"></param>
 		public void GyanúsítottHozzáadása(Gyanúsított Gyanúsított, Bûneset Bûneset)
         {
-            var ujfelvgyan = new FelvettGyanusitottak()
-            {
-                bunesetID = Bûneset.GetAzonosító,
-                gyanusitottID = Gyanúsított.GetAzonosító(),
-                felvetel_idopontja = DateTime.Now
-            };
-            DE.FelvettGyanusitottak.Add(ujfelvgyan);
-            DE.SaveChanges();
+            decimal id = Gyanúsított.GetAzonosító();
+             var adottbuneset = from x in DE.FelvettGyanusitottak
+                          where x.bunesetID == Bûneset.GetAzonosító
+                          select x;
+             if (adottbuneset.Count() != 0)
+             {
+                 var gyanusitott = from x in adottbuneset
+                           where x.gyanusitottID == id
+                           select x;
+                 if (gyanusitott.Count() != 0)
+                 {
+                     Hozzaadhato = false;    // azaz már létezk ilyen gyanúsított és nem kell hozzáadni megint
+                     return;
+                 }
+                 else
+                 {
+                     var ujfelvgyan = new FelvettGyanusitottak()
+                     {
+                         bunesetID = Bûneset.GetAzonosító,
+                         gyanusitottID = Gyanúsított.GetAzonosító(),
+                         felvetel_idopontja = DateTime.Now
+                     };
+                     DE.FelvettGyanusitottak.Add(ujfelvgyan);
+                     DE.SaveChanges();
+                     Hozzaadhato = true;
+                 }
+             }
 		}
 
 		/// 

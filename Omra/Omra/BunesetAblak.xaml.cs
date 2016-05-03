@@ -117,8 +117,12 @@ namespace Omra
             if (keresablak.ShowDialog() == true)
             {
                 bunesetK.GyanúsítottHozzáadása((Gyanúsított)keresablak.feltoltendo, kivBűneset);
-                gyanúsítottak.Add((Gyanúsított)keresablak.feltoltendo);
-                kliens.NaplobaIras("Meglévő gyanúsított (" + (keresablak.feltoltendo as Gyanúsított).GetNév() + ") bűnesethez (" + id + ") rendelése.");
+                if (bunesetK.Hozzaadhato)
+                {
+                    gyanúsítottak.Add((Gyanúsított)keresablak.feltoltendo);
+                    kliens.NaplobaIras("Meglévő gyanúsított (" + (keresablak.feltoltendo as Gyanúsított).GetNév() + ") bűnesethez (" + id + ") rendelése.");
+                    bunesetK.Hozzaadhato = false;
+                }
             }
         }
 
@@ -127,9 +131,13 @@ namespace Omra
             KeresesAblak keresablak = new KeresesAblak(KeresésTípus.Bizonyíték);
             if (keresablak.ShowDialog() == true)
             {
-                bunesetK.BizonyítékHozzáadása((Bizonyíték)keresablak.feltoltendo,kivBűneset);
-                bizonyítékok.Add((Bizonyíték)keresablak.feltoltendo);
-                kliens.NaplobaIras("Meglévő bizonyíték (" + (keresablak.feltoltendo as Bizonyíték).GetAzonosító + ") bűnesethez (" + id + ") rendelése.");
+                bunesetK.BizonyítékHozzáadása((Bizonyíték)keresablak.feltoltendo, kivBűneset);
+                if (bunesetK.Hozzaadhato)
+                {
+                    bizonyítékok.Add((Bizonyíték)keresablak.feltoltendo);
+                    kliens.NaplobaIras("Meglévő bizonyíték (" + (keresablak.feltoltendo as Bizonyíték).GetAzonosító + ") bűnesethez (" + id + ") rendelése.");
+                    bunesetK.Hozzaadhato = false;
+                }                
             }
         }
 
