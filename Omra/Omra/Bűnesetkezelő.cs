@@ -106,20 +106,22 @@ namespace Adatkezelõ {
 		/// 
 		/// <param name="megnevezés">Mint pl. kés, pisztoly stb.</param>
 		/// <param name="azonosító"></param>
-		public void ÚjBizonyíték(string megnevezés, decimal id){
+		public void ÚjBizonyíték(Bizonyíték biz)
+        {
 
-            var bizony = DE.Bizonyitekok.Single(x => x.bizonyitekID == id);
-            if (bizony != null)  // már létezik és csak módosít egy meglévõt
+            
+            if (biz != null)  // már létezik és csak módosít egy meglévõt
             {
-                bizony.megnevezes = megnevezés;
+                var bizony = DE.Bizonyitekok.Single(x => x.bizonyitekID == biz.GetAzonosító);
+                bizony.megnevezes = biz.Megnevezés;
             }
             else
             {
-                decimal azonosító = Convert.ToDecimal(AzonosítóGenerálás(null));
+                //decimal azonosító = Convert.ToDecimal(AzonosítóGenerálás(null));
                 var ujbizonyitek = new Bizonyitekok()
                 {
-                    bizonyitekID = azonosító,
-                    megnevezes = megnevezés,
+                  //  bizonyitekID = azonosító,
+                    megnevezes = biz.Megnevezés,
                     felvetel = DateTime.Now
                 };
                 DE.Bizonyitekok.Add(ujbizonyitek);

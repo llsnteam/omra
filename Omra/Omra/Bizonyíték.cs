@@ -17,7 +17,7 @@ namespace Adatkezelõ {
 		/// <summary>
 		/// pl. kés, pisztoly stb.
 		/// </summary>
-		private string megnevezés;
+        public string Megnevezés { get; set; }
 
         private DateTime felvetel;
         
@@ -26,7 +26,7 @@ namespace Adatkezelõ {
 		/// <param name="azonosító"></param>
         public Bizonyíték(decimal azonosító, string megnevezés, DateTime felvetel)
         {
-            this.megnevezés = megnevezés;
+            this.Megnevezés = megnevezés;
             this.azonosító = azonosító;
             this.felvetel = felvetel;
 		}
@@ -40,10 +40,6 @@ namespace Adatkezelõ {
 			}
 		}
 
-		public string GetMegnevezés(){
-
-			return this.megnevezés;
-		}
 
         public DateTime Felvetel()
         {
@@ -52,7 +48,7 @@ namespace Adatkezelõ {
 
         public override string ToString()
         {
-            return "ID " + azonosító + " Megnevezés: " + megnevezés + " Felvétel: " + felvetel;
+            return "ID " + azonosító + " Megnevezés: " + Megnevezés + " Felvétel: " + felvetel;
         }
 	}//end Bizonyíték
 
