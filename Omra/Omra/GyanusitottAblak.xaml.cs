@@ -76,7 +76,7 @@ namespace Omra
             {
                 keplink = BitmapFrame.Create(new Uri("../../kepek/" + id + ".jpg", UriKind.Relative));
             }
-            catch(FileNotFoundException e)
+            catch(FileNotFoundException)
             {
                 keplink = BitmapFrame.Create(new Uri("../../kepek/default.jpg", UriKind.Relative));
             }

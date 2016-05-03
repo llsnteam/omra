@@ -32,7 +32,7 @@ namespace Omra
                 if (DatumDatePicker.SelectedDate != null)
                     TextboxEredmeny.Text = kliens.GetNaplo((DateTime)DatumDatePicker.SelectedDate);
             }
-            catch (Exception exc)
+            catch (Exception)
             {
                 MessageBox.Show("Nem található erre a napra log!");
             }
