@@ -76,7 +76,8 @@ namespace Omra
 
             this.adatok = (kezelo as Kimutatáskészítő).GetAdatok();
 
-            Rajzol();
+            Task t = new Task(() => Rajzol());
+            t.Start(TaskScheduler.FromCurrentSynchronizationContext());
         }
 
         private void Rajzol()
@@ -113,8 +114,6 @@ namespace Omra
                 oszlop.Stroke = Brushes.WhiteSmoke;
 
                 elozoOszlopSzele += egyOszlopSzelessege;
-
-                this.grafikon.Children.Add(oszlop);
 
                 //Csoportnevek kiírása
                 Label csoportnev = new Label();
