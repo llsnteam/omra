@@ -200,7 +200,7 @@ namespace Adatkezelõ {
             modositott.felelos_ornagy = felOrnagyID;
             modositott.leiras = leiras;
             modositott.allapot = allapot;
-
+            DE.SaveChanges();
         }
 
     }//end Bûnesetkezelõ
