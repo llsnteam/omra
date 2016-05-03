@@ -14,8 +14,6 @@ using Adatkezelő;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
-
 namespace Omra
 {
     /// <summary>
@@ -63,18 +61,17 @@ namespace Omra
             kivBűneset = buneset;
             id = kivBűneset.GetAzonosító;
             felelősŐrnagy = buneset.GetFelelős;
-
             //
             //
             // Párhuzamosság
             // Itt 2 task, majd waitAll
             // Meg a bűnesetkezelőn belül is lockolva van + új databaseElement
-            Task<ObservableCollection<Gyanúsított>> t1 = new Task<ObservableCollection<Gyanúsított>>(() => bunesetK.GyanúsítottakKigyűjtése(buneset));
+            /*Task<ObservableCollection<Gyanúsított>> t1 = new Task<ObservableCollection<Gyanúsított>>(() => bunesetK.GyanúsítottakKigyűjtése(buneset));
             t1.Start();
             t1.ContinueWith(task => { 
                 gyanúsítottak = task.Result; 
             },
-                TaskContinuationOptions.OnlyOnRanToCompletion);
+                TaskContinuationOptions.OnlyOnRanToCompletion);*/
 
             Task<ObservableCollection<Bizonyíték>> t2 = new Task<ObservableCollection<Bizonyíték>>(() => bunesetK.BizonyítékokKigyűjtése(buneset));
             t2.Start();

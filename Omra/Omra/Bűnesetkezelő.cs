@@ -42,7 +42,7 @@ namespace Adatkezelõ {
         public ObservableCollection<Gyanúsított> GyanúsítottakKigyûjtése(Bûneset bûneset)
         {
             ObservableCollection<Gyanúsított> gyanúsítottak = new ObservableCollection<Gyanúsított>();
-                var gyanlista = from x in DE2.FelvettGyanusitottak
+                var gyanlista = from x in DE.FelvettGyanusitottak
                                 where x.bunesetID == bûneset.GetAzonosító
                                 select x.Gyanusitottak;
 
